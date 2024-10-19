@@ -14,7 +14,7 @@ public class GradientTriangleColor implements TriangleColor {
     private Color color2 = DEFAULT_COLOR_2;
     private Color color3 = DEFAULT_COLOR_3;
 
-    public GradientTriangleColor(Color color1, Color color2, Color color3) {
+    public GradientTriangleColor(final Color color1, final Color color2, final Color color3) {
         setColor1(color1);
         setColor2(color2);
         setColor3(color3);
@@ -32,7 +32,7 @@ public class GradientTriangleColor implements TriangleColor {
         return color3;
     }
 
-    public void setColor1(Color color) {
+    public void setColor1(final Color color) {
         if (color == null) {
             // exception?
             return;
@@ -41,7 +41,7 @@ public class GradientTriangleColor implements TriangleColor {
         this.color1 = color;
     }
 
-    public void setColor2(Color color) {
+    public void setColor2(final Color color) {
         if (color == null) {
             // exception?
             return;
@@ -50,7 +50,7 @@ public class GradientTriangleColor implements TriangleColor {
         this.color2 = color;
     }
 
-    public void setColor3(Color color) {
+    public void setColor3(final Color color) {
         if (color == null) {
             // exception?
             return;
@@ -60,11 +60,11 @@ public class GradientTriangleColor implements TriangleColor {
     }
 
     // epsilon?
-    private boolean validCoordinate(double lambda) {
+    private boolean validCoordinate(final double lambda) {
         return (0 <= lambda) && (lambda <= 1);
     }
 
-    private boolean validCoordinates(double l1, double l2, double l3) {
+    private boolean validCoordinates(final double l1, final double l2, final double l3) {
         final boolean r1 = validCoordinate(l1);
         final boolean r2 = validCoordinate(l2);
         final boolean r3 = validCoordinate(l3);

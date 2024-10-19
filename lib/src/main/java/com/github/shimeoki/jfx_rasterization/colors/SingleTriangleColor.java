@@ -10,7 +10,7 @@ public class SingleTriangleColor implements TriangleColor {
 
     private Color color = DEFAULT_COLOR;
 
-    public SingleTriangleColor(Color color) {
+    public SingleTriangleColor(final Color color) {
         setColor(color);
     }
 
@@ -18,7 +18,7 @@ public class SingleTriangleColor implements TriangleColor {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(final Color color) {
         if (color == null) {
             // exception?
             return;
@@ -28,11 +28,11 @@ public class SingleTriangleColor implements TriangleColor {
     }
 
     // epsilon?
-    private boolean validCoordinate(double lambda) {
+    private boolean validCoordinate(final double lambda) {
         return (0 <= lambda) && (lambda <= 1);
     }
 
-    private boolean validCoordinates(double l1, double l2, double l3) {
+    private boolean validCoordinates(final double l1, final double l2, final double l3) {
         final boolean r1 = validCoordinate(l1);
         final boolean r2 = validCoordinate(l2);
         final boolean r3 = validCoordinate(l3);
