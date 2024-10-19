@@ -8,8 +8,5 @@ public interface TriangleRasterizer extends BaseRasterizer {
 
     void setColor(TriangleColor color);
 
-    void draw(
-            Point2D p1,
-            Point2D p2,
-            Point2D p3);
+    void draw(Point2D p1, Point2D p2, Point2D p3);
 }
