@@ -32,17 +32,17 @@ public class SingleTriangleColor implements TriangleColor {
         return (0 <= lambda) && (lambda <= 1);
     }
 
+    private boolean validCoordinates(double l1, double l2, double l3) {
+        final boolean r1 = validCoordinate(l1);
+        final boolean r2 = validCoordinate(l2);
+        final boolean r3 = validCoordinate(l3);
+
+        return r1 && r2 && r3;
+    }
+
     @Override
     public Color get(final double l1, final double l2, final double l3) {
-        if (!validCoordinate(l1)) {
-            return null;
-        }
-
-        if (!validCoordinate(l2)) {
-            return null;
-        }
-
-        if (!validCoordinate(l3)) {
+        if (!validCoordinates(l1, l2, l3)) {
             return null;
         }
 
