@@ -73,8 +73,8 @@ public class GradientTriangleColor implements TriangleColor {
     }
 
     @Override
-    public Color get(double lambda1, double lambda2, double lambda3) {
-        if (!validCoordinates(lambda1, lambda2, lambda3)) {
+    public Color get(final double l1, final double l2, final double l3) {
+        if (!validCoordinates(l1, l2, l3)) {
             return null;
         }
 
@@ -82,10 +82,10 @@ public class GradientTriangleColor implements TriangleColor {
         final Color c2 = getColor2();
         final Color c3 = getColor3();
 
-        final double r = lambda1 * c1.getRed() + lambda2 * c2.getRed() + lambda3 * c3.getRed();
-        final double g = lambda1 * c1.getGreen() + lambda2 * c2.getGreen() + lambda3 * c3.getGreen();
-        final double b = lambda1 * c1.getBlue() + lambda2 * c2.getBlue() + lambda3 * c3.getBlue();
-        final double o = lambda1 * c1.getOpacity() + lambda2 * c2.getOpacity() + lambda3 * c3.getOpacity();
+        final double r = l1 * c1.getRed() + l2 * c2.getRed() + l3 * c3.getRed();
+        final double g = l1 * c1.getGreen() + l2 * c2.getGreen() + l3 * c3.getGreen();
+        final double b = l1 * c1.getBlue() + l2 * c2.getBlue() + l3 * c3.getBlue();
+        final double o = l1 * c1.getOpacity() + l2 * c2.getOpacity() + l3 * c3.getOpacity();
 
         return new Color(r, g, b, o);
     }

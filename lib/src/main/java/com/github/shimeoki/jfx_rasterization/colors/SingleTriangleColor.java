@@ -33,16 +33,16 @@ public class SingleTriangleColor implements TriangleColor {
     }
 
     @Override
-    public Color get(double lambda1, double lambda2, double lambda3) {
-        if (!validCoordinate(lambda1)) {
+    public Color get(final double l1, final double l2, final double l3) {
+        if (!validCoordinate(l1)) {
             return null;
         }
 
-        if (!validCoordinate(lambda2)) {
+        if (!validCoordinate(l2)) {
             return null;
         }
 
-        if (!validCoordinate(lambda3)) {
+        if (!validCoordinate(l3)) {
             return null;
         }
 
