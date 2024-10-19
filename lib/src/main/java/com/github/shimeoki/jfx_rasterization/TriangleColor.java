@@ -14,5 +14,5 @@ public interface TriangleColor {
      * @return <code>Color</code> if coordinates are valid;
      *         <code>null</code> otherwise.
      */
-    Color get(final double l1, final double l2, final double l3);
+    public Color get(final double l1, final double l2, final double l3);
 }

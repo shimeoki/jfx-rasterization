@@ -4,9 +4,9 @@ import javafx.geometry.Point2D;
 
 public interface TriangleRasterizer extends BaseRasterizer {
 
-    TriangleColor getColor();
+    public TriangleColor getColor();
 
-    void setColor(TriangleColor color);
+    public void setColor(final TriangleColor color);
 
-    void draw(Point2D p1, Point2D p2, Point2D p3);
+    public void draw(final Point2D p1, final Point2D p2, final Point2D p3);
 }
