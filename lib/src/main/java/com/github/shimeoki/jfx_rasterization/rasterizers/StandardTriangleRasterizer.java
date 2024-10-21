@@ -228,8 +228,8 @@ public class StandardTriangleRasterizer implements TriangleRasterizer {
                 return;
             }
 
-            final double x4 = x1 * ((y2 - y1) / (y3 - y1)) * (x3 - x1);
-            final Point2D p4 = new Point2D(x4, p2.getX());
+            final double x4 = x1 + ((y2 - y1) / (y3 - y1)) * (x3 - x1);
+            final Point2D p4 = new Point2D(x4, p2.getY());
 
             if (x4 >= x2) {
                 drawFlatMax(p1, p2, p4);
