@@ -1,4 +1,4 @@
-package com.github.shimeoki.jfx_rasterization;
+package com.github.shimeoki.jfx_rasterization.lib;
 
 import javafx.geometry.Point2D;
 

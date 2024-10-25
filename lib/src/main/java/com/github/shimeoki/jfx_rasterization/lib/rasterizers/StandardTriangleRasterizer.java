@@ -1,11 +1,11 @@
-package com.github.shimeoki.jfx_rasterization.rasterizers;
+package com.github.shimeoki.jfx_rasterization.lib.rasterizers;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import com.github.shimeoki.jfx_rasterization.TriangleColor;
-import com.github.shimeoki.jfx_rasterization.TriangleRasterizer;
+import com.github.shimeoki.jfx_rasterization.lib.TriangleColor;
+import com.github.shimeoki.jfx_rasterization.lib.TriangleRasterizer;
 
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
