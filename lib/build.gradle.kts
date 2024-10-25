@@ -23,8 +23,8 @@ java {
 
 javafx {
     version = "21"
-    modules("javafx.controls", "javafx.fxml")
-    configuration = "implementation"
+    modules("javafx.graphics")
+    configuration = "api"
 }
 
 tasks.named<Test>("test") {
