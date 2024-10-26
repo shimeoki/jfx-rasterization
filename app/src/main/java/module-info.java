@@ -5,5 +5,7 @@ module com.github.shimeoki.jfx_rasterization.app {
     requires transitive javafx.graphics;
     requires javafx.fxml;
 
+    opens com.github.shimeoki.jfx_rasterization.app to javafx.fxml;
+
     exports com.github.shimeoki.jfx_rasterization.app;
 }
