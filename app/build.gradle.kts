@@ -10,7 +10,7 @@ dependencies {
 }
 
 javafx {
-    modules("javafx.graphics", "javafx.fxml")
+    modules("javafx.graphics", "javafx.fxml", "javafx.controls")
     configuration = "implementation"
 }
 
