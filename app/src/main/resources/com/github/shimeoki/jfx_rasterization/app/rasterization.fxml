@@ -7,7 +7,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.RadioButton?>
 
-<AnchorPane fx:id="root" xmlns:fx="http://javafx.com/fxml" fx:controller="com.github.shimeoki.jfx_rasterization.app.RasterizationController">
+<AnchorPane fx:id="root" fx:controller="com.github.shimeoki.jfx_rasterization.app.RasterizationController" xmlns:fx="http://javafx.com/fxml">
     <VBox>
         <HBox>
             <fx:define>
