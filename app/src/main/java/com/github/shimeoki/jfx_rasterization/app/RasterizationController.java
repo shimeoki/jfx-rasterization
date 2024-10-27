@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import com.github.shimeoki.jfx_rasterization.lib.TriangleColor;
 import com.github.shimeoki.jfx_rasterization.lib.TriangleRasterizer;
 import com.github.shimeoki.jfx_rasterization.lib.colors.SingleTriangleColor;
 import com.github.shimeoki.jfx_rasterization.lib.rasterizers.StandardTriangleRasterizer;
@@ -20,7 +19,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
-import javafx.scene.paint.Color;
 
 public class RasterizationController {
 
