@@ -30,6 +30,8 @@ public class RasterizationController {
     class Tile {
 
         private final Canvas c;
+        private final GraphicsContext ctx;
+
         private final TriangleRasterizer r;
 
         // 6 numbers from 0 to 1
@@ -44,10 +46,11 @@ public class RasterizationController {
             Objects.requireNonNull(color);
 
             this.c = canvas;
+            this.ctx = c.getGraphicsContext2D();
 
             this.r = new StandardTriangleRasterizer();
             r.setColor(color);
-            r.setCtx(c.getGraphicsContext2D());
+            r.setCtx(ctx);
 
             generate();
         }
@@ -77,7 +80,6 @@ public class RasterizationController {
         }
 
         void clear() {
-            final GraphicsContext ctx = c.getGraphicsContext2D();
             ctx.clearRect(0, 0, c.getWidth(), c.getHeight());
         }
 
