@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 
@@ -9,6 +11,10 @@
 
 <AnchorPane fx:id="root" fx:controller="com.github.shimeoki.jfx_rasterization.app.RasterizationController" xmlns:fx="http://javafx.com/fxml">
     <VBox>
+        <StackPane>
+            <TilePane fx:id="tiles">
+            </TilePane>
+        </StackPane>
         <HBox>
             <fx:define>
                 <ToggleGroup fx:id="modeTg"/>
