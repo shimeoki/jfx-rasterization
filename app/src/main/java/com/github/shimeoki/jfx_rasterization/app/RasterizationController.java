@@ -15,6 +15,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
@@ -30,6 +31,9 @@ public class RasterizationController {
 
     @FXML
     private TilePane tilePane;
+
+    @FXML
+    private Button tilesBtn;
 
     private final List<Tile> tiles = new LinkedList<>();
 
