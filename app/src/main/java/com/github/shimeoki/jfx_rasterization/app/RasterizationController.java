@@ -65,7 +65,7 @@ public class RasterizationController {
             this.ctx = c.getGraphicsContext2D();
 
             this.r = new StandardTriangleRasterizer();
-            r.setColor(new SingleTriangleColor(Color.BLACK));
+            r.setColor(new SingleTriangleColor());
             r.setCtx(ctx);
 
             generate();

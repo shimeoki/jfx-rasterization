@@ -14,6 +14,9 @@ public class SingleTriangleColor implements TriangleColor {
 
     private Color color = DEFAULT_COLOR;
 
+    public SingleTriangleColor() {
+    }
+
     public SingleTriangleColor(final Color color) {
         setColor(color);
     }
