@@ -28,7 +28,9 @@ public class SingleTriangleColor implements TriangleColor {
         this.color = color;
     }
 
-    private boolean validCoordinates(final double l1, final double l2, final double l3) {
+    private boolean validCoordinates(
+            final double l1, final double l2, final double l3) {
+
         final double sum = l1 + l2 + l3;
 
         return (-EPSILON + 0 <= sum) && (sum <= 1 + EPSILON);
