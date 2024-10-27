@@ -36,7 +36,7 @@ public class SingleTriangleColor implements TriangleColor {
 
         final double sum = l1 + l2 + l3;
 
-        return (-EPSILON + 0 <= sum) && (sum <= 1 + EPSILON);
+        return (1 - EPSILON <= sum) && (sum <= 1 + EPSILON);
     }
 
     @Override
