@@ -1,5 +1,7 @@
 package com.github.shimeoki.jfx_rasterization.lib.colors;
 
+import java.util.Objects;
+
 import com.github.shimeoki.jfx_rasterization.lib.TriangleColor;
 
 import javafx.scene.paint.Color;
@@ -21,10 +23,7 @@ public class SingleTriangleColor implements TriangleColor {
     }
 
     public void setColor(final Color color) {
-        if (color == null) {
-            // exception?
-            return;
-        }
+        Objects.requireNonNull(color);
 
         this.color = color;
     }
@@ -38,7 +37,7 @@ public class SingleTriangleColor implements TriangleColor {
     @Override
     public Color get(final double l1, final double l2, final double l3) {
         if (!validCoordinates(l1, l2, l3)) {
-            return null;
+            throw new IllegalArgumentException("coordinates are not valid");
         }
 
         return getColor();
