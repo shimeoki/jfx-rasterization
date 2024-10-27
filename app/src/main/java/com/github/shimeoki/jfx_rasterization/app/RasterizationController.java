@@ -7,6 +7,7 @@ import java.util.Random;
 
 import com.github.shimeoki.jfx_rasterization.lib.TriangleColor;
 import com.github.shimeoki.jfx_rasterization.lib.TriangleRasterizer;
+import com.github.shimeoki.jfx_rasterization.lib.colors.SingleTriangleColor;
 import com.github.shimeoki.jfx_rasterization.lib.rasterizers.StandardTriangleRasterizer;
 
 import javafx.collections.ObservableList;
@@ -64,7 +65,7 @@ public class RasterizationController {
             this.ctx = c.getGraphicsContext2D();
 
             this.r = new StandardTriangleRasterizer();
-            r.setColor((l1, l2, l3) -> Color.BLACK);
+            r.setColor(new SingleTriangleColor(Color.BLACK));
             r.setCtx(ctx);
 
             generate();

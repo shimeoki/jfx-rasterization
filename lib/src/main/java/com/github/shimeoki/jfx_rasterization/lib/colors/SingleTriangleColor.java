@@ -6,6 +6,8 @@ import javafx.scene.paint.Color;
 
 public class SingleTriangleColor implements TriangleColor {
 
+    public static final double EPSILON = 0.0001;
+
     public static final Color DEFAULT_COLOR = Color.BLACK;
 
     private Color color = DEFAULT_COLOR;
@@ -27,17 +29,10 @@ public class SingleTriangleColor implements TriangleColor {
         this.color = color;
     }
 
-    // epsilon?
-    private boolean validCoordinate(final double lambda) {
-        return (0 <= lambda) && (lambda <= 1);
-    }
-
     private boolean validCoordinates(final double l1, final double l2, final double l3) {
-        final boolean r1 = validCoordinate(l1);
-        final boolean r2 = validCoordinate(l2);
-        final boolean r3 = validCoordinate(l3);
+        final double sum = l1 + l2 + l3;
 
-        return r1 && r2 && r3;
+        return (-EPSILON + 0 <= sum) && (sum <= 1 + EPSILON);
     }
 
     @Override
