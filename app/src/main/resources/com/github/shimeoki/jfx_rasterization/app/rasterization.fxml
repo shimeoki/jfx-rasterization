@@ -16,6 +16,8 @@
             <AnchorPane fx:id="staticPane">
                 <HBox>
                     <TilePane fx:id="tilePane">
+                        <hgap>20.0</hgap>
+                        <vgap>20.0</vgap>
                     </TilePane>
                     <Button fx:id="tilesBtn" text="generate"/>
                 </HBox>
