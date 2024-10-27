@@ -57,15 +57,14 @@ public class RasterizationController {
 
         private final Random rnd = new Random();
 
-        Tile(final Canvas canvas, final TriangleColor color) {
+        Tile(final Canvas canvas) {
             Objects.requireNonNull(canvas);
-            Objects.requireNonNull(color);
 
             this.c = canvas;
             this.ctx = c.getGraphicsContext2D();
 
             this.r = new StandardTriangleRasterizer();
-            r.setColor(color);
+            r.setColor((l1, l2, l3) -> Color.BLACK);
             r.setCtx(ctx);
 
             generate();
@@ -129,7 +128,7 @@ public class RasterizationController {
             final Canvas c = new Canvas(100, 100);
             children.add(c);
 
-            final Tile t = new Tile(c, (l1, l2, l3) -> Color.BLACK);
+            final Tile t = new Tile(c);
             tiles.add(t);
         }
     }
