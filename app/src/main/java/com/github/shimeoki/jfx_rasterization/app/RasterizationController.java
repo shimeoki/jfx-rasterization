@@ -12,6 +12,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 
 public class RasterizationController {
@@ -20,11 +21,14 @@ public class RasterizationController {
     private AnchorPane root;
 
     @FXML
-    private TilePane tiles;
+    private StackPane modePane;
+
+    @FXML
+    private TilePane tilePane;
 
     @FXML
     private void initialize() {
-        initTiles();
+        initTilePane();
     }
 
     class Tile {
@@ -94,8 +98,8 @@ public class RasterizationController {
         }
     }
 
-    private void initTiles() {
-        tiles.setPrefRows(3);
-        tiles.setPrefColumns(3);
+    private void initTilePane() {
+        tilePane.setPrefRows(3);
+        tilePane.setPrefColumns(3);
     }
 }

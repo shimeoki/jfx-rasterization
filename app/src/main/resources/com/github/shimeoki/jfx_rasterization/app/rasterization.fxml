@@ -11,9 +11,11 @@
 
 <AnchorPane fx:id="root" fx:controller="com.github.shimeoki.jfx_rasterization.app.RasterizationController" xmlns:fx="http://javafx.com/fxml">
     <VBox>
-        <StackPane>
-            <TilePane fx:id="tiles">
-            </TilePane>
+        <StackPane fx:id="modePane">
+            <AnchorPane fx:id="staticPane">
+                <TilePane fx:id="tilePane">
+                </TilePane>
+            </AnchorPane>
         </StackPane>
         <HBox>
             <fx:define>
