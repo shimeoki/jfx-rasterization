@@ -40,9 +40,7 @@ public class RasterizationController {
     @FXML
     private void initialize() {
         initTilePane();
-
-        // for testing
-        drawTiles();
+        initTilesBtn();
     }
 
     class Tile {
@@ -95,6 +93,8 @@ public class RasterizationController {
             for (int i = 0; i < pos.length; i++) {
                 pos[i] = rnd.nextDouble();
             }
+
+            draw();
         }
 
         void clear() {
@@ -134,9 +134,19 @@ public class RasterizationController {
         }
     }
 
+    private void initTilesBtn() {
+        tilesBtn.setOnAction(e -> generateTiles());
+    }
+
     private void drawTiles() {
         for (final Tile t : tiles) {
             t.draw();
+        }
+    }
+
+    private void generateTiles() {
+        for (final Tile t : tiles) {
+            t.generate();
         }
     }
 }

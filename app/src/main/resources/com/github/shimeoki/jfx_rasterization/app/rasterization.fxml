@@ -17,7 +17,7 @@
                 <HBox>
                     <TilePane fx:id="tilePane">
                     </TilePane>
-                    <Button fx:id="tilesBtn" text="regenerate"/>
+                    <Button fx:id="tilesBtn" text="generate"/>
                 </HBox>
             </AnchorPane>
         </StackPane>
