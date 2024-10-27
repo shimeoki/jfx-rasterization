@@ -1,5 +1,7 @@
 package com.github.shimeoki.jfx_rasterization.app;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -7,13 +9,16 @@ import com.github.shimeoki.jfx_rasterization.lib.TriangleColor;
 import com.github.shimeoki.jfx_rasterization.lib.TriangleRasterizer;
 import com.github.shimeoki.jfx_rasterization.lib.rasterizers.StandardTriangleRasterizer;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.paint.Color;
 
 public class RasterizationController {
 
@@ -26,9 +31,14 @@ public class RasterizationController {
     @FXML
     private TilePane tilePane;
 
+    private final List<Tile> tiles = new LinkedList<>();
+
     @FXML
     private void initialize() {
         initTilePane();
+
+        // for testing
+        drawTiles();
     }
 
     class Tile {
@@ -101,5 +111,28 @@ public class RasterizationController {
     private void initTilePane() {
         tilePane.setPrefRows(3);
         tilePane.setPrefColumns(3);
+
+        initTiles();
+    }
+
+    private void initTiles() {
+        final ObservableList<Node> children = tilePane.getChildren();
+
+        final int rows = tilePane.getPrefRows();
+        final int cols = tilePane.getPrefColumns();
+
+        for (int i = 0; i < rows * cols; i++) {
+            final Canvas c = new Canvas(100, 100);
+            children.add(c);
+
+            final Tile t = new Tile(c, (l1, l2, l3) -> Color.BLACK);
+            tiles.add(t);
+        }
+    }
+
+    private void drawTiles() {
+        for (final Tile t : tiles) {
+            t.draw();
+        }
     }
 }
