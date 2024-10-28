@@ -2,11 +2,11 @@ package com.github.shimeoki.jfx_rasterization.lib.triangle;
 
 import java.util.Objects;
 
+import com.github.shimeoki.jfx_rasterization.lib.Arithmetic;
+
 import javafx.scene.paint.Color;
 
 public class SingleTriangleColor implements TriangleColor {
-
-    public static final double EPSILON = 0.0001;
 
     public static final Color DEFAULT_COLOR = Color.BLACK;
 
@@ -34,7 +34,7 @@ public class SingleTriangleColor implements TriangleColor {
 
         final double sum = l1 + l2 + l3;
 
-        return (1 - EPSILON <= sum) && (sum <= 1 + EPSILON);
+        return Arithmetic.equals(sum, 1);
     }
 
     @Override

@@ -5,6 +5,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
+import com.github.shimeoki.jfx_rasterization.lib.Arithmetic;
+
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelWriter;
@@ -40,8 +42,6 @@ public class StandardTriangleRasterizer implements TriangleRasterizer {
     }
 
     class Triangle {
-
-        public static final double EPSILON = 0.0001;
 
         private final PixelWriter w;
         private final TriangleColor color;
@@ -194,10 +194,6 @@ public class StandardTriangleRasterizer implements TriangleRasterizer {
             return points;
         }
 
-        private boolean equals(final double v1, final double v2) {
-            return Math.abs(v1 - v2) <= EPSILON;
-        }
-
         // docs:
         // https://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html
         public void draw() {
@@ -216,12 +212,12 @@ public class StandardTriangleRasterizer implements TriangleRasterizer {
             final double x3 = p3.getX();
             final double y3 = p3.getY();
 
-            if (equals(y2, y3)) {
+            if (Arithmetic.equals(y2, y3)) {
                 drawFlatMax(p1, p2, p3);
                 return;
             }
 
-            if (equals(y1, y2)) {
+            if (Arithmetic.equals(y1, y2)) {
                 drawFlatMin(p3, p1, p2);
                 return;
             }
@@ -229,7 +225,8 @@ public class StandardTriangleRasterizer implements TriangleRasterizer {
             final double x4 = x1 + ((y2 - y1) / (y3 - y1)) * (x3 - x1);
             final Point2D p4 = new Point2D(x4, p2.getY());
 
-            if (x4 >= x2) {
+            // non strict equality?
+            if (Arithmetic.moreThan(x4, x2)) {
                 drawFlatMax(p1, p2, p4);
                 drawFlatMin(p3, p2, p4);
             } else {

@@ -2,11 +2,11 @@ package com.github.shimeoki.jfx_rasterization.lib.triangle;
 
 import java.util.Objects;
 
+import com.github.shimeoki.jfx_rasterization.lib.Arithmetic;
+
 import javafx.scene.paint.Color;
 
 public class GradientTriangleColor implements TriangleColor {
-
-    public static final double EPSILON = 0.0001;
 
     public static final Color DEFAULT_COLOR_1 = Color.RED;
     public static final Color DEFAULT_COLOR_2 = Color.FORESTGREEN;
@@ -62,7 +62,7 @@ public class GradientTriangleColor implements TriangleColor {
 
         final double sum = l1 + l2 + l3;
 
-        return (1 - EPSILON <= sum) && (sum <= 1 + EPSILON);
+        return Arithmetic.equals(sum, 1);
     }
 
     private double getRed(final double l1, final double l2, final double l3) {
