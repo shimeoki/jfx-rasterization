@@ -1,8 +1,6 @@
-package com.github.shimeoki.jfx_rasterization.lib.colors;
+package com.github.shimeoki.jfx_rasterization.lib.triangle;
 
 import java.util.Objects;
-
-import com.github.shimeoki.jfx_rasterization.lib.TriangleColor;
 
 import javafx.scene.paint.Color;
 

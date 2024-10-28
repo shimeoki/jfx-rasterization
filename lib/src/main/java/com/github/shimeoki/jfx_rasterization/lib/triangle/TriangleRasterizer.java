@@ -1,4 +1,6 @@
-package com.github.shimeoki.jfx_rasterization.lib;
+package com.github.shimeoki.jfx_rasterization.lib.triangle;
+
+import com.github.shimeoki.jfx_rasterization.lib.BaseRasterizer;
 
 import javafx.geometry.Point2D;
 

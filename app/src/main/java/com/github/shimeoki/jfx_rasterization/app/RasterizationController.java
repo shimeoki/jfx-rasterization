@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import com.github.shimeoki.jfx_rasterization.lib.TriangleRasterizer;
-import com.github.shimeoki.jfx_rasterization.lib.colors.GradientTriangleColor;
-import com.github.shimeoki.jfx_rasterization.lib.rasterizers.StandardTriangleRasterizer;
+import com.github.shimeoki.jfx_rasterization.lib.triangle.GradientTriangleColor;
+import com.github.shimeoki.jfx_rasterization.lib.triangle.StandardTriangleRasterizer;
+import com.github.shimeoki.jfx_rasterization.lib.triangle.TriangleRasterizer;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
