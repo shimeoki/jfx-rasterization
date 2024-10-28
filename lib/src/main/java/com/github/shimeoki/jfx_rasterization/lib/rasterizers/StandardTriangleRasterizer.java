@@ -3,6 +3,7 @@ package com.github.shimeoki.jfx_rasterization.lib.rasterizers;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 import com.github.shimeoki.jfx_rasterization.lib.TriangleColor;
 import com.github.shimeoki.jfx_rasterization.lib.TriangleRasterizer;
@@ -24,10 +25,7 @@ public class StandardTriangleRasterizer implements TriangleRasterizer {
 
     @Override
     public void setCtx(final GraphicsContext ctx) {
-        if (ctx == null) {
-            // exception?
-            return;
-        }
+        Objects.requireNonNull(ctx);
 
         this.ctx = ctx;
     }
@@ -39,10 +37,7 @@ public class StandardTriangleRasterizer implements TriangleRasterizer {
 
     @Override
     public void setColor(final TriangleColor color) {
-        if (color == null) {
-            // exception?
-            return;
-        }
+        Objects.requireNonNull(color);
 
         this.color = color;
     }
@@ -247,24 +242,11 @@ public class StandardTriangleRasterizer implements TriangleRasterizer {
         }
     }
 
-    private boolean validPoint(final Point2D point) {
-        return point != null;
-    }
-
-    private boolean validPoints(final Point2D p1, final Point2D p2, final Point2D p3) {
-        final boolean r1 = validPoint(p1);
-        final boolean r2 = validPoint(p2);
-        final boolean r3 = validPoint(p3);
-
-        return r1 && r2 && r3;
-    }
-
     @Override
     public void draw(final Point2D p1, final Point2D p2, final Point2D p3) {
-        if (!validPoints(p1, p2, p3)) {
-            // exception?
-            return;
-        }
+        Objects.requireNonNull(p1);
+        Objects.requireNonNull(p2);
+        Objects.requireNonNull(p3);
 
         final Triangle triangle = new Triangle(
                 getCtx().getPixelWriter(),
