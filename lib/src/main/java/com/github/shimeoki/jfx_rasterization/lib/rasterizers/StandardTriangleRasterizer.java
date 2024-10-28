@@ -49,6 +49,8 @@ public class StandardTriangleRasterizer implements TriangleRasterizer {
 
     class Triangle {
 
+        public static final double EPSILON = 0.0001;
+
         private final PixelWriter w;
         private final TriangleColor color;
 
@@ -200,6 +202,10 @@ public class StandardTriangleRasterizer implements TriangleRasterizer {
             return points;
         }
 
+        private boolean equals(final double v1, final double v2) {
+            return Math.abs(v1 - v2) <= EPSILON;
+        }
+
         // docs:
         // https://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html
         public void draw() {
@@ -218,12 +224,12 @@ public class StandardTriangleRasterizer implements TriangleRasterizer {
             final double x3 = p3.getX();
             final double y3 = p3.getY();
 
-            if (y2 == y3) {
+            if (equals(y2, y3)) {
                 drawFlatMax(p1, p2, p3);
                 return;
             }
 
-            if (y1 == y2) {
+            if (equals(y1, y2)) {
                 drawFlatMin(p3, p1, p2);
                 return;
             }
