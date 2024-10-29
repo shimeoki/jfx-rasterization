@@ -131,20 +131,12 @@ public class DDATriangler implements Triangler {
                 continue;
             }
 
-            if (!inside(b)) {
+            if (!b.inside()) {
                 continue;
             }
 
             w.setColor(x, y, c.get(b));
         }
-    }
-
-    private boolean inside(final TriangleBarycentrics b) {
-        final boolean b1 = DoubleMath.moreThan(b.lambda1(), 0);
-        final boolean b2 = DoubleMath.moreThan(b.lambda2(), 0);
-        final boolean b3 = DoubleMath.moreThan(b.lambda3(), 0);
-
-        return b1 && b2 && b3;
     }
 
     @Override
