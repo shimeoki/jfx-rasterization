@@ -52,65 +52,94 @@ public class DDATriangler implements Triangler {
         return vertices;
     }
 
-    private void drawHLine(
-            final Triangle t,
-            final int y, final int x1, final int x2) {
+    private void drawFlat(final Triangle t,
+            final Point2D lone,
+            final Point2D flat1,
+            final Point2D flat2) {
 
-        for (int x = x1; x <= x2; x++) {
-            w.setColor(x, y, colorer.get(t.barycentrics(new Point2D(x, y))));
+        final double lx = lone.getX();
+        final double ly = lone.getY();
+
+        // "delta flat x1"
+        final double dfx1 = flat1.getX() - lx;
+        final double dfy1 = flat1.getY() - ly;
+
+        final double dfx2 = flat2.getX() - lx;
+        final double dfy2 = flat2.getY() - ly;
+
+        double dx1 = dfx1 / dfy1;
+        double dx2 = dfx2 / dfy2;
+
+        if (DoubleMath.moreThan(ly, flat1.getY())) {
+            drawFlatMin(t, lone, flat1.getY(), dx1, dx2);
+        } else {
+            drawFlatMax(t, lone, flat1.getY(), dx1, dx2);
         }
     }
 
-    private void drawFlatMax(final Triangle init, final Triangle t) {
-        final double minX = t.x1();
-        final double minY = t.y1();
-        final double maxY = t.y2();
+    private void drawFlatMax(final Triangle t,
+            final Point2D v,
+            final double maxY,
+            final double dx1,
+            final double dx2) {
 
-        final double dx1 = t.x2() - minX;
-        final double dy1 = t.y2() - minY;
+        double x1 = v.getX();
+        double x2 = x1;
 
-        final double dx2 = t.x3() - minX;
-        final double dy2 = t.y3() - minY;
-
-        final double delta1 = dx1 / dy1;
-        final double delta2 = dx2 / dy2;
-
-        double x1 = minX;
-        double x2 = minX;
-
-        for (int y = (int) minY; y <= maxY; y++) {
+        for (int y = (int) v.getY(); y <= maxY; y++) {
             // round doubles instead of floor?
-            drawHLine(init, y, (int) x1, (int) x2);
+            drawHLine(t, (int) x1, (int) x2, y);
 
-            x1 += delta1;
-            x2 += delta2;
+            x1 += dx1;
+            x2 += dx2;
         }
     }
 
-    private void drawFlatMin(final Triangle init, final Triangle t) {
-        final double maxX = t.x1();
-        final double maxY = t.y1();
-        final double minY = t.y2();
+    private void drawFlatMin(final Triangle t,
+            final Point2D v,
+            final double minY,
+            final double dx1,
+            final double dx2) {
 
-        final double dx1 = maxX - t.x2();
-        final double dy1 = maxY - t.y2();
+        double x1 = v.getX();
+        double x2 = x1;
 
-        final double dx2 = maxX - t.x3();
-        final double dy2 = maxY - t.y3();
-
-        final double delta1 = dx1 / dy1;
-        final double delta2 = dx2 / dy2;
-
-        double x1 = maxX;
-        double x2 = maxX;
-
-        for (int y = (int) maxY; y > minY; y--) {
+        for (int y = (int) v.getY(); y > minY; y--) {
             // round doubles instead of floor?
-            drawHLine(init, y, (int) x1, (int) x2);
+            drawHLine(t, (int) x1, (int) x2, y);
 
-            x1 -= delta1;
-            x2 -= delta2;
+            x1 -= dx1;
+            x2 -= dx2;
         }
+    }
+
+    private void drawHLine(final Triangle t,
+            final int x1,
+            final int x2,
+            final int y) {
+
+        for (int x = (int) x1; x <= x2; x++) {
+            final TriangleBarycentrics b;
+            try {
+                b = t.barycentrics(new Point2D(x, y));
+            } catch (Exception e) {
+                continue;
+            }
+
+            if (!inside(b)) {
+                continue;
+            }
+
+            w.setColor(x, y, colorer.get(b));
+        }
+    }
+
+    private boolean inside(final TriangleBarycentrics b) {
+        final boolean b1 = DoubleMath.moreThan(b.lambda1(), 0);
+        final boolean b2 = DoubleMath.moreThan(b.lambda2(), 0);
+        final boolean b3 = DoubleMath.moreThan(b.lambda3(), 0);
+
+        return b1 && b2 && b3;
     }
 
     @Override
@@ -136,12 +165,12 @@ public class DDATriangler implements Triangler {
         final double y3 = v3.getY();
 
         if (DoubleMath.equals(y2, y3)) {
-            drawFlatMax(t, new Triangle3(v1, v2, v3));
+            drawFlat(t, v1, v2, v3);
             return;
         }
 
         if (DoubleMath.equals(y1, y2)) {
-            drawFlatMin(t, new Triangle3(v3, v1, v2));
+            drawFlat(t, v3, v1, v2);
             return;
         }
 
@@ -150,11 +179,11 @@ public class DDATriangler implements Triangler {
 
         // non strict equality?
         if (DoubleMath.moreThan(x4, x2)) {
-            drawFlatMax(t, new Triangle3(v1, v2, v4));
-            drawFlatMin(t, new Triangle3(v3, v2, v4));
+            drawFlat(t, v1, v2, v4);
+            drawFlat(t, v3, v2, v4);
         } else {
-            drawFlatMax(t, new Triangle3(v1, v4, v2));
-            drawFlatMin(t, new Triangle3(v3, v4, v2));
+            drawFlat(t, v1, v4, v2);
+            drawFlat(t, v3, v4, v2);
         }
     }
 }
