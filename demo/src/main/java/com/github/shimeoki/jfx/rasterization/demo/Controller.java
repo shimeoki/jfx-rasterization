@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Random;
 
 import com.github.shimeoki.jfx.rasterization.triangle.GradientTriangleColorer;
+import com.github.shimeoki.jfx.rasterization.triangle.Triangle3;
 import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.Triangler;
 
@@ -106,7 +107,7 @@ public class Controller {
             final Point2D p2 = getPoint2();
             final Point2D p3 = getPoint3();
 
-            r.draw(p1, p2, p3);
+            r.draw(new Triangle3(p1, p2, p3));
         }
     }
 
