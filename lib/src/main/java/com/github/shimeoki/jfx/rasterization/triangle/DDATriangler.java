@@ -8,24 +8,23 @@ import java.util.Objects;
 import com.github.shimeoki.jfx.rasterization.Arithmetic;
 
 import javafx.geometry.Point2D;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelWriter;
 
 public class DDATriangler implements Triangler {
 
-    private GraphicsContext ctx;
+    private PixelWriter w;
     private TriangleColorer colorer;
 
     @Override
-    public GraphicsContext getCtx() {
-        return ctx;
+    public PixelWriter getPixelWriter() {
+        return w;
     }
 
     @Override
-    public void setCtx(final GraphicsContext ctx) {
-        Objects.requireNonNull(ctx);
+    public void setPixelWriter(final PixelWriter w) {
+        Objects.requireNonNull(w);
 
-        this.ctx = ctx;
+        this.w = w;
     }
 
     @Override
@@ -54,7 +53,7 @@ public class DDATriangler implements Triangler {
     }
 
     private void drawHLine(
-            final Triangle t, final PixelWriter w,
+            final Triangle t,
             final int y, final int x1, final int x2) {
 
         for (int x = x1; x <= x2; x++) {
@@ -62,7 +61,7 @@ public class DDATriangler implements Triangler {
         }
     }
 
-    private void drawFlatMax(final Triangle init, final Triangle t, final PixelWriter w) {
+    private void drawFlatMax(final Triangle init, final Triangle t) {
         final double minX = t.x1();
         final double minY = t.y1();
         final double maxY = t.y2();
@@ -81,14 +80,14 @@ public class DDATriangler implements Triangler {
 
         for (int y = (int) minY; y <= maxY; y++) {
             // round doubles instead of floor?
-            drawHLine(init, w, y, (int) x1, (int) x2);
+            drawHLine(init, y, (int) x1, (int) x2);
 
             x1 += delta1;
             x2 += delta2;
         }
     }
 
-    private void drawFlatMin(final Triangle init, final Triangle t, final PixelWriter w) {
+    private void drawFlatMin(final Triangle init, final Triangle t) {
         final double maxX = t.x1();
         final double maxY = t.y1();
         final double minY = t.y2();
@@ -107,7 +106,7 @@ public class DDATriangler implements Triangler {
 
         for (int y = (int) maxY; y > minY; y--) {
             // round doubles instead of floor?
-            drawHLine(init, w, y, (int) x1, (int) x2);
+            drawHLine(init, y, (int) x1, (int) x2);
 
             x1 -= delta1;
             x2 -= delta2;
@@ -137,12 +136,12 @@ public class DDATriangler implements Triangler {
         final double y3 = v3.getY();
 
         if (Arithmetic.equals(y2, y3)) {
-            drawFlatMax(t, new Triangle3(v1, v2, v3), ctx.getPixelWriter());
+            drawFlatMax(t, new Triangle3(v1, v2, v3));
             return;
         }
 
         if (Arithmetic.equals(y1, y2)) {
-            drawFlatMin(t, new Triangle3(v3, v1, v2), ctx.getPixelWriter());
+            drawFlatMin(t, new Triangle3(v3, v1, v2));
             return;
         }
 
@@ -151,11 +150,11 @@ public class DDATriangler implements Triangler {
 
         // non strict equality?
         if (Arithmetic.moreThan(x4, x2)) {
-            drawFlatMax(t, new Triangle3(v1, v2, v4), ctx.getPixelWriter());
-            drawFlatMin(t, new Triangle3(v3, v2, v4), ctx.getPixelWriter());
+            drawFlatMax(t, new Triangle3(v1, v2, v4));
+            drawFlatMin(t, new Triangle3(v3, v2, v4));
         } else {
-            drawFlatMax(t, new Triangle3(v1, v4, v2), ctx.getPixelWriter());
-            drawFlatMin(t, new Triangle3(v3, v4, v2), ctx.getPixelWriter());
+            drawFlatMax(t, new Triangle3(v1, v4, v2));
+            drawFlatMin(t, new Triangle3(v3, v4, v2));
         }
     }
 }

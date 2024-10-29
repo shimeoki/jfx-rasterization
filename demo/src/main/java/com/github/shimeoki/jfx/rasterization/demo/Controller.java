@@ -65,7 +65,7 @@ public class Controller {
 
             this.r = new DDATriangler();
             r.setColorer(new GradientTriangleColorer());
-            r.setCtx(ctx);
+            r.setPixelWriter(ctx.getPixelWriter());
 
             generate();
         }
