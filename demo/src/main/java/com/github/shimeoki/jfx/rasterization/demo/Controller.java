@@ -6,8 +6,8 @@ import java.util.Objects;
 import java.util.Random;
 
 import com.github.shimeoki.jfx.rasterization.triangle.GradientTriangleColorer;
-import com.github.shimeoki.jfx.rasterization.triangle.StandardTriangleRasterizer;
-import com.github.shimeoki.jfx.rasterization.triangle.TriangleRasterizer;
+import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
+import com.github.shimeoki.jfx.rasterization.triangle.Triangler;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -47,7 +47,7 @@ public class Controller {
         private final Canvas c;
         private final GraphicsContext ctx;
 
-        private final TriangleRasterizer r;
+        private final Triangler r;
 
         // 6 numbers from 0 to 1
         // 2 coordinates for 3 points
@@ -62,7 +62,7 @@ public class Controller {
             this.c = canvas;
             this.ctx = c.getGraphicsContext2D();
 
-            this.r = new StandardTriangleRasterizer();
+            this.r = new DDATriangler();
             r.setColorer(new GradientTriangleColorer());
             r.setCtx(ctx);
 

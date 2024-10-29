@@ -4,7 +4,7 @@ import com.github.shimeoki.jfx.rasterization.BaseRasterizer;
 
 import javafx.geometry.Point2D;
 
-public interface TriangleRasterizer extends BaseRasterizer {
+public interface Triangler extends BaseRasterizer {
 
     public TriangleColorer getColorer();
 
