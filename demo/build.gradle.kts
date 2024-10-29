@@ -16,5 +16,5 @@ javafx {
 
 application {
     mainModule = "com.github.shimeoki.jfx.rasterization.demo"
-    mainClass = "com.github.shimeoki.jfx.rasterization.demo.RasterizationApp"
+    mainClass = "com.github.shimeoki.jfx.rasterization.demo.App"
 }

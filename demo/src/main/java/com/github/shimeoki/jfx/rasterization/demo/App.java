@@ -7,19 +7,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class RasterizationApp extends Application {
+public class App extends Application {
 
-    public RasterizationApp() {
+    public App() {
     }
 
     @Override
     public void start(final Stage stage) throws IOException {
         final FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("rasterization.fxml"));
+                getClass().getResource("app.fxml"));
 
         final Scene scene = new Scene(loader.load());
 
-        stage.setTitle("rasterization");
+        stage.setTitle("jfx-rasterization demo");
         stage.setScene(scene);
 
         stage.show();

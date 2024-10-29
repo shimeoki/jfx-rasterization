@@ -20,7 +20,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 
-public class RasterizationController {
+public class Controller {
 
     @FXML
     private AnchorPane root;
