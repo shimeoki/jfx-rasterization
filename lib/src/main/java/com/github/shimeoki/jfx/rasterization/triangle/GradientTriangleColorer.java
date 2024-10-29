@@ -2,6 +2,8 @@ package com.github.shimeoki.jfx.rasterization.triangle;
 
 import java.util.Objects;
 
+import com.github.shimeoki.jfx.rasterization.Arithmetic;
+
 import javafx.scene.paint.Color;
 
 public class GradientTriangleColorer implements TriangleColorer {
@@ -60,8 +62,7 @@ public class GradientTriangleColorer implements TriangleColorer {
         final double r2 = b.lambda2() * c2.getRed();
         final double r3 = b.lambda3() * c3.getRed();
 
-        // should be in [0.0, 1.0]
-        return Math.min(Math.max(0, r1 + r2 + r3), 1);
+        return Arithmetic.confined(0, r1 + r2 + r3, 1);
     }
 
     private double green(final TriangleBarycentrics b) {
@@ -69,8 +70,7 @@ public class GradientTriangleColorer implements TriangleColorer {
         final double g2 = b.lambda2() * c2.getGreen();
         final double g3 = b.lambda3() * c3.getGreen();
 
-        // should be in [0.0, 1.0]
-        return Math.min(Math.max(0, g1 + g2 + g3), 1);
+        return Arithmetic.confined(0, g1 + g2 + g3, 1);
     }
 
     private double blue(final TriangleBarycentrics b) {
@@ -78,8 +78,7 @@ public class GradientTriangleColorer implements TriangleColorer {
         final double b2 = b.lambda2() * c2.getBlue();
         final double b3 = b.lambda3() * c3.getBlue();
 
-        // should be in [0.0, 1.0]
-        return Math.min(Math.max(0, b1 + b2 + b3), 1);
+        return Arithmetic.confined(0, b1 + b2 + b3, 1);
     }
 
     private double opacity(final TriangleBarycentrics b) {
@@ -87,8 +86,7 @@ public class GradientTriangleColorer implements TriangleColorer {
         final double o2 = b.lambda2() * c2.getOpacity();
         final double o3 = b.lambda3() * c3.getOpacity();
 
-        // should be in [0.0, 1.0]
-        return Math.min(Math.max(0, o1 + o2 + o3), 1);
+        return Arithmetic.confined(0, o1 + o2 + o3, 1);
     }
 
     @Override
