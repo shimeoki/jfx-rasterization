@@ -27,4 +27,8 @@ public interface Triangle {
     public double x3();
 
     public double y3();
+
+    // barycentrics
+
+    public TriangleBarycentrics barycentrics(final Point2D p);
 }
