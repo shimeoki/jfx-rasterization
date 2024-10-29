@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-import com.github.shimeoki.jfx.rasterization.Arithmetic;
+import com.github.shimeoki.jfx.rasterization.DoubleArithmetic;
 
 import javafx.geometry.Point2D;
 import javafx.scene.image.PixelWriter;
@@ -135,12 +135,12 @@ public class DDATriangler implements Triangler {
         final double x3 = v3.getX();
         final double y3 = v3.getY();
 
-        if (Arithmetic.equals(y2, y3)) {
+        if (DoubleArithmetic.equals(y2, y3)) {
             drawFlatMax(t, new Triangle3(v1, v2, v3));
             return;
         }
 
-        if (Arithmetic.equals(y1, y2)) {
+        if (DoubleArithmetic.equals(y1, y2)) {
             drawFlatMin(t, new Triangle3(v3, v1, v2));
             return;
         }
@@ -149,7 +149,7 @@ public class DDATriangler implements Triangler {
         final Point2D v4 = new Point2D(x4, v2.getY());
 
         // non strict equality?
-        if (Arithmetic.moreThan(x4, x2)) {
+        if (DoubleArithmetic.moreThan(x4, x2)) {
             drawFlatMax(t, new Triangle3(v1, v2, v4));
             drawFlatMin(t, new Triangle3(v3, v2, v4));
         } else {
