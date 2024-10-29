@@ -13,7 +13,7 @@ import javafx.scene.image.PixelWriter;
 public class DDATriangler implements Triangler {
 
     private PixelWriter w;
-    private TriangleColorer colorer;
+    private TriangleColorer c;
 
     @Override
     public PixelWriter getPixelWriter() {
@@ -29,14 +29,14 @@ public class DDATriangler implements Triangler {
 
     @Override
     public TriangleColorer getColorer() {
-        return colorer;
+        return c;
     }
 
     @Override
-    public void setColorer(final TriangleColorer color) {
-        Objects.requireNonNull(color);
+    public void setColorer(final TriangleColorer c) {
+        Objects.requireNonNull(c);
 
-        this.colorer = color;
+        this.c = c;
     }
 
     private List<Point2D> sortedVertices(final Triangle t) {
@@ -130,7 +130,7 @@ public class DDATriangler implements Triangler {
                 continue;
             }
 
-            w.setColor(x, y, colorer.get(b));
+            w.setColor(x, y, c.get(b));
         }
     }
 
