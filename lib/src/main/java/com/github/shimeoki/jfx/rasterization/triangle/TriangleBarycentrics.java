@@ -7,4 +7,6 @@ public interface TriangleBarycentrics {
     public double lambda2();
 
     public double lambda3();
+
+    public boolean inside();
 }

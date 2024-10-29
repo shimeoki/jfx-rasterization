@@ -35,4 +35,13 @@ public class DefaultTriangleBarycentrics implements TriangleBarycentrics {
     public double lambda3() {
         return l3;
     }
+
+    @Override
+    public boolean inside() {
+        final boolean b1 = DoubleMath.moreThan(l1, 0);
+        final boolean b2 = DoubleMath.moreThan(l2, 0);
+        final boolean b3 = DoubleMath.moreThan(l3, 0);
+
+        return b1 && b2 && b3;
+    }
 }
