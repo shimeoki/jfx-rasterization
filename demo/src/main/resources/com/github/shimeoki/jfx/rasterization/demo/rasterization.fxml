@@ -10,7 +10,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Button?>
 
-<AnchorPane fx:id="root" fx:controller="com.github.shimeoki.jfx_rasterization.app.RasterizationController" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane fx:id="root" fx:controller="com.github.shimeoki.jfx.rasterization.demo.RasterizationController" xmlns:fx="http://javafx.com/fxml">
     <VBox spacing="20.0" style="-fx-padding: 20" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <StackPane fx:id="modePane" VBox.vgrow="ALWAYS">
             <AnchorPane fx:id="staticPane">

@@ -5,4 +5,4 @@ plugins {
 }
 
 include("lib")
-include("app")
+include("demo")

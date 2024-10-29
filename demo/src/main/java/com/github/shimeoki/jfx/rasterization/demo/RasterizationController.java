@@ -1,4 +1,4 @@
-package com.github.shimeoki.jfx_rasterization.app;
+package com.github.shimeoki.jfx.rasterization.demo;
 
 import java.util.LinkedList;
 import java.util.List;
