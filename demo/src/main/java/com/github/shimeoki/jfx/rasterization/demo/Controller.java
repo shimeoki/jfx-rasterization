@@ -63,9 +63,9 @@ public class Controller {
             this.c = canvas;
             this.ctx = c.getGraphicsContext2D();
 
-            this.r = new DDATriangler();
-            r.setColorer(new GradientTriangleColorer());
-            r.setPixelWriter(ctx.getPixelWriter());
+            this.r = new DDATriangler(
+                    ctx.getPixelWriter(),
+                    new GradientTriangleColorer());
 
             generate();
         }

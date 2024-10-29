@@ -15,6 +15,11 @@ public class DDATriangler implements Triangler {
     private PixelWriter w;
     private TriangleColorer c;
 
+    public DDATriangler(final PixelWriter w, final TriangleColorer c) {
+        setPixelWriter(w);
+        setColorer(c);
+    }
+
     @Override
     public PixelWriter getPixelWriter() {
         return w;
