@@ -6,7 +6,7 @@ import com.github.shimeoki.jfx.rasterization.Arithmetic;
 
 import javafx.scene.paint.Color;
 
-public class GradientTriangleColor implements TriangleColor {
+public class GradientTriangleColorer implements TriangleColorer {
 
     public static final Color DEFAULT_COLOR_1 = Color.RED;
     public static final Color DEFAULT_COLOR_2 = Color.FORESTGREEN;
@@ -16,10 +16,10 @@ public class GradientTriangleColor implements TriangleColor {
     private Color color2 = DEFAULT_COLOR_2;
     private Color color3 = DEFAULT_COLOR_3;
 
-    public GradientTriangleColor() {
+    public GradientTriangleColorer() {
     }
 
-    public GradientTriangleColor(
+    public GradientTriangleColorer(
             final Color color1, final Color color2, final Color color3) {
 
         setColor1(color1);

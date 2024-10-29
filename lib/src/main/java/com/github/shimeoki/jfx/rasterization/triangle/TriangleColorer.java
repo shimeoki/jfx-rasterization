@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
  * @see {@code TriangleRasterizer}
  */
 @FunctionalInterface
-public interface TriangleColor {
+public interface TriangleColorer {
 
     /**
      * Gets a {@code Color} at specified barycentic coordinates.

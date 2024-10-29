@@ -6,16 +6,16 @@ import com.github.shimeoki.jfx.rasterization.Arithmetic;
 
 import javafx.scene.paint.Color;
 
-public class SingleTriangleColor implements TriangleColor {
+public class MonotoneTriangleColorer implements TriangleColorer {
 
     public static final Color DEFAULT_COLOR = Color.BLACK;
 
     private Color color = DEFAULT_COLOR;
 
-    public SingleTriangleColor() {
+    public MonotoneTriangleColorer() {
     }
 
-    public SingleTriangleColor(final Color color) {
+    public MonotoneTriangleColorer(final Color color) {
         setColor(color);
     }
 

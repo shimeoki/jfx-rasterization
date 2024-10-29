@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 public class StandardTriangleRasterizer implements TriangleRasterizer {
 
     private GraphicsContext ctx;
-    private TriangleColor color;
+    private TriangleColorer colorer;
 
     @Override
     public GraphicsContext getCtx() {
@@ -30,21 +30,21 @@ public class StandardTriangleRasterizer implements TriangleRasterizer {
     }
 
     @Override
-    public TriangleColor getColor() {
-        return color;
+    public TriangleColorer getColorer() {
+        return colorer;
     }
 
     @Override
-    public void setColor(final TriangleColor color) {
+    public void setColorer(final TriangleColorer color) {
         Objects.requireNonNull(color);
 
-        this.color = color;
+        this.colorer = color;
     }
 
     class Triangle {
 
         private final PixelWriter w;
-        private final TriangleColor color;
+        private final TriangleColorer colorer;
 
         private final Point2D p1;
         private final Point2D p2;
@@ -56,12 +56,12 @@ public class StandardTriangleRasterizer implements TriangleRasterizer {
 
         private Triangle(
                 final PixelWriter w,
-                final TriangleColor color,
+                final TriangleColorer colorer,
                 final Point2D p1,
                 final Point2D p2,
                 final Point2D p3) {
             this.w = w;
-            this.color = color;
+            this.colorer = colorer;
 
             // points should be valid
             this.p1 = p1;
@@ -110,7 +110,7 @@ public class StandardTriangleRasterizer implements TriangleRasterizer {
             final double l2 = n2 * d;
             final double l3 = n3 * d;
 
-            return color.get(l1, l2, l3);
+            return colorer.get(l1, l2, l3);
         }
 
         private void drawPixel(final int x, final int y) {
@@ -244,7 +244,7 @@ public class StandardTriangleRasterizer implements TriangleRasterizer {
 
         final Triangle triangle = new Triangle(
                 getCtx().getPixelWriter(),
-                getColor(),
+                getColorer(),
                 p1, p2, p3);
 
         triangle.draw();
