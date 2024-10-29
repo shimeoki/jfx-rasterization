@@ -1,6 +1,6 @@
 package com.github.shimeoki.jfx.rasterization.triangle;
 
-import com.github.shimeoki.jfx.rasterization.DoubleArithmetic;
+import com.github.shimeoki.jfx.rasterization.DoubleMath;
 
 public class DefaultTriangleBarycentrics implements TriangleBarycentrics {
 
@@ -12,7 +12,7 @@ public class DefaultTriangleBarycentrics implements TriangleBarycentrics {
             final double l1, final double l2, final double l3) {
 
         final double sum = l1 + l2 + l3;
-        if (!DoubleArithmetic.equals(sum, 1)) {
+        if (!DoubleMath.equals(sum, 1)) {
             throw new IllegalArgumentException("coordinates are not normalized");
         }
 
