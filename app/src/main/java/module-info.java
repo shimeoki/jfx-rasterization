@@ -1,6 +1,6 @@
 module com.github.shimeoki.jfx_rasterization.app {
 
-    requires com.github.shimeoki.jfx_rasterization.lib;
+    requires com.github.shimeoki.jfx.rasterization;
 
     requires transitive javafx.graphics;
     requires javafx.fxml;

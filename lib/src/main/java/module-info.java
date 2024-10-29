@@ -1,7 +1,7 @@
-module com.github.shimeoki.jfx_rasterization.lib {
+module com.github.shimeoki.jfx.rasterization {
 
     requires transitive javafx.graphics;
 
-    exports com.github.shimeoki.jfx_rasterization.lib;
-    exports com.github.shimeoki.jfx_rasterization.lib.triangle;
+    exports com.github.shimeoki.jfx.rasterization;
+    exports com.github.shimeoki.jfx.rasterization.triangle;
 }

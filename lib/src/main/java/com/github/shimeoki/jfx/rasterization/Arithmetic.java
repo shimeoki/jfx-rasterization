@@ -1,4 +1,4 @@
-package com.github.shimeoki.jfx_rasterization.lib;
+package com.github.shimeoki.jfx.rasterization;
 
 public class Arithmetic {
 
