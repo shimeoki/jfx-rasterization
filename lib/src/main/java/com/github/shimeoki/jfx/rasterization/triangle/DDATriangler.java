@@ -110,7 +110,7 @@ public class DDATriangler implements Triangler {
             final double l2 = n2 * d;
             final double l3 = n3 * d;
 
-            return colorer.get(l1, l2, l3);
+            return colorer.get(new DefaultTriangleBarycentrics(l1, l2, l3));
         }
 
         private void drawPixel(final int x, final int y) {

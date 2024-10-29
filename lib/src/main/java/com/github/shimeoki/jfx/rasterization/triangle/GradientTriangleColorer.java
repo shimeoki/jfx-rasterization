@@ -2,8 +2,6 @@ package com.github.shimeoki.jfx.rasterization.triangle;
 
 import java.util.Objects;
 
-import com.github.shimeoki.jfx.rasterization.Arithmetic;
-
 import javafx.scene.paint.Color;
 
 public class GradientTriangleColorer implements TriangleColorer {
@@ -57,69 +55,54 @@ public class GradientTriangleColorer implements TriangleColorer {
         this.color3 = color;
     }
 
-    private boolean validCoordinates(
-            final double l1, final double l2, final double l3) {
+    private double getRed(final TriangleBarycentrics b) {
+        final double r1 = b.lambda1() * getColor1().getRed();
+        final double r2 = b.lambda2() * getColor2().getRed();
+        final double r3 = b.lambda3() * getColor3().getRed();
 
-        final double sum = l1 + l2 + l3;
-
-        return Arithmetic.equals(sum, 1);
-    }
-
-    private double getRed(final double l1, final double l2, final double l3) {
-        final double r1 = l1 * getColor1().getRed();
-        final double r2 = l2 * getColor2().getRed();
-        final double r3 = l3 * getColor3().getRed();
-
-        final double r = r1 + r2 + r3;
+        final double red = r1 + r2 + r3;
 
         // should be in [0.0, 1.0]
-        return Math.min(Math.max(0, r), 1);
+        return Math.min(Math.max(0, red), 1);
     }
 
-    private double getGreen(final double l1, final double l2, final double l3) {
-        final double g1 = l1 * getColor1().getGreen();
-        final double g2 = l2 * getColor2().getGreen();
-        final double g3 = l3 * getColor3().getGreen();
+    private double getGreen(final TriangleBarycentrics b) {
+        final double g1 = b.lambda1() * getColor1().getGreen();
+        final double g2 = b.lambda2() * getColor2().getGreen();
+        final double g3 = b.lambda3() * getColor3().getGreen();
 
-        final double g = g1 + g2 + g3;
+        final double green = g1 + g2 + g3;
 
         // should be in [0.0, 1.0]
-        return Math.min(Math.max(0, g), 1);
+        return Math.min(Math.max(0, green), 1);
     }
 
-    private double getBlue(final double l1, final double l2, final double l3) {
-        final double b1 = l1 * getColor1().getBlue();
-        final double b2 = l2 * getColor2().getBlue();
-        final double b3 = l3 * getColor3().getBlue();
+    private double getBlue(final TriangleBarycentrics b) {
+        final double b1 = b.lambda1() * getColor1().getBlue();
+        final double b2 = b.lambda2() * getColor2().getBlue();
+        final double b3 = b.lambda3() * getColor3().getBlue();
 
-        final double b = b1 + b2 + b3;
+        final double blue = b1 + b2 + b3;
 
         // should be in [0.0, 1.0]
-        return Math.min(Math.max(0, b), 1);
+        return Math.min(Math.max(0, blue), 1);
     }
 
-    private double getOpacity(final double l1, final double l2, final double l3) {
-        final double o1 = l1 * getColor1().getOpacity();
-        final double o2 = l2 * getColor2().getOpacity();
-        final double o3 = l3 * getColor3().getOpacity();
+    private double getOpacity(final TriangleBarycentrics b) {
+        final double o1 = b.lambda1() * getColor1().getOpacity();
+        final double o2 = b.lambda2() * getColor2().getOpacity();
+        final double o3 = b.lambda3() * getColor3().getOpacity();
 
-        final double o = o1 + o2 + o3;
+        final double opacity = o1 + o2 + o3;
 
         // should be in [0.0, 1.0]
-        return Math.min(Math.max(0, o), 1);
+        return Math.min(Math.max(0, opacity), 1);
     }
 
     @Override
-    public Color get(final double l1, final double l2, final double l3) {
-        if (!validCoordinates(l1, l2, l3)) {
-            throw new IllegalArgumentException("coordinates are not valid");
-        }
+    public Color get(final TriangleBarycentrics b) {
+        Objects.requireNonNull(b);
 
-        final double r = getRed(l1, l2, l3);
-        final double g = getGreen(l1, l2, l3);
-        final double b = getBlue(l1, l2, l3);
-        final double o = getOpacity(l1, l2, l3);
-
-        return new Color(r, g, b, o);
+        return new Color(getRed(b), getGreen(b), getBlue(b), getOpacity(b));
     }
 }
