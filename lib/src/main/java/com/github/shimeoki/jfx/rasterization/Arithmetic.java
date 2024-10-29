@@ -15,4 +15,10 @@ public class Arithmetic {
     public static boolean lessThan(final double left, final double right) {
         return (left - right) < EPSILON;
     }
+
+    public static double confined(
+            final double low, final double x, final double high) {
+
+        return Math.min(Math.max(low, x), high);
+    }
 }
