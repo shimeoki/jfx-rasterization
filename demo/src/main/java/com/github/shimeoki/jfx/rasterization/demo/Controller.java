@@ -8,9 +8,9 @@ import java.util.Random;
 import com.github.shimeoki.jfx.rasterization.geom.Point2D;
 import com.github.shimeoki.jfx.rasterization.geom.Vector;
 import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
-import com.github.shimeoki.jfx.rasterization.triangle.GradientTriangleColorer;
-import com.github.shimeoki.jfx.rasterization.triangle.StaticTriangle;
 import com.github.shimeoki.jfx.rasterization.triangle.Triangler;
+import com.github.shimeoki.jfx.rasterization.triangle.color.GradientTriangleColorer;
+import com.github.shimeoki.jfx.rasterization.triangle.geom.StaticTriangle;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

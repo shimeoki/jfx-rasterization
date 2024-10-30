@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Objects;
 
 import com.github.shimeoki.jfx.rasterization.math.Floats;
+import com.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
+import com.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
+import com.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 import com.github.shimeoki.jfx.rasterization.geom.Point2D;
 import com.github.shimeoki.jfx.rasterization.geom.Vector;
 

@@ -1,4 +1,6 @@
-package com.github.shimeoki.jfx.rasterization.triangle;
+package com.github.shimeoki.jfx.rasterization.triangle.color;
+
+import com.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 
 import javafx.scene.paint.Color;
 

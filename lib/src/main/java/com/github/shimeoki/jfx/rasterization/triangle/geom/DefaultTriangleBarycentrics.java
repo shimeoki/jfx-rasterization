@@ -1,4 +1,4 @@
-package com.github.shimeoki.jfx.rasterization.triangle;
+package com.github.shimeoki.jfx.rasterization.triangle.geom;
 
 import com.github.shimeoki.jfx.rasterization.math.Floats;
 
