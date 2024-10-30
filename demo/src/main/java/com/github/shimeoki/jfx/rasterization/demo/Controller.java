@@ -5,14 +5,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+import com.github.shimeoki.jfx.rasterization.DoublePoint2;
+import com.github.shimeoki.jfx.rasterization.Point;
+import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.GradientTriangleColorer;
 import com.github.shimeoki.jfx.rasterization.triangle.Triangle3;
-import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.Triangler;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -70,22 +71,22 @@ public class Controller {
             generate();
         }
 
-        private Point2D getPoint1() {
+        private DoublePoint2 getPoint1() {
             final double x = c.getWidth() * pos[0];
             final double y = c.getHeight() * pos[1];
-            return new Point2D(x, y);
+            return new Point(x, y);
         }
 
-        private Point2D getPoint2() {
+        private DoublePoint2 getPoint2() {
             final double x = c.getWidth() * pos[2];
             final double y = c.getHeight() * pos[3];
-            return new Point2D(x, y);
+            return new Point(x, y);
         }
 
-        private Point2D getPoint3() {
+        private DoublePoint2 getPoint3() {
             final double x = c.getWidth() * pos[4];
             final double y = c.getHeight() * pos[5];
-            return new Point2D(x, y);
+            return new Point(x, y);
         }
 
         void generate() {
@@ -103,9 +104,9 @@ public class Controller {
         void draw() {
             clear();
 
-            final Point2D p1 = getPoint1();
-            final Point2D p2 = getPoint2();
-            final Point2D p3 = getPoint3();
+            final DoublePoint2 p1 = getPoint1();
+            final DoublePoint2 p2 = getPoint2();
+            final DoublePoint2 p3 = getPoint3();
 
             r.draw(new Triangle3(p1, p2, p3));
         }

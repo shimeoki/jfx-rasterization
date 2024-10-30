@@ -2,7 +2,8 @@ package com.github.shimeoki.jfx.rasterization.triangle;
 
 import java.util.Objects;
 
-import javafx.geometry.Point2D;
+import com.github.shimeoki.jfx.rasterization.DoublePoint2;
+import com.github.shimeoki.jfx.rasterization.Point;
 
 public class Triangle3 implements Triangle {
 
@@ -19,27 +20,31 @@ public class Triangle3 implements Triangle {
     // d is "1 / denominator" for faster calculations
     private final double d;
 
-    public Triangle3(final Point2D v1, final Point2D v2, final Point2D v3) {
+    public Triangle3(
+            final DoublePoint2 v1,
+            final DoublePoint2 v2,
+            final DoublePoint2 v3) {
+
         Objects.requireNonNull(v1);
         Objects.requireNonNull(v2);
         Objects.requireNonNull(v3);
 
-        x1 = v1.getX();
-        y1 = v1.getY();
+        x1 = v1.x();
+        y1 = v1.y();
 
-        x2 = v2.getX();
-        y2 = v2.getY();
+        x2 = v2.x();
+        y2 = v2.y();
 
-        x3 = v3.getX();
-        y3 = v3.getY();
+        x3 = v3.x();
+        y3 = v3.y();
 
         // check for zero?
         d = 1 / denominator();
     }
 
     @Override
-    public Point2D v1() {
-        return new Point2D(x1, y1);
+    public DoublePoint2 v1() {
+        return new Point(x1, y1);
     }
 
     @Override
@@ -53,8 +58,8 @@ public class Triangle3 implements Triangle {
     }
 
     @Override
-    public Point2D v2() {
-        return new Point2D(x2, y2);
+    public DoublePoint2 v2() {
+        return new Point(x2, y2);
     }
 
     @Override
@@ -68,8 +73,8 @@ public class Triangle3 implements Triangle {
     }
 
     @Override
-    public Point2D v3() {
-        return new Point2D(x3, y3);
+    public DoublePoint2 v3() {
+        return new Point(x3, y3);
     }
 
     @Override
@@ -87,12 +92,12 @@ public class Triangle3 implements Triangle {
     }
 
     @Override
-    public TriangleBarycentrics barycentrics(final Point2D p) {
+    public TriangleBarycentrics barycentrics(final DoublePoint2 p) {
         // docs:
         // https://en.wikipedia.org/wiki/Barycentric_coordinate_system#Conversion_between_barycentric_and_Cartesian_coordinates
 
-        final double x = p.getX();
-        final double y = p.getY();
+        final double x = p.x();
+        final double y = p.y();
 
         // n stands for numerator
         final double n1 = (y2 - y3) * (x - x3) + (x3 - x2) * (y - y3);

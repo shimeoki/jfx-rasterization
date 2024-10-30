@@ -1,12 +1,12 @@
 package com.github.shimeoki.jfx.rasterization.triangle;
 
-import javafx.geometry.Point2D;
+import com.github.shimeoki.jfx.rasterization.DoublePoint2;
 
 public interface Triangle {
 
     // first vertex
 
-    public Point2D v1();
+    public DoublePoint2 v1();
 
     public double x1();
 
@@ -14,7 +14,7 @@ public interface Triangle {
 
     // second vertex
 
-    public Point2D v2();
+    public DoublePoint2 v2();
 
     public double x2();
 
@@ -22,7 +22,7 @@ public interface Triangle {
 
     // third vertex
 
-    public Point2D v3();
+    public DoublePoint2 v3();
 
     public double x3();
 
@@ -30,5 +30,5 @@ public interface Triangle {
 
     // barycentrics
 
-    public TriangleBarycentrics barycentrics(final Point2D p);
+    public TriangleBarycentrics barycentrics(final DoublePoint2 p);
 }

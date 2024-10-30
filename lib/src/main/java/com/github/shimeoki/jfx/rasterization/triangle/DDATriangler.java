@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.Objects;
 
 import com.github.shimeoki.jfx.rasterization.DoubleMath;
+import com.github.shimeoki.jfx.rasterization.DoublePoint2;
+import com.github.shimeoki.jfx.rasterization.Point;
 
-import javafx.geometry.Point2D;
 import javafx.scene.image.PixelWriter;
 
 public class DDATriangler implements Triangler {
@@ -44,54 +45,55 @@ public class DDATriangler implements Triangler {
         this.c = c;
     }
 
-    private List<Point2D> sortedVertices(final Triangle t) {
-        final List<Point2D> vertices = new ArrayList<>();
+    private List<DoublePoint2> sortedVertices(final Triangle t) {
+        final List<DoublePoint2> vertices = new ArrayList<>();
         vertices.add(t.v1());
         vertices.add(t.v2());
         vertices.add(t.v3());
 
         vertices.sort(Comparator
-                .comparing(Point2D::getY)
-                .thenComparing(Point2D::getX));
+                .comparing(DoublePoint2::y)
+                .thenComparing(DoublePoint2::x));
 
         return vertices;
     }
 
     private void drawFlat(final Triangle t,
-            final Point2D lone,
-            final Point2D flat1,
-            final Point2D flat2) {
+            final DoublePoint2 lone,
+            final DoublePoint2 flat1,
+            final DoublePoint2 flat2) {
 
-        final double lx = lone.getX();
-        final double ly = lone.getY();
+        final double lx = lone.x();
+        final double ly = lone.y();
 
         // "delta flat x1"
-        final double dfx1 = flat1.getX() - lx;
-        final double dfy1 = flat1.getY() - ly;
+        final double dfx1 = flat1.x() - lx;
+        final double dfy1 = flat1.y() - ly;
 
-        final double dfx2 = flat2.getX() - lx;
-        final double dfy2 = flat2.getY() - ly;
+        final double dfx2 = flat2.x() - lx;
+        final double dfy2 = flat2.y() - ly;
 
         double dx1 = dfx1 / dfy1;
         double dx2 = dfx2 / dfy2;
 
-        if (DoubleMath.moreThan(ly, flat1.getY())) {
-            drawFlatMin(t, lone, flat1.getY(), dx1, dx2);
+        final double fy = flat1.y();
+        if (DoubleMath.moreThan(ly, fy)) {
+            drawFlatMin(t, lone, fy, dx1, dx2);
         } else {
-            drawFlatMax(t, lone, flat1.getY(), dx1, dx2);
+            drawFlatMax(t, lone, fy, dx1, dx2);
         }
     }
 
     private void drawFlatMax(final Triangle t,
-            final Point2D v,
+            final DoublePoint2 v,
             final double maxY,
             final double dx1,
             final double dx2) {
 
-        double x1 = v.getX();
+        double x1 = v.x();
         double x2 = x1;
 
-        for (int y = (int) v.getY(); y <= maxY; y++) {
+        for (int y = (int) v.y(); y <= maxY; y++) {
             // round doubles instead of floor?
             drawHLine(t, (int) x1, (int) x2, y);
 
@@ -101,15 +103,15 @@ public class DDATriangler implements Triangler {
     }
 
     private void drawFlatMin(final Triangle t,
-            final Point2D v,
+            final DoublePoint2 v,
             final double minY,
             final double dx1,
             final double dx2) {
 
-        double x1 = v.getX();
+        double x1 = v.x();
         double x2 = x1;
 
-        for (int y = (int) v.getY(); y > minY; y--) {
+        for (int y = (int) v.y(); y > minY; y--) {
             // round doubles instead of floor?
             drawHLine(t, (int) x1, (int) x2, y);
 
@@ -126,7 +128,7 @@ public class DDATriangler implements Triangler {
         for (int x = (int) x1; x <= x2; x++) {
             final TriangleBarycentrics b;
             try {
-                b = t.barycentrics(new Point2D(x, y));
+                b = t.barycentrics(new Point(x, y));
             } catch (Exception e) {
                 continue;
             }
@@ -146,20 +148,20 @@ public class DDATriangler implements Triangler {
         // docs:
         // https://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html
 
-        final List<Point2D> vertices = sortedVertices(t);
+        final List<DoublePoint2> vertices = sortedVertices(t);
 
-        final Point2D v1 = vertices.get(0);
-        final Point2D v2 = vertices.get(1);
-        final Point2D v3 = vertices.get(2);
+        final DoublePoint2 v1 = vertices.get(0);
+        final DoublePoint2 v2 = vertices.get(1);
+        final DoublePoint2 v3 = vertices.get(2);
 
-        final double x1 = v1.getX();
-        final double y1 = v1.getY();
+        final double x1 = v1.x();
+        final double y1 = v1.y();
 
-        final double x2 = v2.getX();
-        final double y2 = v2.getY();
+        final double x2 = v2.x();
+        final double y2 = v2.y();
 
-        final double x3 = v3.getX();
-        final double y3 = v3.getY();
+        final double x3 = v3.x();
+        final double y3 = v3.y();
 
         if (DoubleMath.equals(y2, y3)) {
             drawFlat(t, v1, v2, v3);
@@ -172,7 +174,7 @@ public class DDATriangler implements Triangler {
         }
 
         final double x4 = x1 + ((y2 - y1) / (y3 - y1)) * (x3 - x1);
-        final Point2D v4 = new Point2D(x4, v2.getY());
+        final DoublePoint2 v4 = new Point(x4, v2.y());
 
         // non strict equality?
         if (DoubleMath.moreThan(x4, x2)) {
