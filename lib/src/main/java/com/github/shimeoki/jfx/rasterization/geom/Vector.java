@@ -29,15 +29,4 @@ public class Vector implements Vector2D {
     public void setY(final float y) {
         this.y = y;
     }
-
-    @Override
-    public void copy(final Vector2D v) {
-        setX(v.x());
-        setY(v.y());
-    }
-
-    @Override
-    public Vector2D duplicate() {
-        return new Vector(x, y);
-    }
 }
