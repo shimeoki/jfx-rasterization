@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.paint.Color;
 
 public class Controller {
 
@@ -66,7 +67,8 @@ public class Controller {
 
             this.r = new DDATriangler(
                     ctx.getPixelWriter(),
-                    new GradientTriangleColorer());
+                    new GradientTriangleColorer(
+                            Color.RED, Color.WHITE, Color.BLACK));
 
             generate();
         }

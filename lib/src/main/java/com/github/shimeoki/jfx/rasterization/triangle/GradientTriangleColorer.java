@@ -8,53 +8,20 @@ import javafx.scene.paint.Color;
 
 public class GradientTriangleColorer implements TriangleColorer {
 
-    public static final Color DEFAULT_COLOR_1 = Color.RED;
-    public static final Color DEFAULT_COLOR_2 = Color.FORESTGREEN;
-    public static final Color DEFAULT_COLOR_3 = Color.BLUE;
-
-    private Color c1 = DEFAULT_COLOR_1;
-    private Color c2 = DEFAULT_COLOR_2;
-    private Color c3 = DEFAULT_COLOR_3;
-
-    public GradientTriangleColorer() {
-    }
+    private final Color c1;
+    private final Color c2;
+    private final Color c3;
 
     public GradientTriangleColorer(
-            final Color color1, final Color color2, final Color color3) {
+            final Color c1, final Color c2, final Color c3) {
 
-        setColor1(color1);
-        setColor2(color2);
-        setColor3(color3);
-    }
+        Objects.requireNonNull(c1);
+        Objects.requireNonNull(c2);
+        Objects.requireNonNull(c3);
 
-    public Color getColor1() {
-        return c1;
-    }
-
-    public Color getColor2() {
-        return c2;
-    }
-
-    public Color getColor3() {
-        return c3;
-    }
-
-    public void setColor1(final Color c) {
-        Objects.requireNonNull(c);
-
-        c1 = c;
-    }
-
-    public void setColor2(final Color c) {
-        Objects.requireNonNull(c);
-
-        c2 = c;
-    }
-
-    public void setColor3(final Color c) {
-        Objects.requireNonNull(c);
-
-        c3 = c;
+        this.c1 = c1;
+        this.c2 = c2;
+        this.c3 = c3;
     }
 
     private double red(final TriangleBarycentrics b) {
