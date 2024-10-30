@@ -22,7 +22,7 @@ public class DDATriangler implements Triangler {
     }
 
     @Override
-    public PixelWriter getPixelWriter() {
+    public PixelWriter pixelWriter() {
         return w;
     }
 

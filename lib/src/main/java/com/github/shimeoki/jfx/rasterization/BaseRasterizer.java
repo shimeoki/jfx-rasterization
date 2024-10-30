@@ -4,7 +4,7 @@ import javafx.scene.image.PixelWriter;
 
 public interface BaseRasterizer {
 
-    public PixelWriter getPixelWriter();
+    public PixelWriter pixelWriter();
 
     public void setPixelWriter(final PixelWriter w);
 }
