@@ -5,7 +5,7 @@ import java.util.Objects;
 import com.github.shimeoki.jfx.rasterization.DoublePoint2;
 import com.github.shimeoki.jfx.rasterization.Point;
 
-public class Triangle3 implements Triangle {
+public class StaticTriangle implements Triangle {
 
     private final double x1;
     private final double y1;
@@ -20,7 +20,7 @@ public class Triangle3 implements Triangle {
     // d is "1 / denominator" for faster calculations
     private final double d;
 
-    public Triangle3(
+    public StaticTriangle(
             final DoublePoint2 v1,
             final DoublePoint2 v2,
             final DoublePoint2 v3) {

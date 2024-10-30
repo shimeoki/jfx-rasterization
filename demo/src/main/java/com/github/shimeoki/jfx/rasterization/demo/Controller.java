@@ -9,7 +9,7 @@ import com.github.shimeoki.jfx.rasterization.DoublePoint2;
 import com.github.shimeoki.jfx.rasterization.Point;
 import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.GradientTriangleColorer;
-import com.github.shimeoki.jfx.rasterization.triangle.Triangle3;
+import com.github.shimeoki.jfx.rasterization.triangle.StaticTriangle;
 import com.github.shimeoki.jfx.rasterization.triangle.Triangler;
 
 import javafx.collections.ObservableList;
@@ -108,7 +108,7 @@ public class Controller {
             final DoublePoint2 p2 = getPoint2();
             final DoublePoint2 p3 = getPoint3();
 
-            r.draw(new Triangle3(p1, p2, p3));
+            r.draw(new StaticTriangle(p1, p2, p3));
         }
     }
 
