@@ -1,6 +1,6 @@
 package com.github.shimeoki.jfx.rasterization.triangle;
 
-import com.github.shimeoki.jfx.rasterization.math.FloatMath;
+import com.github.shimeoki.jfx.rasterization.math.Floats;
 
 public class DefaultTriangleBarycentrics implements TriangleBarycentrics {
 
@@ -14,7 +14,7 @@ public class DefaultTriangleBarycentrics implements TriangleBarycentrics {
             final float l1, final float l2, final float l3) {
 
         final float sum = l1 + l2 + l3;
-        if (!FloatMath.equals(sum, 1)) {
+        if (!Floats.equals(sum, 1)) {
             throw new IllegalArgumentException("coordinates are not normalized");
         }
 
@@ -41,9 +41,9 @@ public class DefaultTriangleBarycentrics implements TriangleBarycentrics {
     }
 
     private boolean computeInside() {
-        final boolean b1 = FloatMath.moreThan(l1, 0);
-        final boolean b2 = FloatMath.moreThan(l2, 0);
-        final boolean b3 = FloatMath.moreThan(l3, 0);
+        final boolean b1 = Floats.moreThan(l1, 0);
+        final boolean b2 = Floats.moreThan(l2, 0);
+        final boolean b3 = Floats.moreThan(l3, 0);
 
         return b1 && b2 && b3;
     }

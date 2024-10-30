@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-import com.github.shimeoki.jfx.rasterization.math.FloatMath;
+import com.github.shimeoki.jfx.rasterization.math.Floats;
 import com.github.shimeoki.jfx.rasterization.geom.Point2D;
 import com.github.shimeoki.jfx.rasterization.geom.Vector;
 
@@ -77,7 +77,7 @@ public class DDATriangler implements Triangler {
         float dx2 = dfx2 / dfy2;
 
         final float fy = flat1.y();
-        if (FloatMath.moreThan(ly, fy)) {
+        if (Floats.moreThan(ly, fy)) {
             drawFlatMin(t, lone, fy, dx1, dx2);
         } else {
             drawFlatMax(t, lone, fy, dx1, dx2);
@@ -163,12 +163,12 @@ public class DDATriangler implements Triangler {
         final float x3 = v3.x();
         final float y3 = v3.y();
 
-        if (FloatMath.equals(y2, y3)) {
+        if (Floats.equals(y2, y3)) {
             drawFlat(t, v1, v2, v3);
             return;
         }
 
-        if (FloatMath.equals(y1, y2)) {
+        if (Floats.equals(y1, y2)) {
             drawFlat(t, v3, v1, v2);
             return;
         }
@@ -177,7 +177,7 @@ public class DDATriangler implements Triangler {
         final Point2D v4 = new Vector(x4, v2.y());
 
         // non strict equality?
-        if (FloatMath.moreThan(x4, x2)) {
+        if (Floats.moreThan(x4, x2)) {
             drawFlat(t, v1, v2, v4);
             drawFlat(t, v3, v2, v4);
         } else {

@@ -1,6 +1,6 @@
 package com.github.shimeoki.jfx.rasterization.color;
 
-import com.github.shimeoki.jfx.rasterization.math.FloatMath;
+import com.github.shimeoki.jfx.rasterization.math.Floats;
 
 import javafx.scene.paint.Color;
 
@@ -14,10 +14,10 @@ public class RGBColor implements Colorf {
     public RGBColor(
             final float r, final float g, final float b, final float a) {
 
-        this.r = FloatMath.confined(0, r, 1);
-        this.g = FloatMath.confined(0, g, 1);
-        this.b = FloatMath.confined(0, b, 1);
-        this.a = FloatMath.confined(0, a, 1);
+        this.r = Floats.confined(0, r, 1);
+        this.g = Floats.confined(0, g, 1);
+        this.b = Floats.confined(0, b, 1);
+        this.a = Floats.confined(0, a, 1);
     }
 
     @Override

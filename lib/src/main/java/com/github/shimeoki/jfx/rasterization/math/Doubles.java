@@ -1,6 +1,6 @@
 package com.github.shimeoki.jfx.rasterization.math;
 
-public class DoubleMath {
+public class Doubles {
 
     public static final double EPSILON = 0.000000000001;
 
