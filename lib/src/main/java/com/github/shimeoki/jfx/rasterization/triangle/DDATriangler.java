@@ -34,7 +34,7 @@ public class DDATriangler implements Triangler {
     }
 
     @Override
-    public TriangleColorer getColorer() {
+    public TriangleColorer colorer() {
         return c;
     }
 

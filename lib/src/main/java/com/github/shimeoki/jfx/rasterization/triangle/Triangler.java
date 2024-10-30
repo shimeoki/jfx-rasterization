@@ -4,7 +4,7 @@ import com.github.shimeoki.jfx.rasterization.BaseRasterizer;
 
 public interface Triangler extends BaseRasterizer {
 
-    public TriangleColorer getColorer();
+    public TriangleColorer colorer();
 
     public void setColorer(final TriangleColorer c);
 
