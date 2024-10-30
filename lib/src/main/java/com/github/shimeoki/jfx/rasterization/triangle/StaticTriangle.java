@@ -2,9 +2,9 @@ package com.github.shimeoki.jfx.rasterization.triangle;
 
 import java.util.Objects;
 
-import com.github.shimeoki.jfx.rasterization.Point2D;
-import com.github.shimeoki.jfx.rasterization.Vector;
-import com.github.shimeoki.jfx.rasterization.Vector2D;
+import com.github.shimeoki.jfx.rasterization.geom.Point2D;
+import com.github.shimeoki.jfx.rasterization.geom.Vector;
+import com.github.shimeoki.jfx.rasterization.geom.Vector2D;
 
 public class StaticTriangle implements Triangle {
 

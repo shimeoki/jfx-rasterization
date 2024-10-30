@@ -1,4 +1,6 @@
-package com.github.shimeoki.jfx.rasterization;
+package com.github.shimeoki.jfx.rasterization.color;
+
+import com.github.shimeoki.jfx.rasterization.math.FloatMath;
 
 import javafx.scene.paint.Color;
 

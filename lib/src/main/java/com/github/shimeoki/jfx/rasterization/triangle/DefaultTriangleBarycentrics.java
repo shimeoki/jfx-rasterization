@@ -1,6 +1,6 @@
 package com.github.shimeoki.jfx.rasterization.triangle;
 
-import com.github.shimeoki.jfx.rasterization.FloatMath;
+import com.github.shimeoki.jfx.rasterization.math.FloatMath;
 
 public class DefaultTriangleBarycentrics implements TriangleBarycentrics {
 

@@ -1,6 +1,6 @@
 package com.github.shimeoki.jfx.rasterization.triangle;
 
-import com.github.shimeoki.jfx.rasterization.Colorf;
+import com.github.shimeoki.jfx.rasterization.color.Colorf;
 
 public interface TriangleGradient {
 

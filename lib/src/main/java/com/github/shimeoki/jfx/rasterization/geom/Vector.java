@@ -1,4 +1,4 @@
-package com.github.shimeoki.jfx.rasterization;
+package com.github.shimeoki.jfx.rasterization.geom;
 
 public class Vector implements Vector2D {
 

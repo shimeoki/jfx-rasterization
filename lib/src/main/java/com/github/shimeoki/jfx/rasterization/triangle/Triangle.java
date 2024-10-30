@@ -1,7 +1,7 @@
 package com.github.shimeoki.jfx.rasterization.triangle;
 
-import com.github.shimeoki.jfx.rasterization.Point2D;
-import com.github.shimeoki.jfx.rasterization.Vector2D;
+import com.github.shimeoki.jfx.rasterization.geom.Point2D;
+import com.github.shimeoki.jfx.rasterization.geom.Vector2D;
 
 public interface Triangle {
 

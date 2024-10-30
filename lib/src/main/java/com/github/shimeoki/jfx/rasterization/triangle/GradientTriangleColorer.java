@@ -2,7 +2,7 @@ package com.github.shimeoki.jfx.rasterization.triangle;
 
 import java.util.Objects;
 
-import com.github.shimeoki.jfx.rasterization.DoubleMath;
+import com.github.shimeoki.jfx.rasterization.math.DoubleMath;
 
 import javafx.scene.paint.Color;
 
