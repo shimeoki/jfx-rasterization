@@ -44,6 +44,11 @@ public class RGBColor implements Colorf {
     }
 
     @Override
+    public float transparency() {
+        return 1f - a;
+    }
+
+    @Override
     public Color jfxColor() {
         return new Color(r, g, b, a);
     }

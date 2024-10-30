@@ -12,11 +12,13 @@ public interface Colorf {
 
     public float blue();
 
-    // alpha / opacity
+    // alpha / opacity / transparency
 
     public float alpha();
 
     public float opacity();
+
+    public float transparency();
 
     // conversion
 
