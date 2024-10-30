@@ -6,31 +6,18 @@ import javafx.scene.paint.Color;
 
 public class MonotoneTriangleColorer implements TriangleColorer {
 
-    public static final Color DEFAULT_COLOR = Color.BLACK;
+    private final Color c;
 
-    private Color color = DEFAULT_COLOR;
+    public MonotoneTriangleColorer(final Color c) {
+        Objects.requireNonNull(c);
 
-    public MonotoneTriangleColorer() {
-    }
-
-    public MonotoneTriangleColorer(final Color color) {
-        setColor(color);
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(final Color color) {
-        Objects.requireNonNull(color);
-
-        this.color = color;
+        this.c = c;
     }
 
     @Override
     public Color get(final TriangleBarycentrics b) {
         Objects.requireNonNull(b);
 
-        return getColor();
+        return c;
     }
 }
