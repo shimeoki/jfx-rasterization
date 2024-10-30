@@ -1,34 +1,35 @@
 package com.github.shimeoki.jfx.rasterization.triangle;
 
-import com.github.shimeoki.jfx.rasterization.DoublePoint2;
+import com.github.shimeoki.jfx.rasterization.Point2D;
+import com.github.shimeoki.jfx.rasterization.Vector2D;
 
 public interface Triangle {
 
     // first vertex
 
-    public DoublePoint2 v1();
+    public Vector2D v1();
 
-    public double x1();
+    public float x1();
 
-    public double y1();
+    public float y1();
 
     // second vertex
 
-    public DoublePoint2 v2();
+    public Vector2D v2();
 
-    public double x2();
+    public float x2();
 
-    public double y2();
+    public float y2();
 
     // third vertex
 
-    public DoublePoint2 v3();
+    public Vector2D v3();
 
-    public double x3();
+    public float x3();
 
-    public double y3();
+    public float y3();
 
     // barycentrics
 
-    public TriangleBarycentrics barycentrics(final DoublePoint2 p);
+    public TriangleBarycentrics barycentrics(final Point2D p);
 }

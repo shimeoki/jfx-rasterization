@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import com.github.shimeoki.jfx.rasterization.DoublePoint2;
-import com.github.shimeoki.jfx.rasterization.Point;
+import com.github.shimeoki.jfx.rasterization.Point2D;
+import com.github.shimeoki.jfx.rasterization.Vector;
 import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.GradientTriangleColorer;
 import com.github.shimeoki.jfx.rasterization.triangle.StaticTriangle;
@@ -55,7 +55,7 @@ public class Controller {
         // 6 numbers from 0 to 1
         // 2 coordinates for 3 points
         // represent % of length in the canvas
-        private final double[] pos = new double[6];
+        private final float[] pos = new float[6];
 
         private final Random rnd = new Random();
 
@@ -73,27 +73,27 @@ public class Controller {
             generate();
         }
 
-        private DoublePoint2 getPoint1() {
-            final double x = c.getWidth() * pos[0];
-            final double y = c.getHeight() * pos[1];
-            return new Point(x, y);
+        private Point2D getPoint1() {
+            final float x = (float) c.getWidth() * pos[0];
+            final float y = (float) c.getHeight() * pos[1];
+            return new Vector(x, y);
         }
 
-        private DoublePoint2 getPoint2() {
-            final double x = c.getWidth() * pos[2];
-            final double y = c.getHeight() * pos[3];
-            return new Point(x, y);
+        private Point2D getPoint2() {
+            final float x = (float) c.getWidth() * pos[2];
+            final float y = (float) c.getHeight() * pos[3];
+            return new Vector(x, y);
         }
 
-        private DoublePoint2 getPoint3() {
-            final double x = c.getWidth() * pos[4];
-            final double y = c.getHeight() * pos[5];
-            return new Point(x, y);
+        private Point2D getPoint3() {
+            final float x = (float) c.getWidth() * pos[4];
+            final float y = (float) c.getHeight() * pos[5];
+            return new Vector(x, y);
         }
 
         void generate() {
             for (int i = 0; i < pos.length; i++) {
-                pos[i] = rnd.nextDouble();
+                pos[i] = rnd.nextFloat();
             }
 
             draw();
@@ -106,9 +106,9 @@ public class Controller {
         void draw() {
             clear();
 
-            final DoublePoint2 p1 = getPoint1();
-            final DoublePoint2 p2 = getPoint2();
-            final DoublePoint2 p3 = getPoint3();
+            final Point2D p1 = getPoint1();
+            final Point2D p2 = getPoint2();
+            final Point2D p3 = getPoint3();
 
             r.draw(new StaticTriangle(p1, p2, p3));
         }
