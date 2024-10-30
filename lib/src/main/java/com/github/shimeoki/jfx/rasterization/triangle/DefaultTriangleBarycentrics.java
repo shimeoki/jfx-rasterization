@@ -8,6 +8,8 @@ public class DefaultTriangleBarycentrics implements TriangleBarycentrics {
     private final double l2;
     private final double l3;
 
+    private final boolean inside;
+
     public DefaultTriangleBarycentrics(
             final double l1, final double l2, final double l3) {
 
@@ -19,6 +21,8 @@ public class DefaultTriangleBarycentrics implements TriangleBarycentrics {
         this.l1 = l1;
         this.l2 = l2;
         this.l3 = l3;
+
+        this.inside = computeInside();
     }
 
     @Override
@@ -36,12 +40,16 @@ public class DefaultTriangleBarycentrics implements TriangleBarycentrics {
         return l3;
     }
 
-    @Override
-    public boolean inside() {
+    private boolean computeInside() {
         final boolean b1 = DoubleMath.moreThan(l1, 0);
         final boolean b2 = DoubleMath.moreThan(l2, 0);
         final boolean b3 = DoubleMath.moreThan(l3, 0);
 
         return b1 && b2 && b3;
+    }
+
+    @Override
+    public boolean inside() {
+        return inside;
     }
 }
