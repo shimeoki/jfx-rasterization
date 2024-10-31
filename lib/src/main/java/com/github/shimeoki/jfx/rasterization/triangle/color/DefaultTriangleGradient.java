@@ -43,6 +43,11 @@ public class DefaultTriangleGradient implements TriangleGradient {
     }
 
     @Override
+    public float alpha1() {
+        return c1.alpha();
+    }
+
+    @Override
     public Colorf color2() {
         return c2;
     }
@@ -63,6 +68,11 @@ public class DefaultTriangleGradient implements TriangleGradient {
     }
 
     @Override
+    public float alpha2() {
+        return c2.alpha();
+    }
+
+    @Override
     public Colorf color3() {
         return c3;
     }
@@ -80,5 +90,10 @@ public class DefaultTriangleGradient implements TriangleGradient {
     @Override
     public float blue3() {
         return c3.blue();
+    }
+
+    @Override
+    public float alpha3() {
+        return c3.alpha();
     }
 }

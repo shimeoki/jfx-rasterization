@@ -14,6 +14,8 @@ public interface TriangleGradient {
 
     public float blue1();
 
+    public float alpha1();
+
     // second color
 
     public Colorf color2();
@@ -24,6 +26,8 @@ public interface TriangleGradient {
 
     public float blue2();
 
+    public float alpha2();
+
     // third color
 
     public Colorf color3();
@@ -33,4 +37,6 @@ public interface TriangleGradient {
     public float green3();
 
     public float blue3();
+
+    public float alpha3();
 }
