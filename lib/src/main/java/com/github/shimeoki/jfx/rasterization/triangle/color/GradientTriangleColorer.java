@@ -2,10 +2,10 @@ package com.github.shimeoki.jfx.rasterization.triangle.color;
 
 import java.util.Objects;
 
+import com.github.shimeoki.jfx.rasterization.color.Colorf;
+import com.github.shimeoki.jfx.rasterization.color.RGBColor;
 import com.github.shimeoki.jfx.rasterization.math.Floats;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
-
-import javafx.scene.paint.Color;
 
 public class GradientTriangleColorer implements TriangleColorer {
 
@@ -50,9 +50,9 @@ public class GradientTriangleColorer implements TriangleColorer {
     }
 
     @Override
-    public Color get(final TriangleBarycentrics b) {
+    public Colorf get(final TriangleBarycentrics b) {
         Objects.requireNonNull(b);
 
-        return new Color(red(b), green(b), blue(b), opacity(b));
+        return new RGBColor(red(b), green(b), blue(b), opacity(b));
     }
 }

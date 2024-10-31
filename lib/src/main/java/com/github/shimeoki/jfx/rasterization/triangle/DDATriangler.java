@@ -140,7 +140,7 @@ public class DDATriangler implements Triangler {
                 continue;
             }
 
-            w.setColor(x, y, c.get(b));
+            w.setColor(x, y, c.get(b).jfxColor());
         }
     }
 

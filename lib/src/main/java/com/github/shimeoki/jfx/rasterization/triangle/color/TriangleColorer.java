@@ -1,8 +1,7 @@
 package com.github.shimeoki.jfx.rasterization.triangle.color;
 
+import com.github.shimeoki.jfx.rasterization.color.Colorf;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
-
-import javafx.scene.paint.Color;
 
 /**
  * A functional interface for {@code TriangleRasterizer} to get colors for
@@ -14,13 +13,13 @@ import javafx.scene.paint.Color;
 public interface TriangleColorer {
 
     /**
-     * Gets a {@code Color} at specified barycentic coordinates.
+     * Gets a {@code Colorf} at specified barycentic coordinates.
      *
      * @param b barycentric coordinates.
      * 
-     * @return {@code Color} at specified barycentric coordinates.
+     * @return {@code Colorf} at specified barycentric coordinates.
      * 
      * @throws {@code NullPointerException} if b is null.
      */
-    public Color get(final TriangleBarycentrics b);
+    public Colorf get(final TriangleBarycentrics b);
 }
