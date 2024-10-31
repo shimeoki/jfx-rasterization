@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+import com.github.shimeoki.jfx.rasterization.color.HTMLColors;
 import com.github.shimeoki.jfx.rasterization.geom.Point2D;
 import com.github.shimeoki.jfx.rasterization.geom.Vector;
 import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.Triangler;
+import com.github.shimeoki.jfx.rasterization.triangle.color.DefaultTriangleGradient;
 import com.github.shimeoki.jfx.rasterization.triangle.color.GradientTriangleColorer;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.StaticTriangle;
 
@@ -21,7 +23,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
-import javafx.scene.paint.Color;
 
 public class Controller {
 
@@ -68,7 +69,10 @@ public class Controller {
             this.r = new DDATriangler(
                     ctx.getPixelWriter(),
                     new GradientTriangleColorer(
-                            Color.RED, Color.WHITE, Color.BLACK));
+                            new DefaultTriangleGradient(
+                                    HTMLColors.RED,
+                                    HTMLColors.WHITE,
+                                    HTMLColors.BLACK)));
 
             generate();
         }

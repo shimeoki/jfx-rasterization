@@ -2,59 +2,51 @@ package com.github.shimeoki.jfx.rasterization.triangle.color;
 
 import java.util.Objects;
 
-import com.github.shimeoki.jfx.rasterization.math.Doubles;
+import com.github.shimeoki.jfx.rasterization.math.Floats;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 
 import javafx.scene.paint.Color;
 
 public class GradientTriangleColorer implements TriangleColorer {
 
-    private final Color c1;
-    private final Color c2;
-    private final Color c3;
+    private final TriangleGradient g;
 
-    public GradientTriangleColorer(
-            final Color c1, final Color c2, final Color c3) {
+    public GradientTriangleColorer(final TriangleGradient g) {
+        Objects.requireNonNull(g);
 
-        Objects.requireNonNull(c1);
-        Objects.requireNonNull(c2);
-        Objects.requireNonNull(c3);
-
-        this.c1 = c1;
-        this.c2 = c2;
-        this.c3 = c3;
+        this.g = g;
     }
 
-    private double red(final TriangleBarycentrics b) {
-        final double r1 = b.lambda1() * c1.getRed();
-        final double r2 = b.lambda2() * c2.getRed();
-        final double r3 = b.lambda3() * c3.getRed();
+    private float red(final TriangleBarycentrics b) {
+        final float r1 = b.lambda1() * g.red1();
+        final float r2 = b.lambda2() * g.red2();
+        final float r3 = b.lambda3() * g.red3();
 
-        return Doubles.confined(0, r1 + r2 + r3, 1);
+        return Floats.confined(0, r1 + r2 + r3, 1);
     }
 
-    private double green(final TriangleBarycentrics b) {
-        final double g1 = b.lambda1() * c1.getGreen();
-        final double g2 = b.lambda2() * c2.getGreen();
-        final double g3 = b.lambda3() * c3.getGreen();
+    private float green(final TriangleBarycentrics b) {
+        final float g1 = b.lambda1() * g.green1();
+        final float g2 = b.lambda2() * g.green2();
+        final float g3 = b.lambda3() * g.green3();
 
-        return Doubles.confined(0, g1 + g2 + g3, 1);
+        return Floats.confined(0, g1 + g2 + g3, 1);
     }
 
-    private double blue(final TriangleBarycentrics b) {
-        final double b1 = b.lambda1() * c1.getBlue();
-        final double b2 = b.lambda2() * c2.getBlue();
-        final double b3 = b.lambda3() * c3.getBlue();
+    private float blue(final TriangleBarycentrics b) {
+        final float b1 = b.lambda1() * g.blue1();
+        final float b2 = b.lambda2() * g.blue2();
+        final float b3 = b.lambda3() * g.blue3();
 
-        return Doubles.confined(0, b1 + b2 + b3, 1);
+        return Floats.confined(0, b1 + b2 + b3, 1);
     }
 
-    private double opacity(final TriangleBarycentrics b) {
-        final double o1 = b.lambda1() * c1.getOpacity();
-        final double o2 = b.lambda2() * c2.getOpacity();
-        final double o3 = b.lambda3() * c3.getOpacity();
+    private float opacity(final TriangleBarycentrics b) {
+        final float o1 = b.lambda1() * g.alpha1();
+        final float o2 = b.lambda2() * g.alpha2();
+        final float o3 = b.lambda3() * g.alpha3();
 
-        return Doubles.confined(0, o1 + o2 + o3, 1);
+        return Floats.confined(0, o1 + o2 + o3, 1);
     }
 
     @Override
