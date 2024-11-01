@@ -57,6 +57,9 @@ public class Controller {
     private InteractiveMode interactiveModeController;
 
     @FXML
+    private DynamicMode dynamicModeController;
+
+    @FXML
     private void initialize() {
         initTilePane();
         initTilesBtn();
@@ -176,6 +179,7 @@ public class Controller {
 
     private void initTgBtns() {
         final AnchorPane interactiveMode = interactiveModeController.root();
+        final AnchorPane dynamicMode = dynamicModeController.root();
 
         staticModeBtn.setOnAction(e -> {
             modePane.getChildren().clear();
@@ -185,6 +189,11 @@ public class Controller {
         interactiveModeBtn.setOnAction(e -> {
             modePane.getChildren().clear();
             modePane.getChildren().add(interactiveMode);
+        });
+
+        dynamicModeBtn.setOnAction(e -> {
+            modePane.getChildren().clear();
+            modePane.getChildren().add(dynamicMode);
         });
     }
 }

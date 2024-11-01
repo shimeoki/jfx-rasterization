@@ -27,6 +27,7 @@
                     </HBox>
                 </AnchorPane>
                 <fx:include fx:id="interactiveMode" source="interactive-mode.fxml"/>
+                <fx:include fx:id="dynamicMode" source="dynamic-mode.fxml"/>
             </fx:define>
         </StackPane>
         <HBox alignment="CENTER">
