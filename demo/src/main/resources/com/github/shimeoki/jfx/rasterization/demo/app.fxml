@@ -26,16 +26,7 @@
                         </VBox>
                     </HBox>
                 </AnchorPane>
-                <AnchorPane fx:id="interactivePane">
-                    <HBox AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                        <Pane fx:id="interactiveCanvasPane" HBox.hgrow="ALWAYS" minWidth="0.0" minHeight="0.0" style="-fx-padding: 20; -fx-border-width: 1; -fx-border-color: black; -fx-border-style: solid">
-                            <Canvas fx:id="interactiveCanvas" />
-                        </Pane>
-                        <VBox alignment="CENTER" style="-fx-padding: 20">
-                            <Button fx:id="interactiveClearBtn" text="clear"/>
-                        </VBox>
-                    </HBox>
-                </AnchorPane>
+                <fx:include fx:id="interactiveMode" source="interactive-mode.fxml"/>
             </fx:define>
         </StackPane>
         <HBox alignment="CENTER">

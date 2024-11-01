@@ -1,6 +1,5 @@
 package com.github.shimeoki.jfx.rasterization.demo;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -13,9 +12,7 @@ import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.Triangler;
 import com.github.shimeoki.jfx.rasterization.triangle.color.DefaultTriangleGradient;
 import com.github.shimeoki.jfx.rasterization.triangle.color.GradientTriangleColorer;
-import com.github.shimeoki.jfx.rasterization.triangle.color.MonotoneTriangleColorer;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.StaticTriangle;
-import com.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,7 +22,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 
@@ -41,28 +37,12 @@ public class Controller {
     private AnchorPane staticPane;
 
     @FXML
-    private AnchorPane interactivePane;
-
-    @FXML
     private TilePane tilePane;
 
     @FXML
     private Button tilesBtn;
 
     private final List<Tile> tiles = new LinkedList<>();
-
-    @FXML
-    private Canvas interactiveCanvas;
-
-    @FXML
-    private Pane interactiveCanvasPane;
-
-    private Triangler interactiveTriangler;
-
-    @FXML
-    private Button interactiveClearBtn;
-
-    private final List<Point2D> interactivePoints = new ArrayList<>();
 
     @FXML
     private RadioButton staticModeBtn;
@@ -74,13 +54,12 @@ public class Controller {
     private RadioButton interactiveModeBtn;
 
     @FXML
+    private InteractiveMode interactiveModeController;
+
+    @FXML
     private void initialize() {
         initTilePane();
         initTilesBtn();
-
-        initInteractiveCanvas();
-        initInteractiveTriangler();
-        initInteractiveClearBtn();
 
         initTgBtns();
     }
@@ -195,60 +174,9 @@ public class Controller {
         }
     }
 
-    private void initInteractiveClearBtn() {
-        final GraphicsContext ctx = interactiveCanvas.getGraphicsContext2D();
-
-        interactiveClearBtn.setOnAction(e -> {
-            interactivePoints.clear();
-            ctx.clearRect(
-                    0,
-                    0,
-                    interactiveCanvas.getWidth(),
-                    interactiveCanvas.getHeight());
-        });
-    }
-
-    private void initInteractiveTriangler() {
-        interactiveTriangler = new DDATriangler(
-                interactiveCanvas.getGraphicsContext2D().getPixelWriter(),
-                new GradientTriangleColorer(
-                        new DefaultTriangleGradient(
-                                HTMLColors.AQUA,
-                                HTMLColors.FUCHSIA,
-                                HTMLColors.LIME)));
-    }
-
-    private void interactiveDraw() {
-        final Triangle t = new StaticTriangle(
-                interactivePoints.get(0),
-                interactivePoints.get(1),
-                interactivePoints.get(2));
-
-        interactiveTriangler.draw(t);
-    }
-
-    private void initInteractiveCanvas() {
-        interactiveCanvasPane.widthProperty()
-                .addListener((ov, oldValue, newValue) -> {
-                    interactiveCanvas.setWidth(newValue.doubleValue());
-                });
-        interactiveCanvasPane.heightProperty()
-                .addListener((ov, oldValue, newValue) -> {
-                    interactiveCanvas.setHeight(newValue.doubleValue());
-                });
-
-        interactiveCanvas.setOnMousePressed(e -> {
-            final Point2D p = new Vector((float) e.getX(), (float) e.getY());
-            interactivePoints.add(p);
-
-            if (interactivePoints.size() == 3) {
-                interactiveDraw();
-                interactivePoints.clear();
-            }
-        });
-    }
-
     private void initTgBtns() {
+        final AnchorPane interactiveMode = interactiveModeController.root();
+
         staticModeBtn.setOnAction(e -> {
             modePane.getChildren().clear();
             modePane.getChildren().add(staticPane);
@@ -256,7 +184,7 @@ public class Controller {
 
         interactiveModeBtn.setOnAction(e -> {
             modePane.getChildren().clear();
-            modePane.getChildren().add(interactivePane);
+            modePane.getChildren().add(interactiveMode);
         });
     }
 }
