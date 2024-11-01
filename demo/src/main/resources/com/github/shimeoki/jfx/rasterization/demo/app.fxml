@@ -13,37 +13,39 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Button?>
 
-<AnchorPane fx:id="root" fx:controller="com.github.shimeoki.jfx.rasterization.demo.Controller" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane fx:id="root" fx:controller="com.github.shimeoki.jfx.rasterization.demo.Controller" prefWidth="400.0" prefHeight="400.0" xmlns:fx="http://javafx.com/fxml">
     <VBox spacing="20.0" style="-fx-padding: 20" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <StackPane fx:id="modePane" VBox.vgrow="ALWAYS">
-            <AnchorPane fx:id="interactivePane">
-                <HBox AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                    <Pane fx:id="interactiveCanvasPane" HBox.hgrow="ALWAYS" style="-fx-padding: 20; -fx-border-width: 1; -fx-border-color: black; -fx-border-style: solid">
-                        <Canvas fx:id="interactiveCanvas"/>
-                    </Pane>
-                    <VBox alignment="CENTER" style="-fx-padding: 20">
-                        <Button fx:id="interactiveClearBtn" text="clear"/>
-                    </VBox>
-                </HBox>
-            </AnchorPane>
-            <AnchorPane fx:id="staticPane">
-                <HBox AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                    <TilePane fx:id="tilePane" hgap="20.0" vgap="20.0" HBox.hgrow="ALWAYS" style="-fx-padding: 20; -fx-border-width: 1; -fx-border-color: black; -fx-border-style: solid">
-                    </TilePane>
-                    <VBox alignment="CENTER" style="-fx-padding: 20">
-                        <Button fx:id="tilesBtn" text="generate"/>
-                    </VBox>
-                </HBox>
-            </AnchorPane>
+            <fx:define>
+                <AnchorPane fx:id="staticPane">
+                    <HBox AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <TilePane fx:id="tilePane" hgap="20.0" vgap="20.0" HBox.hgrow="ALWAYS" style="-fx-padding: 20; -fx-border-width: 1; -fx-border-color: black; -fx-border-style: solid">
+                        </TilePane>
+                        <VBox alignment="CENTER" style="-fx-padding: 20">
+                            <Button fx:id="tilesBtn" text="generate"/>
+                        </VBox>
+                    </HBox>
+                </AnchorPane>
+                <AnchorPane fx:id="interactivePane">
+                    <HBox AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <Pane fx:id="interactiveCanvasPane" HBox.hgrow="ALWAYS" minWidth="0.0" minHeight="0.0" style="-fx-padding: 20; -fx-border-width: 1; -fx-border-color: black; -fx-border-style: solid">
+                            <Canvas fx:id="interactiveCanvas" />
+                        </Pane>
+                        <VBox alignment="CENTER" style="-fx-padding: 20">
+                            <Button fx:id="interactiveClearBtn" text="clear"/>
+                        </VBox>
+                    </HBox>
+                </AnchorPane>
+            </fx:define>
         </StackPane>
         <HBox alignment="CENTER">
             <fx:define>
                 <ToggleGroup fx:id="modeTg"/>
             </fx:define>
             <children>
-                <RadioButton style="-fx-padding: 8" text="manual" toggleGroup="$modeTg"/>
-                <RadioButton style="-fx-padding: 8" text="dynamic" toggleGroup="$modeTg"/>
-                <RadioButton style="-fx-padding: 8" text="interactive" toggleGroup="$modeTg"/>
+                <RadioButton fx:id="staticModeBtn" style="-fx-padding: 8" text="static" toggleGroup="$modeTg"/>
+                <RadioButton fx:id="dynamicModeBtn" style="-fx-padding: 8" text="dynamic" toggleGroup="$modeTg"/>
+                <RadioButton fx:id="interactiveModeBtn" style="-fx-padding: 8" text="interactive" toggleGroup="$modeTg"/>
             </children>
         </HBox>
     </VBox>
