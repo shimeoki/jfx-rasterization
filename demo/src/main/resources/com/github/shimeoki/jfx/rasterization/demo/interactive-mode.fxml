@@ -15,7 +15,7 @@
             <Canvas fx:id="canvas"/>
         </Pane>
         <VBox alignment="CENTER" style="-fx-padding: 20">
-            <Button fx:id="clearBtn" text="clear"/>
+            <Button fx:id="clearBtn" text="clear" prefWidth="120.0"/>
         </VBox>
     </HBox>
 </AnchorPane>
