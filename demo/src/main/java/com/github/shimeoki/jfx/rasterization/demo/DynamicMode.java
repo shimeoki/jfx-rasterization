@@ -13,11 +13,15 @@ import com.github.shimeoki.jfx.rasterization.triangle.color.MonotoneTriangleColo
 import com.github.shimeoki.jfx.rasterization.triangle.geom.DynamicTriangle;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
 public class DynamicMode {
 
@@ -36,7 +40,7 @@ public class DynamicMode {
     @FXML
     private Button clearBtn;
 
-    private final float velocity = 400f;
+    private final float velocity = 0.01f;
 
     private final Random rnd = new Random();
 
@@ -55,13 +59,83 @@ public class DynamicMode {
             this.v = v;
             this.angle = angle;
         }
+
+        void move(final float deltaTime) {
+            final float distance = velocity * deltaTime;
+
+            final float dx = distance * (float) Math.cos(angle);
+            final float dy = distance * (float) Math.sin(angle);
+
+            final float x = v.x() + dx;
+            final float y = v.y() + dy;
+
+            final float canvasW = (float) canvas.getWidth();
+            final float canvasH = (float) canvas.getHeight();
+
+            final float remX = canvasW - x;
+            final float remY = canvasH - y;
+
+            boolean outX = false;
+            boolean outY = false;
+
+            if (x < 0) {
+                v.setX(-x);
+                outX = true;
+            }
+
+            if (y < 0) {
+                v.setY(-y);
+                outY = true;
+            }
+
+            if (remX < 0) {
+                v.setX(canvasW + remX);
+                outX = true;
+            }
+
+            if (remY < 0) {
+                v.setY(canvasH + remY);
+                outY = true;
+            }
+
+            if (outX) {
+                angle = 3.14f - angle;
+            }
+
+            if (outY) {
+                angle = 2 * 3.14f - angle;
+            }
+
+            if (!outX) {
+                v.setX(x);
+            }
+
+            if (!outY) {
+                v.setY(y);
+            }
+        }
     }
 
     @FXML
     private void initialize() {
         initTriangler();
         initCanvas();
+        initAddBtn();
         initClearBtn();
+
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(Animation.INDEFINITE);
+
+        final int frameTime = 15;
+        final float deltaTime = 1000f / (float) frameTime;
+
+        KeyFrame frame = new KeyFrame(Duration.millis(frameTime), e -> {
+            draw();
+            move(deltaTime);
+        });
+
+        timeline.getKeyFrames().add(frame);
+        timeline.play();
     }
 
     private void initTriangler() {
@@ -70,8 +144,15 @@ public class DynamicMode {
                 new MonotoneTriangleColorer(HTMLColors.BLUE));
     }
 
+    private void initAddBtn() {
+        addBtn.setOnAction(e -> {
+            addTriangle();
+        });
+    }
+
     private void initClearBtn() {
         clearBtn.setOnAction(e -> {
+            vertices.clear();
             triangles.clear();
             clearCanvas();
         });
@@ -126,6 +207,12 @@ public class DynamicMode {
         vertices.add(toMovingVector(v3));
 
         triangles.add(t);
+    }
+
+    private void move(final float deltaTime) {
+        for (final MovingVector v : vertices) {
+            v.move(deltaTime);
+        }
     }
 
     private void draw() {
