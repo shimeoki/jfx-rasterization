@@ -49,7 +49,8 @@ public class DynamicMode {
     @FXML
     private Button clearBtn;
 
-    private final float velocity = 0.01f;
+    private final float velocity = 100f;
+    private final int fps = 60;
 
     private final Random rnd = new Random();
 
@@ -149,15 +150,20 @@ public class DynamicMode {
     private void initialize() {
         initTriangler();
         initCanvas();
+
         initTrianglesListView();
         initAddBtn();
         initClearBtn();
 
+        initTimeline();
+    }
+
+    private void initTimeline() {
         final Timeline timeline = new Timeline();
         timeline.setCycleCount(Animation.INDEFINITE);
 
-        final int frameTime = 15;
-        final float deltaTime = 1000f / (float) frameTime;
+        final int frameTime = 1000 / fps;
+        final float deltaTime = (float) frameTime * 0.001f;
 
         KeyFrame frame = new KeyFrame(Duration.millis(frameTime), e -> {
             draw();
