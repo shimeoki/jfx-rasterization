@@ -63,6 +63,10 @@ public class Timer implements Timekeeper {
 
     @Override
     public double avg() {
+        if (count == 0) {
+            return 0;
+        }
+
         return sum() / count;
     }
 
@@ -87,6 +91,11 @@ public class Timer implements Timekeeper {
 
         final long trackEnd = System.nanoTime();
         lastTrack = trackEnd - trackStart;
+
+        if (keeping) {
+            count++;
+            sum += lastTrack;
+        }
 
         tracking = false;
     }
