@@ -55,9 +55,7 @@ public class DynamicMode {
 
     private final List<MovingVector> vertices = new LinkedList<>();
 
-    private final List<KeepedTriangle> triangles = new LinkedList<>();
-
-    private final ObservableList<KeepedTriangle> trianglesList = FXCollections.observableArrayList();
+    private final ObservableList<KeepedTriangle> triangles = FXCollections.observableArrayList();
 
     private Triangler triangler;
 
@@ -171,7 +169,7 @@ public class DynamicMode {
     }
 
     private void initTrianglesListView() {
-        trianglesListView.setItems(trianglesList);
+        trianglesListView.setItems(triangles);
     }
 
     private void initTriangler() {
@@ -190,7 +188,6 @@ public class DynamicMode {
         clearBtn.setOnAction(e -> {
             vertices.clear();
             triangles.clear();
-            trianglesList.clear();
             clearCanvas();
         });
     }
@@ -246,7 +243,6 @@ public class DynamicMode {
         final KeepedTriangle kt = new KeepedTriangle(t);
 
         triangles.add(kt);
-        trianglesList.add(kt);
     }
 
     private void move(final float deltaTime) {
