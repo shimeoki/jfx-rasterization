@@ -7,6 +7,9 @@ import java.util.Random;
 import com.github.shimeoki.jfx.rasterization.color.HTMLColors;
 import com.github.shimeoki.jfx.rasterization.geom.Vector;
 import com.github.shimeoki.jfx.rasterization.geom.Vector2D;
+import com.github.shimeoki.jfx.rasterization.test.TimeUnit;
+import com.github.shimeoki.jfx.rasterization.test.Timekeeper;
+import com.github.shimeoki.jfx.rasterization.test.Timer;
 import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.Triangler;
 import com.github.shimeoki.jfx.rasterization.triangle.color.MonotoneTriangleColorer;
@@ -46,7 +49,7 @@ public class DynamicMode {
 
     private final List<MovingVector> vertices = new LinkedList<>();
 
-    private final List<Triangle> triangles = new LinkedList<>();
+    private final List<KeepedTriangle> triangles = new LinkedList<>();
 
     private Triangler triangler;
 
@@ -113,6 +116,19 @@ public class DynamicMode {
             if (!outY) {
                 v.setY(y);
             }
+        }
+    }
+
+    class KeepedTriangle {
+
+        final Triangle t;
+        final Timekeeper keeper;
+
+        KeepedTriangle(final Triangle t) {
+            this.t = t;
+
+            keeper = new Timer();
+            keeper.setUnit(TimeUnit.MILLISECOND);
         }
     }
 
@@ -206,7 +222,7 @@ public class DynamicMode {
         vertices.add(toMovingVector(v2));
         vertices.add(toMovingVector(v3));
 
-        triangles.add(t);
+        triangles.add(new KeepedTriangle(t));
     }
 
     private void move(final float deltaTime) {
@@ -218,8 +234,10 @@ public class DynamicMode {
     private void draw() {
         clearCanvas();
 
-        for (final Triangle t : triangles) {
-            triangler.draw(t);
+        for (final KeepedTriangle kt : triangles) {
+            kt.keeper.time(() -> {
+                triangler.draw(kt.t);
+            });
         }
     }
 
