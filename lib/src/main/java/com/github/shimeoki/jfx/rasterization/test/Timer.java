@@ -116,12 +116,19 @@ public class Timer implements Timekeeper {
 
     @Override
     public double time(final Timeable func) {
+        // exception?
+        if (tracking) {
+            return -1;
+        }
+
         final long duration = duration(func);
 
         if (keeping) {
             count++;
             sum += duration;
         }
+
+        lastTrack = duration;
 
         return converted(duration);
     }
