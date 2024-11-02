@@ -36,13 +36,26 @@ public class DynamicMode {
     @FXML
     private Button clearBtn;
 
+    private final float velocity = 400f;
+
     private final Random rnd = new Random();
 
-    private final List<Vector2D> vertices = new LinkedList<>();
+    private final List<MovingVector> vertices = new LinkedList<>();
 
     private final List<Triangle> triangles = new LinkedList<>();
 
     private Triangler triangler;
+
+    class MovingVector {
+
+        final Vector2D v;
+        float angle;
+
+        MovingVector(final Vector2D v, final float angle) {
+            this.v = v;
+            this.angle = angle;
+        }
+    }
 
     @FXML
     private void initialize() {
@@ -93,6 +106,14 @@ public class DynamicMode {
         return new Vector(x, y);
     }
 
+    private float randomAngle() {
+        return rnd.nextFloat(3.14f * 2);
+    }
+
+    private MovingVector toMovingVector(final Vector2D v) {
+        return new MovingVector(v, randomAngle());
+    }
+
     private void addTriangle() {
         final Vector2D v1 = randomVector();
         final Vector2D v2 = randomVector();
@@ -100,9 +121,9 @@ public class DynamicMode {
 
         final Triangle t = new DynamicTriangle(v1, v2, v3);
 
-        vertices.add(v1);
-        vertices.add(v2);
-        vertices.add(v3);
+        vertices.add(toMovingVector(v1));
+        vertices.add(toMovingVector(v2));
+        vertices.add(toMovingVector(v3));
 
         triangles.add(t);
     }
