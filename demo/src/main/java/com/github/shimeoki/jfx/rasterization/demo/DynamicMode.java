@@ -19,9 +19,12 @@ import com.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
@@ -38,6 +41,9 @@ public class DynamicMode {
     private Canvas canvas;
 
     @FXML
+    private ListView<KeepedTriangle> trianglesListView;
+
+    @FXML
     private Button addBtn;
 
     @FXML
@@ -50,6 +56,8 @@ public class DynamicMode {
     private final List<MovingVector> vertices = new LinkedList<>();
 
     private final List<KeepedTriangle> triangles = new LinkedList<>();
+
+    private final ObservableList<KeepedTriangle> trianglesList = FXCollections.observableArrayList();
 
     private Triangler triangler;
 
@@ -130,12 +138,20 @@ public class DynamicMode {
             keeper = new Timer();
             keeper.setUnit(TimeUnit.MILLISECOND);
         }
+
+        @Override
+        public String toString() {
+            return String.format("last: %.2fms, avg: %.2fms",
+                    keeper.lastTrack(),
+                    keeper.avg());
+        }
     }
 
     @FXML
     private void initialize() {
         initTriangler();
         initCanvas();
+        initTrianglesListView();
         initAddBtn();
         initClearBtn();
 
@@ -154,6 +170,10 @@ public class DynamicMode {
         timeline.play();
     }
 
+    private void initTrianglesListView() {
+        trianglesListView.setItems(trianglesList);
+    }
+
     private void initTriangler() {
         triangler = new DDATriangler(
                 canvas.getGraphicsContext2D().getPixelWriter(),
@@ -170,6 +190,7 @@ public class DynamicMode {
         clearBtn.setOnAction(e -> {
             vertices.clear();
             triangles.clear();
+            trianglesList.clear();
             clearCanvas();
         });
     }
@@ -222,7 +243,10 @@ public class DynamicMode {
         vertices.add(toMovingVector(v2));
         vertices.add(toMovingVector(v3));
 
-        triangles.add(new KeepedTriangle(t));
+        final KeepedTriangle kt = new KeepedTriangle(t);
+
+        triangles.add(kt);
+        trianglesList.add(kt);
     }
 
     private void move(final float deltaTime) {
@@ -239,6 +263,8 @@ public class DynamicMode {
                 triangler.draw(kt.t);
             });
         }
+
+        trianglesListView.refresh();
     }
 
     public AnchorPane root() {

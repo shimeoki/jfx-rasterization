@@ -7,6 +7,7 @@
 
 <?import javafx.scene.canvas.Canvas?>
 
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Button?>
 
 <AnchorPane fx:id="root" fx:controller="com.github.shimeoki.jfx.rasterization.demo.DynamicMode" xmlns:fx="http://javafx.com/fxml">
@@ -15,6 +16,7 @@
             <Canvas fx:id="canvas"/>
         </Pane>
         <VBox alignment="CENTER" style="-fx-padding: 20" spacing="20.0">
+            <ListView fx:id="trianglesListView"/>
             <Button fx:id="addBtn" text="add" prefWidth="120.0"/>
             <Button fx:id="clearBtn" text="clear" prefWidth="120.0"/>
         </VBox>
