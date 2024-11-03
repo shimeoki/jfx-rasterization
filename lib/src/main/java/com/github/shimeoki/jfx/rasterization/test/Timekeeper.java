@@ -16,10 +16,6 @@ public interface Timekeeper {
 
     public boolean keeping();
 
-    public void setKeeping(final boolean keep);
-
-    public void clear();
-
     // keeped stats
 
     public long count();
@@ -28,6 +24,8 @@ public interface Timekeeper {
 
     public double avg();
 
+    public void clear();
+
     // tracking control
 
     public void track();
@@ -35,8 +33,6 @@ public interface Timekeeper {
     public void untrack();
 
     public boolean tracking();
-
-    public void setTracking(final boolean tracking);
 
     // time
 

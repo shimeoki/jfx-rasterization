@@ -41,11 +41,6 @@ public class Timer implements Timekeeper {
     }
 
     @Override
-    public void setKeeping(final boolean keep) {
-        this.keeping = keep;
-    }
-
-    @Override
     public void clear() {
         sum = 0;
         count = 0;
@@ -103,15 +98,6 @@ public class Timer implements Timekeeper {
     @Override
     public boolean tracking() {
         return tracking;
-    }
-
-    @Override
-    public void setTracking(final boolean tracking) {
-        if (tracking) {
-            track();
-        } else {
-            untrack();
-        }
     }
 
     @Override
