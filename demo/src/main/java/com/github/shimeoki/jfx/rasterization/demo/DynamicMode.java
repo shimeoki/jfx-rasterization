@@ -13,6 +13,7 @@ import com.github.shimeoki.jfx.rasterization.test.Timer;
 import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.Triangler;
 import com.github.shimeoki.jfx.rasterization.triangle.color.MonotoneTriangleColorer;
+import com.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.DynamicTriangle;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 
@@ -25,6 +26,7 @@ import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.image.PixelWriter;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
@@ -59,6 +61,8 @@ public class DynamicMode {
     private final ObservableList<KeepedTriangle> triangles = FXCollections.observableArrayList();
 
     private Triangler triangler;
+    private PixelWriter writer;
+    private TriangleColorer colorer;
 
     class MovingVector {
 
@@ -179,9 +183,9 @@ public class DynamicMode {
     }
 
     private void initTriangler() {
-        triangler = new DDATriangler(
-                canvas.getGraphicsContext2D().getPixelWriter(),
-                new MonotoneTriangleColorer(HTMLColors.BLUE));
+        triangler = new DDATriangler();
+        writer = canvas.getGraphicsContext2D().getPixelWriter();
+        colorer = new MonotoneTriangleColorer(HTMLColors.BLUE);
     }
 
     private void initAddBtn() {
@@ -262,7 +266,7 @@ public class DynamicMode {
 
         for (final KeepedTriangle kt : triangles) {
             kt.keeper.time(() -> {
-                triangler.draw(kt.t);
+                triangler.draw(writer, kt.t, colorer);
             });
         }
 

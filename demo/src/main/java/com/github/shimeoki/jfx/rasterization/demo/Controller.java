@@ -12,6 +12,7 @@ import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.Triangler;
 import com.github.shimeoki.jfx.rasterization.triangle.color.DefaultTriangleGradient;
 import com.github.shimeoki.jfx.rasterization.triangle.color.GradientTriangleColorer;
+import com.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.StaticTriangle;
 
 import javafx.collections.ObservableList;
@@ -21,6 +22,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.image.PixelWriter;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
@@ -71,8 +73,10 @@ public class Controller {
 
         private final Canvas c;
         private final GraphicsContext ctx;
+        private final PixelWriter writer;
 
         private final Triangler r;
+        private final TriangleColorer colorer;
 
         // 6 numbers from 0 to 1
         // 2 coordinates for 3 points
@@ -86,14 +90,14 @@ public class Controller {
 
             this.c = canvas;
             this.ctx = c.getGraphicsContext2D();
+            this.writer = ctx.getPixelWriter();
 
-            this.r = new DDATriangler(
-                    ctx.getPixelWriter(),
-                    new GradientTriangleColorer(
-                            new DefaultTriangleGradient(
-                                    HTMLColors.RED,
-                                    HTMLColors.WHITE,
-                                    HTMLColors.BLACK)));
+            this.r = new DDATriangler();
+            this.colorer = new GradientTriangleColorer(
+                    new DefaultTriangleGradient(
+                            HTMLColors.RED,
+                            HTMLColors.WHITE,
+                            HTMLColors.BLACK));
 
             generate();
         }
@@ -135,7 +139,7 @@ public class Controller {
             final Point2D p2 = getPoint2();
             final Point2D p3 = getPoint3();
 
-            r.draw(new StaticTriangle(p1, p2, p3));
+            r.draw(writer, new StaticTriangle(p1, p2, p3), colorer);
         }
     }
 

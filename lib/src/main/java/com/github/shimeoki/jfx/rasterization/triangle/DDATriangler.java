@@ -16,43 +16,16 @@ import javafx.scene.image.PixelWriter;
 
 public class DDATriangler implements Triangler {
 
-    private PixelWriter writer;
-    private TriangleColorer colorer;
+    private PixelWriter writer = null;
+    private Triangle triangle = null;
+    private TriangleColorer colorer = null;
 
-    public DDATriangler(final PixelWriter w, final TriangleColorer c) {
-        setPixelWriter(w);
-        setColorer(c);
-    }
-
-    @Override
-    public PixelWriter pixelWriter() {
-        return writer;
-    }
-
-    @Override
-    public void setPixelWriter(final PixelWriter w) {
-        Objects.requireNonNull(w);
-
-        writer = w;
-    }
-
-    @Override
-    public TriangleColorer colorer() {
-        return colorer;
-    }
-
-    @Override
-    public void setColorer(final TriangleColorer c) {
-        Objects.requireNonNull(c);
-
-        colorer = c;
-    }
-
-    private List<Point2D> sortedVertices(final Triangle t) {
+    private List<Point2D> sortedVertices() {
         final List<Point2D> vertices = new ArrayList<>();
-        vertices.add(t.v1());
-        vertices.add(t.v2());
-        vertices.add(t.v3());
+
+        vertices.add(triangle.v1());
+        vertices.add(triangle.v2());
+        vertices.add(triangle.v3());
 
         vertices.sort(Comparator
                 .comparing(Point2D::y)
@@ -62,7 +35,6 @@ public class DDATriangler implements Triangler {
     }
 
     private void drawFlat(
-            final Triangle t,
             final Point2D lone,
             final Point2D flat1,
             final Point2D flat2) {
@@ -82,14 +54,13 @@ public class DDATriangler implements Triangler {
         final float flatY = flat1.y();
 
         if (Floats.moreThan(loneY, flatY)) {
-            drawFlatMin(t, lone, flatY, dx1, dx2);
+            drawFlatAtMinY(lone, flatY, dx1, dx2);
         } else {
-            drawFlatMax(t, lone, flatY, dx1, dx2);
+            drawFlatAtMaxY(lone, flatY, dx1, dx2);
         }
     }
 
-    private void drawFlatMax(
-            final Triangle t,
+    private void drawFlatAtMaxY(
             final Point2D anchor,
             final float maxY,
             final float dx1,
@@ -100,15 +71,14 @@ public class DDATriangler implements Triangler {
 
         for (int y = (int) anchor.y(); y <= maxY; y++) {
             // round floats instead of floor?
-            drawHLine(t, (int) x1, (int) x2, y);
+            drawHLine((int) x1, (int) x2, y);
 
             x1 += dx1;
             x2 += dx2;
         }
     }
 
-    private void drawFlatMin(
-            final Triangle t,
+    private void drawFlatAtMinY(
             final Point2D anchor,
             final float minY,
             final float dx1,
@@ -119,23 +89,18 @@ public class DDATriangler implements Triangler {
 
         for (int y = (int) anchor.y(); y > minY; y--) {
             // round floats instead of floor?
-            drawHLine(t, (int) x1, (int) x2, y);
+            drawHLine((int) x1, (int) x2, y);
 
             x1 -= dx1;
             x2 -= dx2;
         }
     }
 
-    private void drawHLine(
-            final Triangle t,
-            final int x1,
-            final int x2,
-            final int y) {
-
+    private void drawHLine(final int x1, final int x2, final int y) {
         for (int x = (int) x1; x <= x2; x++) {
             final TriangleBarycentrics barycentrics;
             try {
-                barycentrics = t.barycentrics(new Vector(x, y));
+                barycentrics = triangle.barycentrics(new Vector(x, y));
             } catch (Exception e) {
                 continue;
             }
@@ -148,14 +113,40 @@ public class DDATriangler implements Triangler {
         }
     }
 
+    private void cache(
+            final PixelWriter w,
+            final Triangle t,
+            final TriangleColorer c) {
+
+        writer = w;
+        triangle = t;
+        colorer = c;
+    }
+
+    private void uncache() {
+        writer = null;
+        triangle = null;
+        colorer = null;
+    }
+
     @Override
-    public void draw(final Triangle t) {
+    public void draw(
+            final PixelWriter w,
+            final Triangle t,
+            final TriangleColorer c) {
+
+        // TODO: too many lines in this method
+
+        Objects.requireNonNull(w);
         Objects.requireNonNull(t);
+        Objects.requireNonNull(c);
+
+        cache(w, t, c);
 
         // docs:
         // https://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html
 
-        final List<Point2D> vertices = sortedVertices(t);
+        final List<Point2D> vertices = sortedVertices();
 
         final Point2D v1 = vertices.get(0);
         final Point2D v2 = vertices.get(1);
@@ -171,12 +162,12 @@ public class DDATriangler implements Triangler {
         final float y3 = v3.y();
 
         if (Floats.equals(y2, y3)) {
-            drawFlat(t, v1, v2, v3);
+            drawFlat(v1, v2, v3);
             return;
         }
 
         if (Floats.equals(y1, y2)) {
-            drawFlat(t, v3, v1, v2);
+            drawFlat(v3, v1, v2);
             return;
         }
 
@@ -185,11 +176,13 @@ public class DDATriangler implements Triangler {
 
         // non strict equality?
         if (Floats.moreThan(x4, x2)) {
-            drawFlat(t, v1, v2, v4);
-            drawFlat(t, v3, v2, v4);
+            drawFlat(v1, v2, v4);
+            drawFlat(v3, v2, v4);
         } else {
-            drawFlat(t, v1, v4, v2);
-            drawFlat(t, v3, v4, v2);
+            drawFlat(v1, v4, v2);
+            drawFlat(v3, v4, v2);
         }
+
+        uncache();
     }
 }

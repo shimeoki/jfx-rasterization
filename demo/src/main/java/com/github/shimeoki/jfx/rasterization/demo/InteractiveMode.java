@@ -11,12 +11,14 @@ import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.Triangler;
 import com.github.shimeoki.jfx.rasterization.triangle.color.DefaultTriangleGradient;
 import com.github.shimeoki.jfx.rasterization.triangle.color.GradientTriangleColorer;
+import com.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.StaticTriangle;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.image.PixelWriter;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
@@ -39,6 +41,8 @@ public class InteractiveMode {
     private final List<Triangle> triangles = new LinkedList<>();
 
     private Triangler triangler;
+    private PixelWriter writer;
+    private TriangleColorer colorer;
 
     @FXML
     private void initialize() {
@@ -48,13 +52,13 @@ public class InteractiveMode {
     }
 
     private void initTriangler() {
-        triangler = new DDATriangler(
-                canvas.getGraphicsContext2D().getPixelWriter(),
-                new GradientTriangleColorer(
-                        new DefaultTriangleGradient(
-                                HTMLColors.AQUA,
-                                HTMLColors.FUCHSIA,
-                                HTMLColors.LIME)));
+        triangler = new DDATriangler();
+        writer = canvas.getGraphicsContext2D().getPixelWriter();
+        colorer = new GradientTriangleColorer(
+                new DefaultTriangleGradient(
+                        HTMLColors.AQUA,
+                        HTMLColors.FUCHSIA,
+                        HTMLColors.LIME));
     }
 
     private void initClearBtn() {
@@ -114,7 +118,7 @@ public class InteractiveMode {
         clearCanvas();
 
         for (final Triangle t : triangles) {
-            triangler.draw(t);
+            triangler.draw(writer, t, colorer);
         }
     }
 
