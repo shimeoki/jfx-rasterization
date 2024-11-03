@@ -4,48 +4,48 @@ import com.github.shimeoki.jfx.rasterization.math.Floats;
 
 public class DefaultTriangleBarycentrics implements TriangleBarycentrics {
 
-    private final float l1;
-    private final float l2;
-    private final float l3;
+    private final float lambda1;
+    private final float lambda2;
+    private final float lambda3;
 
     private final boolean inside;
 
     public DefaultTriangleBarycentrics(
-            final float l1, final float l2, final float l3) {
+            final float lambda1, final float lambda2, final float lambda3) {
 
-        final float sum = l1 + l2 + l3;
+        final float sum = lambda1 + lambda2 + lambda3;
         if (!Floats.equals(sum, 1)) {
             throw new IllegalArgumentException("coordinates are not normalized");
         }
 
-        this.l1 = l1;
-        this.l2 = l2;
-        this.l3 = l3;
+        this.lambda1 = lambda1;
+        this.lambda2 = lambda2;
+        this.lambda3 = lambda3;
 
-        this.inside = computeInside();
+        inside = computeInside();
     }
 
     @Override
     public float lambda1() {
-        return l1;
+        return lambda1;
     }
 
     @Override
     public float lambda2() {
-        return l2;
+        return lambda2;
     }
 
     @Override
     public float lambda3() {
-        return l3;
+        return lambda3;
     }
 
     private boolean computeInside() {
-        final boolean b1 = Floats.moreThan(l1, 0);
-        final boolean b2 = Floats.moreThan(l2, 0);
-        final boolean b3 = Floats.moreThan(l3, 0);
+        final boolean ok1 = Floats.moreThan(lambda1, 0);
+        final boolean ok2 = Floats.moreThan(lambda2, 0);
+        final boolean ok3 = Floats.moreThan(lambda3, 0);
 
-        return b1 && b2 && b3;
+        return ok1 && ok2 && ok3;
     }
 
     @Override
