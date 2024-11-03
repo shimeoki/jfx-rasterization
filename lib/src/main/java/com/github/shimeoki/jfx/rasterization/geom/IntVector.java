@@ -21,6 +21,11 @@ public class IntVector implements IntVector2D {
     }
 
     @Override
+    public void addX(final int dx) {
+        setX(x + dx);
+    }
+
+    @Override
     public int y() {
         return y;
     }
@@ -28,5 +33,10 @@ public class IntVector implements IntVector2D {
     @Override
     public void setY(final int y) {
         this.y = y;
+    }
+
+    @Override
+    public void addY(final int dy) {
+        setY(y + dy);
     }
 }
