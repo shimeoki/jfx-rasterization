@@ -16,8 +16,8 @@ import javafx.scene.image.PixelWriter;
 
 public class DDATriangler implements Triangler {
 
-    private PixelWriter w;
-    private TriangleColorer c;
+    private PixelWriter writer;
+    private TriangleColorer colorer;
 
     public DDATriangler(final PixelWriter w, final TriangleColorer c) {
         setPixelWriter(w);
@@ -26,26 +26,26 @@ public class DDATriangler implements Triangler {
 
     @Override
     public PixelWriter pixelWriter() {
-        return w;
+        return writer;
     }
 
     @Override
     public void setPixelWriter(final PixelWriter w) {
         Objects.requireNonNull(w);
 
-        this.w = w;
+        writer = w;
     }
 
     @Override
     public TriangleColorer colorer() {
-        return c;
+        return colorer;
     }
 
     @Override
     public void setColorer(final TriangleColorer c) {
         Objects.requireNonNull(c);
 
-        this.c = c;
+        colorer = c;
     }
 
     private List<Point2D> sortedVertices(final Triangle t) {
@@ -61,42 +61,44 @@ public class DDATriangler implements Triangler {
         return vertices;
     }
 
-    private void drawFlat(final Triangle t,
+    private void drawFlat(
+            final Triangle t,
             final Point2D lone,
             final Point2D flat1,
             final Point2D flat2) {
 
-        final float lx = lone.x();
-        final float ly = lone.y();
+        final float loneX = lone.x();
+        final float loneY = lone.y();
 
-        // "delta flat x1"
-        final float dfx1 = flat1.x() - lx;
-        final float dfy1 = flat1.y() - ly;
+        final float deltaXFlat1 = flat1.x() - loneX;
+        final float deltaYFlat1 = flat1.y() - loneY;
 
-        final float dfx2 = flat2.x() - lx;
-        final float dfy2 = flat2.y() - ly;
+        final float deltaXFlat2 = flat2.x() - loneX;
+        final float deltaYFlat2 = flat2.y() - loneY;
 
-        float dx1 = dfx1 / dfy1;
-        float dx2 = dfx2 / dfy2;
+        float dx1 = deltaXFlat1 / deltaYFlat1;
+        float dx2 = deltaXFlat2 / deltaYFlat2;
 
-        final float fy = flat1.y();
-        if (Floats.moreThan(ly, fy)) {
-            drawFlatMin(t, lone, fy, dx1, dx2);
+        final float flatY = flat1.y();
+
+        if (Floats.moreThan(loneY, flatY)) {
+            drawFlatMin(t, lone, flatY, dx1, dx2);
         } else {
-            drawFlatMax(t, lone, fy, dx1, dx2);
+            drawFlatMax(t, lone, flatY, dx1, dx2);
         }
     }
 
-    private void drawFlatMax(final Triangle t,
-            final Point2D v,
+    private void drawFlatMax(
+            final Triangle t,
+            final Point2D anchor,
             final float maxY,
             final float dx1,
             final float dx2) {
 
-        float x1 = v.x();
+        float x1 = anchor.x();
         float x2 = x1;
 
-        for (int y = (int) v.y(); y <= maxY; y++) {
+        for (int y = (int) anchor.y(); y <= maxY; y++) {
             // round floats instead of floor?
             drawHLine(t, (int) x1, (int) x2, y);
 
@@ -105,16 +107,17 @@ public class DDATriangler implements Triangler {
         }
     }
 
-    private void drawFlatMin(final Triangle t,
-            final Point2D v,
+    private void drawFlatMin(
+            final Triangle t,
+            final Point2D anchor,
             final float minY,
             final float dx1,
             final float dx2) {
 
-        float x1 = v.x();
+        float x1 = anchor.x();
         float x2 = x1;
 
-        for (int y = (int) v.y(); y > minY; y--) {
+        for (int y = (int) anchor.y(); y > minY; y--) {
             // round floats instead of floor?
             drawHLine(t, (int) x1, (int) x2, y);
 
@@ -123,24 +126,25 @@ public class DDATriangler implements Triangler {
         }
     }
 
-    private void drawHLine(final Triangle t,
+    private void drawHLine(
+            final Triangle t,
             final int x1,
             final int x2,
             final int y) {
 
         for (int x = (int) x1; x <= x2; x++) {
-            final TriangleBarycentrics b;
+            final TriangleBarycentrics barycentrics;
             try {
-                b = t.barycentrics(new Vector(x, y));
+                barycentrics = t.barycentrics(new Vector(x, y));
             } catch (Exception e) {
                 continue;
             }
 
-            if (!b.inside()) {
+            if (!barycentrics.inside()) {
                 continue;
             }
 
-            w.setColor(x, y, c.get(b).jfxColor());
+            writer.setColor(x, y, colorer.get(barycentrics).jfxColor());
         }
     }
 
