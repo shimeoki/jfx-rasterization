@@ -1,11 +1,11 @@
 package com.github.shimeoki.jfx.rasterization.geom;
 
-public class Vector implements Vector2D {
+public class FloatVector implements FloatVector2D {
 
     private float x;
     private float y;
 
-    public Vector(final float x, final float y) {
+    public FloatVector(final float x, final float y) {
         setX(x);
         setY(y);
     }

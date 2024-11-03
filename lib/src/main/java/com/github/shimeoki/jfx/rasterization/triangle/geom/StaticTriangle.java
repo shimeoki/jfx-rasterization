@@ -2,9 +2,9 @@ package com.github.shimeoki.jfx.rasterization.triangle.geom;
 
 import java.util.Objects;
 
-import com.github.shimeoki.jfx.rasterization.geom.Point2D;
-import com.github.shimeoki.jfx.rasterization.geom.Vector;
-import com.github.shimeoki.jfx.rasterization.geom.Vector2D;
+import com.github.shimeoki.jfx.rasterization.geom.FloatPoint2D;
+import com.github.shimeoki.jfx.rasterization.geom.FloatVector;
+import com.github.shimeoki.jfx.rasterization.geom.FloatVector2D;
 
 public class StaticTriangle implements Triangle {
 
@@ -22,9 +22,9 @@ public class StaticTriangle implements Triangle {
     private final float d;
 
     public StaticTriangle(
-            final Point2D p1,
-            final Point2D p2,
-            final Point2D p3) {
+            final FloatPoint2D p1,
+            final FloatPoint2D p2,
+            final FloatPoint2D p3) {
 
         Objects.requireNonNull(p1);
         Objects.requireNonNull(p2);
@@ -44,8 +44,8 @@ public class StaticTriangle implements Triangle {
     }
 
     @Override
-    public Vector2D v1() {
-        return new Vector(x1, y1);
+    public FloatVector2D v1() {
+        return new FloatVector(x1, y1);
     }
 
     @Override
@@ -59,8 +59,8 @@ public class StaticTriangle implements Triangle {
     }
 
     @Override
-    public Vector2D v2() {
-        return new Vector(x2, y2);
+    public FloatVector2D v2() {
+        return new FloatVector(x2, y2);
     }
 
     @Override
@@ -74,8 +74,8 @@ public class StaticTriangle implements Triangle {
     }
 
     @Override
-    public Vector2D v3() {
-        return new Vector(x3, y3);
+    public FloatVector2D v3() {
+        return new FloatVector(x3, y3);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class StaticTriangle implements Triangle {
     }
 
     @Override
-    public TriangleBarycentrics barycentrics(final Point2D p) {
+    public TriangleBarycentrics barycentrics(final FloatPoint2D p) {
         // docs:
         // https://en.wikipedia.org/wiki/Barycentric_coordinate_system#Conversion_between_barycentric_and_Cartesian_coordinates
 

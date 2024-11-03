@@ -1,13 +1,13 @@
 package com.github.shimeoki.jfx.rasterization.triangle.geom;
 
-import com.github.shimeoki.jfx.rasterization.geom.Point2D;
-import com.github.shimeoki.jfx.rasterization.geom.Vector2D;
+import com.github.shimeoki.jfx.rasterization.geom.FloatPoint2D;
+import com.github.shimeoki.jfx.rasterization.geom.FloatVector2D;
 
 public interface Triangle {
 
     // first vertex
 
-    public Vector2D v1();
+    public FloatVector2D v1();
 
     public float x1();
 
@@ -15,7 +15,7 @@ public interface Triangle {
 
     // second vertex
 
-    public Vector2D v2();
+    public FloatVector2D v2();
 
     public float x2();
 
@@ -23,7 +23,7 @@ public interface Triangle {
 
     // third vertex
 
-    public Vector2D v3();
+    public FloatVector2D v3();
 
     public float x3();
 
@@ -31,5 +31,5 @@ public interface Triangle {
 
     // barycentrics
 
-    public TriangleBarycentrics barycentrics(final Point2D p);
+    public TriangleBarycentrics barycentrics(final FloatPoint2D p);
 }
