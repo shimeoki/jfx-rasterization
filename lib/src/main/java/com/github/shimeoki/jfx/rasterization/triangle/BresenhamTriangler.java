@@ -5,9 +5,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-import com.github.shimeoki.jfx.rasterization.geom.Point2D;
-import com.github.shimeoki.jfx.rasterization.geom.Vector;
-import com.github.shimeoki.jfx.rasterization.math.Floats;
+import com.github.shimeoki.jfx.rasterization.geom.FloatPoint2D;
+import com.github.shimeoki.jfx.rasterization.geom.FloatVector;
+import com.github.shimeoki.jfx.rasterization.geom.IntPoint2D;
+import com.github.shimeoki.jfx.rasterization.geom.IntVector;
 import com.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
@@ -20,29 +21,33 @@ public class BresenhamTriangler implements Triangler {
     private Triangle triangle = null;
     private TriangleColorer colorer = null;
 
-    private List<Point2D> sortedVertices() {
-        final List<Point2D> vertices = new ArrayList<>();
+    private IntPoint2D converted(final FloatPoint2D p) {
+        return new IntVector((int) p.x(), (int) p.y());
+    }
 
-        vertices.add(triangle.v1());
-        vertices.add(triangle.v2());
-        vertices.add(triangle.v3());
+    private List<IntPoint2D> sortedVertices() {
+        final List<IntPoint2D> vertices = new ArrayList<>();
+
+        vertices.add(converted(triangle.v1()));
+        vertices.add(converted(triangle.v2()));
+        vertices.add(converted(triangle.v3()));
 
         vertices.sort(Comparator
-                .comparing(Point2D::y)
-                .thenComparing(Point2D::x));
+                .comparing(IntPoint2D::y)
+                .thenComparing(IntPoint2D::x));
 
         return vertices;
     }
 
     private void drawFlat(
-            final Point2D lone,
-            final Point2D flat1,
-            final Point2D flat2) {
+            final IntPoint2D lone,
+            final IntPoint2D flat1,
+            final IntPoint2D flat2) {
 
         // TODO: refactor
 
-        int x1 = (int) lone.x();
-        int y1 = (int) lone.y();
+        int x1 = lone.x();
+        int y1 = lone.y();
 
         int x2 = x1;
         int y2 = y1;
@@ -50,8 +55,8 @@ public class BresenhamTriangler implements Triangler {
         boolean changed1 = false;
         boolean changed2 = false;
 
-        int dx1 = (int) flat1.x() - x1;
-        int dx2 = (int) flat2.x() - x1;
+        int dx1 = flat1.x() - x1;
+        int dx2 = flat2.x() - x1;
 
         final int signx1 = (int) Math.signum(dx1);
         final int signx2 = (int) Math.signum(dx2);
@@ -59,8 +64,8 @@ public class BresenhamTriangler implements Triangler {
         dx1 = Math.abs(dx1);
         dx2 = Math.abs(dx2);
 
-        int dy1 = (int) flat1.y() - y1;
-        int dy2 = (int) flat2.y() - y1;
+        int dy1 = flat1.y() - y1;
+        int dy2 = flat2.y() - y1;
 
         final int signy = (int) Math.signum(dy1);
 
@@ -86,7 +91,7 @@ public class BresenhamTriangler implements Triangler {
         int err1 = 2 * dy1 - dx1;
         int err2 = 2 * dy2 - dx2;
 
-        for (int i = 0; i < dx1; i++) {
+        for (int i = 0; i <= dx1; i++) {
             drawHLine(x1, x2, y1);
 
             while (err1 >= 0) {
@@ -130,15 +135,11 @@ public class BresenhamTriangler implements Triangler {
     }
 
     private void drawHLine(final int x1, final int x2, final int y) {
-        for (int x = (int) x1; x <= x2; x++) {
+        for (int x = x1; x <= x2; x++) {
             final TriangleBarycentrics barycentrics;
             try {
-                barycentrics = triangle.barycentrics(new Vector(x, y));
+                barycentrics = triangle.barycentrics(new FloatVector(x, y));
             } catch (final Exception e) {
-                continue;
-            }
-
-            if (!barycentrics.inside()) {
                 continue;
             }
 
@@ -179,36 +180,36 @@ public class BresenhamTriangler implements Triangler {
         // docs:
         // https://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html
 
-        final List<Point2D> vertices = sortedVertices();
+        final List<IntPoint2D> vertices = sortedVertices();
 
-        final Point2D v1 = vertices.get(0);
-        final Point2D v2 = vertices.get(1);
-        final Point2D v3 = vertices.get(2);
+        final IntPoint2D v1 = vertices.get(0);
+        final IntPoint2D v2 = vertices.get(1);
+        final IntPoint2D v3 = vertices.get(2);
 
-        final float x1 = v1.x();
-        final float y1 = v1.y();
+        final int x1 = v1.x();
+        final int y1 = v1.y();
 
-        final float x2 = v2.x();
-        final float y2 = v2.y();
+        final int x2 = v2.x();
+        final int y2 = v2.y();
 
-        final float x3 = v3.x();
-        final float y3 = v3.y();
+        final int x3 = v3.x();
+        final int y3 = v3.y();
 
-        if (Floats.equals(y2, y3)) {
+        if (y2 == y3) {
             drawFlat(v1, v2, v3);
             return;
         }
 
-        if (Floats.equals(y1, y2)) {
+        if (y1 == y2) {
             drawFlat(v3, v1, v2);
             return;
         }
 
-        final float x4 = x1 + ((y2 - y1) / (y3 - y1)) * (x3 - x1);
-        final Point2D v4 = new Vector(x4, v2.y());
+        final int x4 = (int) (x1 + ((float) (y2 - y1) / (float) (y3 - y1)) * (x3 - x1));
+        final IntPoint2D v4 = new IntVector(x4, v2.y());
 
         // non strict equality?
-        if (Floats.moreThan(x4, x2)) {
+        if (x4 > x2) {
             drawFlat(v1, v2, v4);
             drawFlat(v3, v2, v4);
         } else {
