@@ -6,9 +6,9 @@ import com.github.shimeoki.jfx.rasterization.color.Colorf;
 
 public class DefaultTriangleGradient implements TriangleGradient {
 
-    private final Colorf c1;
-    private final Colorf c2;
-    private final Colorf c3;
+    private final Colorf color1;
+    private final Colorf color2;
+    private final Colorf color3;
 
     public DefaultTriangleGradient(
             final Colorf c1, final Colorf c2, final Colorf c3) {
@@ -17,83 +17,83 @@ public class DefaultTriangleGradient implements TriangleGradient {
         Objects.requireNonNull(c2);
         Objects.requireNonNull(c3);
 
-        this.c1 = c1;
-        this.c2 = c2;
-        this.c3 = c3;
+        color1 = c1;
+        color2 = c2;
+        color3 = c3;
     }
 
     @Override
     public Colorf color1() {
-        return c1;
+        return color1;
     }
 
     @Override
     public float red1() {
-        return c1.red();
+        return color1.red();
     }
 
     @Override
     public float green1() {
-        return c1.green();
+        return color1.green();
     }
 
     @Override
     public float blue1() {
-        return c1.blue();
+        return color1.blue();
     }
 
     @Override
     public float alpha1() {
-        return c1.alpha();
+        return color1.alpha();
     }
 
     @Override
     public Colorf color2() {
-        return c2;
+        return color2;
     }
 
     @Override
     public float red2() {
-        return c2.red();
+        return color2.red();
     }
 
     @Override
     public float green2() {
-        return c2.green();
+        return color2.green();
     }
 
     @Override
     public float blue2() {
-        return c2.blue();
+        return color2.blue();
     }
 
     @Override
     public float alpha2() {
-        return c2.alpha();
+        return color2.alpha();
     }
 
     @Override
     public Colorf color3() {
-        return c3;
+        return color3;
     }
 
     @Override
     public float red3() {
-        return c3.red();
+        return color3.red();
     }
 
     @Override
     public float green3() {
-        return c3.green();
+        return color3.green();
     }
 
     @Override
     public float blue3() {
-        return c3.blue();
+        return color3.blue();
     }
 
     @Override
     public float alpha3() {
-        return c3.alpha();
+        return color3.alpha();
     }
 }
