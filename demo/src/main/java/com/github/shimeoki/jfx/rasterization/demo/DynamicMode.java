@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 import com.github.shimeoki.jfx.rasterization.color.HTMLColors;
-import com.github.shimeoki.jfx.rasterization.geom.Vector;
-import com.github.shimeoki.jfx.rasterization.geom.Vector2D;
+import com.github.shimeoki.jfx.rasterization.geom.FloatVector;
+import com.github.shimeoki.jfx.rasterization.geom.FloatVector2D;
 import com.github.shimeoki.jfx.rasterization.test.TimeUnit;
 import com.github.shimeoki.jfx.rasterization.test.Timekeeper;
 import com.github.shimeoki.jfx.rasterization.test.Timer;
@@ -66,10 +66,10 @@ public class DynamicMode {
 
     class MovingVector {
 
-        final Vector2D v;
+        final FloatVector2D v;
         float angle;
 
-        MovingVector(final Vector2D v, final float angle) {
+        MovingVector(final FloatVector2D v, final float angle) {
             this.v = v;
             this.angle = angle;
         }
@@ -224,25 +224,25 @@ public class DynamicMode {
                         canvas.getHeight());
     }
 
-    private Vector2D randomVector() {
+    private FloatVector2D randomVector() {
         final float x = rnd.nextFloat((float) canvas.getWidth());
         final float y = rnd.nextFloat((float) canvas.getHeight());
 
-        return new Vector(x, y);
+        return new FloatVector(x, y);
     }
 
     private float randomAngle() {
         return rnd.nextFloat(3.14f * 2);
     }
 
-    private MovingVector toMovingVector(final Vector2D v) {
+    private MovingVector toMovingVector(final FloatVector2D v) {
         return new MovingVector(v, randomAngle());
     }
 
     private void addTriangle() {
-        final Vector2D v1 = randomVector();
-        final Vector2D v2 = randomVector();
-        final Vector2D v3 = randomVector();
+        final FloatVector2D v1 = randomVector();
+        final FloatVector2D v2 = randomVector();
+        final FloatVector2D v3 = randomVector();
 
         final Triangle t = new DynamicTriangle(v1, v2, v3);
 

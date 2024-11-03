@@ -2,19 +2,19 @@ package com.github.shimeoki.jfx.rasterization.triangle.geom;
 
 import java.util.Objects;
 
-import com.github.shimeoki.jfx.rasterization.geom.Point2D;
-import com.github.shimeoki.jfx.rasterization.geom.Vector2D;
+import com.github.shimeoki.jfx.rasterization.geom.FloatPoint2D;
+import com.github.shimeoki.jfx.rasterization.geom.FloatVector2D;
 
 public class DynamicTriangle implements Triangle {
 
-    private final Vector2D v1;
-    private final Vector2D v2;
-    private final Vector2D v3;
+    private final FloatVector2D v1;
+    private final FloatVector2D v2;
+    private final FloatVector2D v3;
 
     public DynamicTriangle(
-            final Vector2D v1,
-            final Vector2D v2,
-            final Vector2D v3) {
+            final FloatVector2D v1,
+            final FloatVector2D v2,
+            final FloatVector2D v3) {
 
         Objects.requireNonNull(v1);
         Objects.requireNonNull(v2);
@@ -26,7 +26,7 @@ public class DynamicTriangle implements Triangle {
     }
 
     @Override
-    public Vector2D v1() {
+    public FloatVector2D v1() {
         return v1;
     }
 
@@ -41,7 +41,7 @@ public class DynamicTriangle implements Triangle {
     }
 
     @Override
-    public Vector2D v2() {
+    public FloatVector2D v2() {
         return v2;
     }
 
@@ -56,7 +56,7 @@ public class DynamicTriangle implements Triangle {
     }
 
     @Override
-    public Vector2D v3() {
+    public FloatVector2D v3() {
         return v3;
     }
 
@@ -71,7 +71,7 @@ public class DynamicTriangle implements Triangle {
     }
 
     @Override
-    public TriangleBarycentrics barycentrics(final Point2D p) {
+    public TriangleBarycentrics barycentrics(final FloatPoint2D p) {
         // docs:
         // https://en.wikipedia.org/wiki/Barycentric_coordinate_system#Conversion_between_barycentric_and_Cartesian_coordinates
 
