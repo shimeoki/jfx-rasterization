@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import com.github.shimeoki.jfx.rasterization.color.HTMLColors;
+import com.github.shimeoki.jfx.rasterization.color.HTMLColorf;
 import com.github.shimeoki.jfx.rasterization.geom.FloatPoint2D;
 import com.github.shimeoki.jfx.rasterization.geom.FloatVector;
 import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
@@ -95,9 +95,9 @@ public class Controller {
             this.r = new DDATriangler();
             this.colorer = new StaticGradientTriangleColorer(
                     new DynamicTriangleGradient(
-                            HTMLColors.RED,
-                            HTMLColors.WHITE,
-                            HTMLColors.BLACK));
+                            HTMLColorf.RED,
+                            HTMLColorf.WHITE,
+                            HTMLColorf.BLACK));
 
             generate();
         }

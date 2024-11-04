@@ -1,6 +1,6 @@
 package com.github.shimeoki.jfx.rasterization.color;
 
-public final class HTMLColors {
+public final class HTMLColorf {
 
     // docs: https://htmlcolorcodes.com/color-names/
 
@@ -52,6 +52,6 @@ public final class HTMLColors {
 
     public static final Colorf BLACK = new RGBColorf(0f, 0f, 0f, 1f);
 
-    private HTMLColors() {
+    private HTMLColorf() {
     }
 }

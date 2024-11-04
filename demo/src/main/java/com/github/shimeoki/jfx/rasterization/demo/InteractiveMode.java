@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.github.shimeoki.jfx.rasterization.color.HTMLColors;
+import com.github.shimeoki.jfx.rasterization.color.HTMLColorf;
 import com.github.shimeoki.jfx.rasterization.geom.FloatPoint2D;
 import com.github.shimeoki.jfx.rasterization.geom.FloatVector;
 import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
@@ -56,9 +56,9 @@ public class InteractiveMode {
         writer = canvas.getGraphicsContext2D().getPixelWriter();
         colorer = new StaticGradientTriangleColorer(
                 new DynamicTriangleGradient(
-                        HTMLColors.AQUA,
-                        HTMLColors.FUCHSIA,
-                        HTMLColors.LIME));
+                        HTMLColorf.AQUA,
+                        HTMLColorf.FUCHSIA,
+                        HTMLColorf.LIME));
     }
 
     private void initClearBtn() {

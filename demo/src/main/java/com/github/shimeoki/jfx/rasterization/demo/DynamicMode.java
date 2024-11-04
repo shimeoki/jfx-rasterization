@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import com.github.shimeoki.jfx.rasterization.color.HTMLColors;
+import com.github.shimeoki.jfx.rasterization.color.HTMLColorf;
 import com.github.shimeoki.jfx.rasterization.geom.FloatVector;
 import com.github.shimeoki.jfx.rasterization.geom.FloatVector2D;
 import com.github.shimeoki.jfx.rasterization.test.TimeUnit;
@@ -185,7 +185,7 @@ public class DynamicMode {
     private void initTriangler() {
         triangler = new DDATriangler();
         writer = canvas.getGraphicsContext2D().getPixelWriter();
-        colorer = new DynamicMonotoneTriangleColorer(HTMLColors.BLUE);
+        colorer = new DynamicMonotoneTriangleColorer(HTMLColorf.BLUE);
     }
 
     private void initAddBtn() {
