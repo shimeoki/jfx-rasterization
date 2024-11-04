@@ -1,6 +1,6 @@
 package com.github.shimeoki.jfx.rasterization.geom;
 
-public class IntVector implements IntVector2D {
+public final class IntVector implements IntVector2D {
 
     private int x;
     private int y;

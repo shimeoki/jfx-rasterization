@@ -2,7 +2,7 @@ package com.github.shimeoki.jfx.rasterization.triangle.geom;
 
 import com.github.shimeoki.jfx.rasterization.math.Floats;
 
-public class DefaultTriangleBarycentrics implements TriangleBarycentrics {
+public final class DefaultTriangleBarycentrics implements TriangleBarycentrics {
 
     private final float lambda1;
     private final float lambda2;

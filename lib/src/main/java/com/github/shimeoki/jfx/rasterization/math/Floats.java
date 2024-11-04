@@ -1,6 +1,6 @@
 package com.github.shimeoki.jfx.rasterization.math;
 
-public class Floats {
+public final class Floats {
 
     public static final float EPSILON = 1E-5f;
 

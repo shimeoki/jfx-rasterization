@@ -6,7 +6,7 @@ import com.github.shimeoki.jfx.rasterization.geom.FloatPoint2D;
 import com.github.shimeoki.jfx.rasterization.geom.FloatVector2D;
 import com.github.shimeoki.jfx.rasterization.math.Floats;
 
-public class DynamicTriangle implements Triangle {
+public final class DynamicTriangle implements Triangle {
 
     private final FloatVector2D v1;
     private final FloatVector2D v2;

@@ -7,7 +7,7 @@ import com.github.shimeoki.jfx.rasterization.geom.FloatVector;
 import com.github.shimeoki.jfx.rasterization.geom.FloatVector2D;
 import com.github.shimeoki.jfx.rasterization.math.Floats;
 
-public class StaticTriangle implements Triangle {
+public final class StaticTriangle implements Triangle {
 
     private final float x1;
     private final float y1;

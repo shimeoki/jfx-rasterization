@@ -1,6 +1,6 @@
 package com.github.shimeoki.jfx.rasterization.color;
 
-public class HTMLColors {
+public final class HTMLColors {
 
     // docs: https://htmlcolorcodes.com/color-names/
 

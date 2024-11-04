@@ -5,7 +5,7 @@ import java.util.Objects;
 import com.github.shimeoki.jfx.rasterization.color.Colorf;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 
-public class MonotoneTriangleColorer implements TriangleColorer {
+public final class MonotoneTriangleColorer implements TriangleColorer {
 
     private final Colorf color;
 

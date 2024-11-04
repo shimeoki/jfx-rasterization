@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import com.github.shimeoki.jfx.rasterization.color.Colorf;
 
-public class DefaultTriangleGradient implements TriangleGradient {
+public final class DefaultTriangleGradient implements TriangleGradient {
 
     private final Colorf color1;
     private final Colorf color2;

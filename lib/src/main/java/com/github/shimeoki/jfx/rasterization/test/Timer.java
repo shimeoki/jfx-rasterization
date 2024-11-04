@@ -1,6 +1,6 @@
 package com.github.shimeoki.jfx.rasterization.test;
 
-public class Timer implements Timekeeper {
+public final class Timer implements Timekeeper {
 
     public static final TimeUnit DEFAULT_UNIT = TimeUnit.NANOSECOND;
 

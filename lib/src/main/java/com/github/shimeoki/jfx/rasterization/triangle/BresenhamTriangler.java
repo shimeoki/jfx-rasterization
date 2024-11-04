@@ -15,7 +15,7 @@ import com.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 
 import javafx.scene.image.PixelWriter;
 
-public class BresenhamTriangler implements Triangler {
+public final class BresenhamTriangler implements Triangler {
 
     private PixelWriter writer = null;
     private Triangle triangle = null;

@@ -14,7 +14,7 @@ import com.github.shimeoki.jfx.rasterization.geom.FloatVector;
 
 import javafx.scene.image.PixelWriter;
 
-public class DDATriangler implements Triangler {
+public final class DDATriangler implements Triangler {
 
     private PixelWriter writer = null;
     private Triangle triangle = null;
