@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import com.github.shimeoki.jfx.rasterization.geom.FloatPoint2D;
 import com.github.shimeoki.jfx.rasterization.geom.FloatVector2D;
+import com.github.shimeoki.jfx.rasterization.math.Floats;
 
 public class DynamicTriangle implements Triangle {
 
@@ -87,19 +88,30 @@ public class DynamicTriangle implements Triangle {
         final float x3 = x3();
         final float y3 = y3();
 
-        // n stands for numerator
-        final float n1 = (y2 - y3) * (x - x3) + (x3 - x2) * (y - y3);
-        final float n2 = (y3 - y1) * (x - x3) + (x1 - x3) * (y - y3);
-        final float n3 = (y1 - y2) * (x - x1) + (x2 - x1) * (y - y1);
+        final float dx13 = x1 - x3;
+        final float dy13 = y1 - y3;
 
-        // d = 1 / denominator
-        final float d = 1 / ((y2 - y3) * (x1 - x3) + (x3 - x2) * (y1 - y3));
+        final float dx23 = x2 - x3;
+        final float dy23 = y2 - y3;
 
-        // lambdas
-        final float l1 = n1 * d;
-        final float l2 = n2 * d;
-        final float l3 = n3 * d;
+        final float dx3 = x - x3;
+        final float dy3 = y - y3;
 
-        return new DefaultTriangleBarycentrics(l1, l2, l3);
+        final float numerator1 = dy23 * dx3 - dx23 * dy3;
+        final float numerator2 = -dy13 * dx3 + dx13 * dy3;
+        final float numerator3 = (y1 - y2) * (x - x1) + (x2 - x1) * (y - y1);
+
+        final float denominator = dy23 * dx13 - dx23 * dy13;
+        if (Floats.equals(denominator, 0)) {
+            return new DefaultTriangleBarycentrics(0, 0, 0);
+        }
+
+        final float d = 1f / denominator;
+
+        final float lambda1 = numerator1 * d;
+        final float lambda2 = numerator2 * d;
+        final float lambda3 = numerator3 * d;
+
+        return new DefaultTriangleBarycentrics(lambda1, lambda2, lambda3);
     }
 }
