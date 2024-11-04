@@ -6,8 +6,8 @@ import java.util.Objects;
 import java.util.Random;
 
 import com.github.shimeoki.jfx.rasterization.color.HTMLColorf;
-import com.github.shimeoki.jfx.rasterization.geom.FloatPoint2D;
-import com.github.shimeoki.jfx.rasterization.geom.FloatVector;
+import com.github.shimeoki.jfx.rasterization.geom.Pos2f;
+import com.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.Triangler;
 import com.github.shimeoki.jfx.rasterization.triangle.color.DynamicTriangleGradient;
@@ -102,22 +102,22 @@ public class Controller {
             generate();
         }
 
-        private FloatPoint2D getPoint1() {
+        private Pos2f getPoint1() {
             final float x = (float) c.getWidth() * pos[0];
             final float y = (float) c.getHeight() * pos[1];
-            return new FloatVector(x, y);
+            return new Vector2f(x, y);
         }
 
-        private FloatPoint2D getPoint2() {
+        private Pos2f getPoint2() {
             final float x = (float) c.getWidth() * pos[2];
             final float y = (float) c.getHeight() * pos[3];
-            return new FloatVector(x, y);
+            return new Vector2f(x, y);
         }
 
-        private FloatPoint2D getPoint3() {
+        private Pos2f getPoint3() {
             final float x = (float) c.getWidth() * pos[4];
             final float y = (float) c.getHeight() * pos[5];
-            return new FloatVector(x, y);
+            return new Vector2f(x, y);
         }
 
         void generate() {
@@ -135,9 +135,9 @@ public class Controller {
         void draw() {
             clear();
 
-            final FloatPoint2D p1 = getPoint1();
-            final FloatPoint2D p2 = getPoint2();
-            final FloatPoint2D p3 = getPoint3();
+            final Pos2f p1 = getPoint1();
+            final Pos2f p2 = getPoint2();
+            final Pos2f p3 = getPoint3();
 
             r.draw(writer, new StaticTriangle(p1, p2, p3), colorer);
         }

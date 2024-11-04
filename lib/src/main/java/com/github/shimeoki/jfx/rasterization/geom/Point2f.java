@@ -1,6 +1,6 @@
 package com.github.shimeoki.jfx.rasterization.geom;
 
-public interface FloatVector2D extends FloatPoint2D {
+public interface Point2f extends Pos2f {
 
     public void setX(final float x);
 

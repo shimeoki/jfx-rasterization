@@ -1,6 +1,6 @@
 package com.github.shimeoki.jfx.rasterization.geom;
 
-public interface IntPoint2D {
+public interface Pos2i {
 
     public int x();
 

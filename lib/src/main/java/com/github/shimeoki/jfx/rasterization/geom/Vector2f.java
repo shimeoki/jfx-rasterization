@@ -1,42 +1,42 @@
 package com.github.shimeoki.jfx.rasterization.geom;
 
-public final class IntVector implements IntVector2D {
+public final class Vector2f implements Point2f {
 
-    private int x;
-    private int y;
+    private float x;
+    private float y;
 
-    public IntVector(final int x, final int y) {
+    public Vector2f(final float x, final float y) {
         setX(x);
         setY(y);
     }
 
     @Override
-    public int x() {
+    public float x() {
         return x;
     }
 
     @Override
-    public void setX(final int x) {
+    public void setX(final float x) {
         this.x = x;
     }
 
     @Override
-    public void addX(final int dx) {
+    public void addX(final float dx) {
         setX(x + dx);
     }
 
     @Override
-    public int y() {
+    public float y() {
         return y;
     }
 
     @Override
-    public void setY(final int y) {
+    public void setY(final float y) {
         this.y = y;
     }
 
     @Override
-    public void addY(final int dy) {
+    public void addY(final float dy) {
         setY(y + dy);
     }
 }

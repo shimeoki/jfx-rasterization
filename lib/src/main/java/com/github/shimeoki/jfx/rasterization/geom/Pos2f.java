@@ -1,6 +1,6 @@
 package com.github.shimeoki.jfx.rasterization.geom;
 
-public interface FloatPoint2D {
+public interface Pos2f {
 
     public float x();
 

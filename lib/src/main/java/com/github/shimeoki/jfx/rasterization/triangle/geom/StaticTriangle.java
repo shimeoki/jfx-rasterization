@@ -2,9 +2,9 @@ package com.github.shimeoki.jfx.rasterization.triangle.geom;
 
 import java.util.Objects;
 
-import com.github.shimeoki.jfx.rasterization.geom.FloatPoint2D;
-import com.github.shimeoki.jfx.rasterization.geom.FloatVector;
-import com.github.shimeoki.jfx.rasterization.geom.FloatVector2D;
+import com.github.shimeoki.jfx.rasterization.geom.Pos2f;
+import com.github.shimeoki.jfx.rasterization.geom.Vector2f;
+import com.github.shimeoki.jfx.rasterization.geom.Point2f;
 import com.github.shimeoki.jfx.rasterization.math.Floats;
 
 public final class StaticTriangle implements Triangle {
@@ -27,9 +27,9 @@ public final class StaticTriangle implements Triangle {
     private final float d;
 
     public StaticTriangle(
-            final FloatPoint2D p1,
-            final FloatPoint2D p2,
-            final FloatPoint2D p3) {
+            final Pos2f p1,
+            final Pos2f p2,
+            final Pos2f p3) {
 
         Objects.requireNonNull(p1);
         Objects.requireNonNull(p2);
@@ -59,22 +59,22 @@ public final class StaticTriangle implements Triangle {
     }
 
     @Override
-    public FloatVector2D v1() {
-        return new FloatVector(x1, y1);
+    public Point2f v1() {
+        return new Vector2f(x1, y1);
     }
 
     @Override
-    public FloatVector2D v2() {
-        return new FloatVector(x2, y2);
+    public Point2f v2() {
+        return new Vector2f(x2, y2);
     }
 
     @Override
-    public FloatVector2D v3() {
-        return new FloatVector(x3, y3);
+    public Point2f v3() {
+        return new Vector2f(x3, y3);
     }
 
     @Override
-    public TriangleBarycentrics barycentrics(final FloatPoint2D p) {
+    public TriangleBarycentrics barycentrics(final Pos2f p) {
         // docs:
         // https://en.wikipedia.org/wiki/Barycentric_coordinate_system#Conversion_between_barycentric_and_Cartesian_coordinates
 

@@ -5,10 +5,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-import com.github.shimeoki.jfx.rasterization.geom.FloatPoint2D;
-import com.github.shimeoki.jfx.rasterization.geom.FloatVector;
-import com.github.shimeoki.jfx.rasterization.geom.IntPoint2D;
-import com.github.shimeoki.jfx.rasterization.geom.IntVector;
+import com.github.shimeoki.jfx.rasterization.geom.Pos2f;
+import com.github.shimeoki.jfx.rasterization.geom.Vector2f;
+import com.github.shimeoki.jfx.rasterization.geom.Pos2i;
+import com.github.shimeoki.jfx.rasterization.geom.Vector2i;
 import com.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
@@ -21,28 +21,28 @@ public final class BresenhamTriangler implements Triangler {
     private Triangle triangle = null;
     private TriangleColorer colorer = null;
 
-    private IntPoint2D converted(final FloatPoint2D p) {
-        return new IntVector((int) p.x(), (int) p.y());
+    private Pos2i converted(final Pos2f p) {
+        return new Vector2i((int) p.x(), (int) p.y());
     }
 
-    private List<IntPoint2D> sortedVertices() {
-        final List<IntPoint2D> vertices = new ArrayList<>();
+    private List<Pos2i> sortedVertices() {
+        final List<Pos2i> vertices = new ArrayList<>();
 
         vertices.add(converted(triangle.v1()));
         vertices.add(converted(triangle.v2()));
         vertices.add(converted(triangle.v3()));
 
         vertices.sort(Comparator
-                .comparing(IntPoint2D::y)
-                .thenComparing(IntPoint2D::x));
+                .comparing(Pos2i::y)
+                .thenComparing(Pos2i::x));
 
         return vertices;
     }
 
     private void drawFlat(
-            final IntPoint2D lone,
-            final IntPoint2D flat1,
-            final IntPoint2D flat2) {
+            final Pos2i lone,
+            final Pos2i flat1,
+            final Pos2i flat2) {
 
         // TODO: refactor
 
@@ -138,7 +138,7 @@ public final class BresenhamTriangler implements Triangler {
         for (int x = x1; x <= x2; x++) {
             final TriangleBarycentrics barycentrics;
             try {
-                barycentrics = triangle.barycentrics(new FloatVector(x, y));
+                barycentrics = triangle.barycentrics(new Vector2f(x, y));
             } catch (final Exception e) {
                 continue;
             }
@@ -180,11 +180,11 @@ public final class BresenhamTriangler implements Triangler {
         // docs:
         // https://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html
 
-        final List<IntPoint2D> vertices = sortedVertices();
+        final List<Pos2i> vertices = sortedVertices();
 
-        final IntPoint2D v1 = vertices.get(0);
-        final IntPoint2D v2 = vertices.get(1);
-        final IntPoint2D v3 = vertices.get(2);
+        final Pos2i v1 = vertices.get(0);
+        final Pos2i v2 = vertices.get(1);
+        final Pos2i v3 = vertices.get(2);
 
         final int x1 = v1.x();
         final int y1 = v1.y();
@@ -206,7 +206,7 @@ public final class BresenhamTriangler implements Triangler {
         }
 
         final int x4 = (int) (x1 + ((float) (y2 - y1) / (float) (y3 - y1)) * (x3 - x1));
-        final IntPoint2D v4 = new IntVector(x4, v2.y());
+        final Pos2i v4 = new Vector2i(x4, v2.y());
 
         // non strict equality?
         if (x4 > x2) {
