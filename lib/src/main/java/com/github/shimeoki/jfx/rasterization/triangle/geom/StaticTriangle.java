@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.github.shimeoki.jfx.rasterization.geom.FloatPoint2D;
 import com.github.shimeoki.jfx.rasterization.geom.FloatVector;
 import com.github.shimeoki.jfx.rasterization.geom.FloatVector2D;
+import com.github.shimeoki.jfx.rasterization.math.Floats;
 
 public class StaticTriangle implements Triangle {
 
@@ -17,8 +18,12 @@ public class StaticTriangle implements Triangle {
     private final float x3;
     private final float y3;
 
-    // denominator for barycentric coordinates
-    // d is "1 / denominator" for faster calculations
+    private final float dx13;
+    private final float dy13;
+
+    private final float dx23;
+    private final float dy23;
+
     private final float d;
 
     public StaticTriangle(
@@ -39,8 +44,18 @@ public class StaticTriangle implements Triangle {
         x3 = p3.x();
         y3 = p3.y();
 
-        // check for zero?
-        d = 1 / denominator();
+        dx13 = x1 - x3;
+        dy13 = y1 - y3;
+
+        dx23 = x2 - x3;
+        dy23 = y2 - y3;
+
+        final float denominator = dy23 * dx13 - dx23 * dy13;
+        if (Floats.equals(denominator, 0)) {
+            d = 0;
+        } else {
+            d = 1 / denominator;
+        }
     }
 
     @Override
@@ -88,10 +103,6 @@ public class StaticTriangle implements Triangle {
         return y3;
     }
 
-    private float denominator() {
-        return (y2 - y3) * (x1 - x3) + (x3 - x2) * (y1 - y3);
-    }
-
     @Override
     public TriangleBarycentrics barycentrics(final FloatPoint2D p) {
         // docs:
@@ -100,16 +111,17 @@ public class StaticTriangle implements Triangle {
         final float x = p.x();
         final float y = p.y();
 
-        // n stands for numerator
-        final float n1 = (y2 - y3) * (x - x3) + (x3 - x2) * (y - y3);
-        final float n2 = (y3 - y1) * (x - x3) + (x1 - x3) * (y - y3);
-        final float n3 = (y1 - y2) * (x - x1) + (x2 - x1) * (y - y1);
+        final float dx3 = x - x3;
+        final float dy3 = y - y3;
 
-        // lambdas
-        final float l1 = n1 * d;
-        final float l2 = n2 * d;
-        final float l3 = n3 * d;
+        final float numerator1 = dy23 * dx3 - dx23 * dy3;
+        final float numerator2 = -dy13 * dx3 + dx13 * dy3;
+        final float numerator3 = (y1 - y2) * (x - x1) + (x2 - x1) * (y - y1);
 
-        return new DefaultTriangleBarycentrics(l1, l2, l3);
+        final float lambda1 = numerator1 * d;
+        final float lambda2 = numerator2 * d;
+        final float lambda3 = numerator3 * d;
+
+        return new DefaultTriangleBarycentrics(lambda1, lambda2, lambda3);
     }
 }
