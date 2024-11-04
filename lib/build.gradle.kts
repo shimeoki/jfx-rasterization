@@ -3,7 +3,7 @@ plugins {
     id("java-library")
 }
 
-version = "0.7.1"
+version = "0.7.2"
 
 javafx {
     modules("javafx.graphics")
