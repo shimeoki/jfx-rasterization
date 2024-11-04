@@ -28,72 +28,12 @@ public final class DefaultTriangleGradient implements TriangleGradient {
     }
 
     @Override
-    public float red1() {
-        return color1.red();
-    }
-
-    @Override
-    public float green1() {
-        return color1.green();
-    }
-
-    @Override
-    public float blue1() {
-        return color1.blue();
-    }
-
-    @Override
-    public float alpha1() {
-        return color1.alpha();
-    }
-
-    @Override
     public Colorf color2() {
         return color2;
     }
 
     @Override
-    public float red2() {
-        return color2.red();
-    }
-
-    @Override
-    public float green2() {
-        return color2.green();
-    }
-
-    @Override
-    public float blue2() {
-        return color2.blue();
-    }
-
-    @Override
-    public float alpha2() {
-        return color2.alpha();
-    }
-
-    @Override
     public Colorf color3() {
         return color3;
-    }
-
-    @Override
-    public float red3() {
-        return color3.red();
-    }
-
-    @Override
-    public float green3() {
-        return color3.green();
-    }
-
-    @Override
-    public float blue3() {
-        return color3.blue();
-    }
-
-    @Override
-    public float alpha3() {
-        return color3.alpha();
     }
 }
