@@ -12,7 +12,7 @@ import com.github.shimeoki.jfx.rasterization.test.Timekeeper;
 import com.github.shimeoki.jfx.rasterization.test.Timer;
 import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.Triangler;
-import com.github.shimeoki.jfx.rasterization.triangle.color.MonotoneTriangleColorer;
+import com.github.shimeoki.jfx.rasterization.triangle.color.DynamicMonotoneTriangleColorer;
 import com.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.DynamicTriangle;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
@@ -185,7 +185,7 @@ public class DynamicMode {
     private void initTriangler() {
         triangler = new DDATriangler();
         writer = canvas.getGraphicsContext2D().getPixelWriter();
-        colorer = new MonotoneTriangleColorer(HTMLColors.BLUE);
+        colorer = new DynamicMonotoneTriangleColorer(HTMLColors.BLUE);
     }
 
     private void initAddBtn() {
