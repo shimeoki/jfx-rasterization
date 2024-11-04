@@ -3,7 +3,7 @@ package com.github.shimeoki.jfx.rasterization.triangle.color;
 import java.util.Objects;
 
 import com.github.shimeoki.jfx.rasterization.color.Colorf;
-import com.github.shimeoki.jfx.rasterization.color.RGBColor;
+import com.github.shimeoki.jfx.rasterization.color.RGBColorf;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 
 public final class StaticMonotoneTriangleColorer implements TriangleColorer {
@@ -26,6 +26,6 @@ public final class StaticMonotoneTriangleColorer implements TriangleColorer {
     public Colorf get(final TriangleBarycentrics b) {
         Objects.requireNonNull(b);
 
-        return new RGBColor(red, green, blue, alpha);
+        return new RGBColorf(red, green, blue, alpha);
     }
 }

@@ -3,7 +3,7 @@ package com.github.shimeoki.jfx.rasterization.triangle.color;
 import java.util.Objects;
 
 import com.github.shimeoki.jfx.rasterization.color.Colorf;
-import com.github.shimeoki.jfx.rasterization.color.RGBColor;
+import com.github.shimeoki.jfx.rasterization.color.RGBColorf;
 
 public final class StaticTriangleGradient implements TriangleGradient {
 
@@ -49,16 +49,16 @@ public final class StaticTriangleGradient implements TriangleGradient {
 
     @Override
     public Colorf color1() {
-        return new RGBColor(red1, green1, blue1, alpha1);
+        return new RGBColorf(red1, green1, blue1, alpha1);
     }
 
     @Override
     public Colorf color2() {
-        return new RGBColor(red2, green2, blue2, alpha2);
+        return new RGBColorf(red2, green2, blue2, alpha2);
     }
 
     @Override
     public Colorf color3() {
-        return new RGBColor(red3, green3, blue3, alpha3);
+        return new RGBColorf(red3, green3, blue3, alpha3);
     }
 }

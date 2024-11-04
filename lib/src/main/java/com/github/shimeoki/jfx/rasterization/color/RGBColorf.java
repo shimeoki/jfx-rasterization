@@ -4,14 +4,14 @@ import com.github.shimeoki.jfx.rasterization.math.Floats;
 
 import javafx.scene.paint.Color;
 
-public final class RGBColor implements Colorf {
+public final class RGBColorf implements Colorf {
 
     private final float r;
     private final float g;
     private final float b;
     private final float a;
 
-    public RGBColor(
+    public RGBColorf(
             final float r, final float g, final float b, final float a) {
 
         this.r = Floats.confined(0, r, 1);
