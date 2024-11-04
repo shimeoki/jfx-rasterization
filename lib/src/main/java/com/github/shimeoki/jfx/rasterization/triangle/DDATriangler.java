@@ -97,7 +97,7 @@ public final class DDATriangler implements Triangler {
     }
 
     private void drawHLine(final int x1, final int x2, final int y) {
-        for (int x = (int) x1; x <= x2; x++) {
+        for (int x = x1; x <= x2; x++) {
             final TriangleBarycentrics barycentrics;
             try {
                 barycentrics = triangle.barycentrics(new Vector2f(x, y));
