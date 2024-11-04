@@ -11,7 +11,7 @@ import com.github.shimeoki.jfx.rasterization.geom.FloatVector;
 import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.Triangler;
 import com.github.shimeoki.jfx.rasterization.triangle.color.DefaultTriangleGradient;
-import com.github.shimeoki.jfx.rasterization.triangle.color.GradientTriangleColorer;
+import com.github.shimeoki.jfx.rasterization.triangle.color.StaticGradientTriangleColorer;
 import com.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.StaticTriangle;
 
@@ -93,7 +93,7 @@ public class Controller {
             this.writer = ctx.getPixelWriter();
 
             this.r = new DDATriangler();
-            this.colorer = new GradientTriangleColorer(
+            this.colorer = new StaticGradientTriangleColorer(
                     new DefaultTriangleGradient(
                             HTMLColors.RED,
                             HTMLColors.WHITE,

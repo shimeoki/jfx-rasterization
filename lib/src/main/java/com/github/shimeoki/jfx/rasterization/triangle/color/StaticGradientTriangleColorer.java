@@ -7,7 +7,7 @@ import com.github.shimeoki.jfx.rasterization.color.RGBColor;
 import com.github.shimeoki.jfx.rasterization.math.Floats;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 
-public final class GradientTriangleColorer implements TriangleColorer {
+public final class StaticGradientTriangleColorer implements TriangleColorer {
 
     private final float red1;
     private final float red2;
@@ -29,7 +29,7 @@ public final class GradientTriangleColorer implements TriangleColorer {
     private float lambda2 = 0;
     private float lambda3 = 0;
 
-    public GradientTriangleColorer(final TriangleGradient g) {
+    public StaticGradientTriangleColorer(final TriangleGradient g) {
         Objects.requireNonNull(g);
 
         final Colorf color1 = g.color1();

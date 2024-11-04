@@ -10,7 +10,7 @@ import com.github.shimeoki.jfx.rasterization.geom.FloatVector;
 import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.Triangler;
 import com.github.shimeoki.jfx.rasterization.triangle.color.DefaultTriangleGradient;
-import com.github.shimeoki.jfx.rasterization.triangle.color.GradientTriangleColorer;
+import com.github.shimeoki.jfx.rasterization.triangle.color.StaticGradientTriangleColorer;
 import com.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.StaticTriangle;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
@@ -54,7 +54,7 @@ public class InteractiveMode {
     private void initTriangler() {
         triangler = new DDATriangler();
         writer = canvas.getGraphicsContext2D().getPixelWriter();
-        colorer = new GradientTriangleColorer(
+        colorer = new StaticGradientTriangleColorer(
                 new DefaultTriangleGradient(
                         HTMLColors.AQUA,
                         HTMLColors.FUCHSIA,
