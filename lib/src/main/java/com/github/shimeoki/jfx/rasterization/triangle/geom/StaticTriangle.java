@@ -78,6 +78,10 @@ public final class StaticTriangle implements Triangle {
         // docs:
         // https://en.wikipedia.org/wiki/Barycentric_coordinate_system#Conversion_between_barycentric_and_Cartesian_coordinates
 
+        if (d == 0) {
+            return new NormalizedTriangleBarycentrics(1, 0, 0);
+        }
+
         final float x = p.x();
         final float y = p.y();
 

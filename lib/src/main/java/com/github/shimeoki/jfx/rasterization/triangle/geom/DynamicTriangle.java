@@ -73,7 +73,7 @@ public final class DynamicTriangle implements Triangle {
 
         final float denominator = dy23 * dx13 - dx23 * dy13;
         if (Floats.equals(denominator, 0)) {
-            return new NormalizedTriangleBarycentrics(0, 0, 0);
+            return new NormalizedTriangleBarycentrics(1, 0, 0);
         }
 
         final float d = 1f / denominator;
