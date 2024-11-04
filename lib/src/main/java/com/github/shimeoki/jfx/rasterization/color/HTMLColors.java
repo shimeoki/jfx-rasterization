@@ -51,4 +51,7 @@ public final class HTMLColors {
     // gray
 
     public static final Colorf BLACK = new RGBColor(0f, 0f, 0f, 1f);
+
+    private HTMLColors() {
+    }
 }

@@ -4,6 +4,9 @@ public final class Doubles {
 
     public static final double EPSILON = 0.000000000001;
 
+    private Doubles() {
+    }
+
     public static boolean equals(final double v1, final double v2) {
         return Math.abs(v1 - v2) < EPSILON;
     }

@@ -4,6 +4,9 @@ public final class Floats {
 
     public static final float EPSILON = 1E-5f;
 
+    private Floats() {
+    }
+
     public static boolean equals(final float v1, final float v2) {
         return Math.abs(v1 - v2) < EPSILON;
     }
