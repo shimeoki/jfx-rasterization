@@ -4,13 +4,13 @@ import java.util.Objects;
 
 import com.github.shimeoki.jfx.rasterization.color.Colorf;
 
-public final class DefaultTriangleGradient implements TriangleGradient {
+public final class DynamicTriangleGradient implements TriangleGradient {
 
     private final Colorf color1;
     private final Colorf color2;
     private final Colorf color3;
 
-    public DefaultTriangleGradient(
+    public DynamicTriangleGradient(
             final Colorf c1, final Colorf c2, final Colorf c3) {
 
         Objects.requireNonNull(c1);
