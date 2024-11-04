@@ -92,6 +92,6 @@ public final class StaticTriangle implements Triangle {
         final float lambda2 = numerator2 * d;
         final float lambda3 = numerator3 * d;
 
-        return new DefaultTriangleBarycentrics(lambda1, lambda2, lambda3);
+        return new NormalizedTriangleBarycentrics(lambda1, lambda2, lambda3);
     }
 }
