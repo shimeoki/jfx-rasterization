@@ -7,7 +7,7 @@ import com.github.shimeoki.jfx.rasterization.color.RGBColor;
 import com.github.shimeoki.jfx.rasterization.math.Floats;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 
-public class DynamicGradientTriangleColorer implements TriangleColorer {
+public final class DynamicGradientTriangleColorer implements TriangleColorer {
 
     private final TriangleGradient gradient;
 

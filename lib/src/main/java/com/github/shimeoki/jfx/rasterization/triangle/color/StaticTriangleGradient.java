@@ -5,7 +5,7 @@ import java.util.Objects;
 import com.github.shimeoki.jfx.rasterization.color.Colorf;
 import com.github.shimeoki.jfx.rasterization.color.RGBColor;
 
-public class StaticTriangleGradient implements TriangleGradient {
+public final class StaticTriangleGradient implements TriangleGradient {
 
     private final float red1;
     private final float red2;

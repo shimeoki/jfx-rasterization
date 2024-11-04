@@ -6,7 +6,7 @@ import com.github.shimeoki.jfx.rasterization.color.Colorf;
 import com.github.shimeoki.jfx.rasterization.color.RGBColor;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 
-public class StaticMonotoneTriangleColorer implements TriangleColorer {
+public final class StaticMonotoneTriangleColorer implements TriangleColorer {
 
     private final float red;
     private final float green;
