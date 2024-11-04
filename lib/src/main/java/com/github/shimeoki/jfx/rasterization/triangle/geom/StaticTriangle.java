@@ -64,43 +64,13 @@ public final class StaticTriangle implements Triangle {
     }
 
     @Override
-    public float x1() {
-        return x1;
-    }
-
-    @Override
-    public float y1() {
-        return y1;
-    }
-
-    @Override
     public FloatVector2D v2() {
         return new FloatVector(x2, y2);
     }
 
     @Override
-    public float x2() {
-        return x2;
-    }
-
-    @Override
-    public float y2() {
-        return y2;
-    }
-
-    @Override
     public FloatVector2D v3() {
         return new FloatVector(x3, y3);
-    }
-
-    @Override
-    public float x3() {
-        return x3;
-    }
-
-    @Override
-    public float y3() {
-        return y3;
     }
 
     @Override

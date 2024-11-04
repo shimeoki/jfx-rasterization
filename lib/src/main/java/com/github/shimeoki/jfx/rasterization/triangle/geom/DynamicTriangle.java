@@ -32,43 +32,13 @@ public final class DynamicTriangle implements Triangle {
     }
 
     @Override
-    public float x1() {
-        return v1.x();
-    }
-
-    @Override
-    public float y1() {
-        return v1.y();
-    }
-
-    @Override
     public FloatVector2D v2() {
         return v2;
     }
 
     @Override
-    public float x2() {
-        return v2.x();
-    }
-
-    @Override
-    public float y2() {
-        return v2.y();
-    }
-
-    @Override
     public FloatVector2D v3() {
         return v3;
-    }
-
-    @Override
-    public float x3() {
-        return v3.x();
-    }
-
-    @Override
-    public float y3() {
-        return v3.y();
     }
 
     @Override
@@ -79,14 +49,14 @@ public final class DynamicTriangle implements Triangle {
         final float x = p.x();
         final float y = p.y();
 
-        final float x1 = x1();
-        final float y1 = y1();
+        final float x1 = v1.x();
+        final float y1 = v1.y();
 
-        final float x2 = x2();
-        final float y2 = y2();
+        final float x2 = v2.x();
+        final float y2 = v2.y();
 
-        final float x3 = x3();
-        final float y3 = y3();
+        final float x3 = v3.x();
+        final float y3 = v3.y();
 
         final float dx13 = x1 - x3;
         final float dy13 = y1 - y3;
