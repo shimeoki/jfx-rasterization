@@ -41,9 +41,9 @@ public class DefaultTriangleBarycentrics implements TriangleBarycentrics {
     }
 
     private boolean computeInside() {
-        final boolean ok1 = Floats.moreThan(lambda1, 0);
-        final boolean ok2 = Floats.moreThan(lambda2, 0);
-        final boolean ok3 = Floats.moreThan(lambda3, 0);
+        final boolean ok1 = Floats.moreThan(lambda1, 0f);
+        final boolean ok2 = Floats.moreThan(lambda2, 0f);
+        final boolean ok3 = Floats.moreThan(lambda3, 0f);
 
         return ok1 && ok2 && ok3;
     }
