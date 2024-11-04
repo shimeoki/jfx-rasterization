@@ -2,7 +2,7 @@ package com.github.shimeoki.jfx.rasterization.math;
 
 public class Floats {
 
-    public static final float EPSILON = 0.000001f;
+    public static final float EPSILON = 1E-5f;
 
     public static boolean equals(final float v1, final float v2) {
         return Math.abs(v1 - v2) < EPSILON;
@@ -13,7 +13,7 @@ public class Floats {
     }
 
     public static boolean lessThan(final float left, final float right) {
-        return (left - right) < EPSILON;
+        return moreThan(right, left);
     }
 
     public static int compare(final float left, final float right) {
