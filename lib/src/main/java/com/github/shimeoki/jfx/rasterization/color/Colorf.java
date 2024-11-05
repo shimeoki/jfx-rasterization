@@ -21,4 +21,6 @@ public interface Colorf {
     // conversion
 
     public Color jfxColor();
+
+    public int argb();
 }

@@ -11,6 +11,8 @@ public final class RGBColorf implements Colorf {
     private final float b;
     private final float a;
 
+    private final int argb;
+
     public RGBColorf(
             final float r, final float g, final float b, final float a) {
 
@@ -18,6 +20,8 @@ public final class RGBColorf implements Colorf {
         this.g = Floats.confined(0, g, 1);
         this.b = Floats.confined(0, b, 1);
         this.a = Floats.confined(0, a, 1);
+
+        argb = computeArgb();
     }
 
     @Override
@@ -48,5 +52,19 @@ public final class RGBColorf implements Colorf {
     @Override
     public Color jfxColor() {
         return new Color(r, g, b, a);
+    }
+
+    private int computeArgb() {
+        final int alpha = (int) (a * 255);
+        final int red = (int) (r * 65280);
+        final int green = (int) (g * 16711680);
+        final int blue = (int) (b * -16777216);
+
+        return alpha | red | green | blue;
+    }
+
+    @Override
+    public int argb() {
+        return argb;
     }
 }
