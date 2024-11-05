@@ -2,30 +2,17 @@
 
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.TilePane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 
-<?import javafx.scene.canvas.Canvas?>
-
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Button?>
 
 <AnchorPane fx:id="root" fx:controller="com.github.shimeoki.jfx.rasterization.demo.Controller" prefWidth="400.0" prefHeight="400.0" xmlns:fx="http://javafx.com/fxml">
     <VBox spacing="20.0" style="-fx-padding: 20" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <StackPane fx:id="modePane" VBox.vgrow="ALWAYS">
             <fx:define>
-                <AnchorPane fx:id="staticPane">
-                    <HBox AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                        <TilePane fx:id="tilePane" hgap="20.0" vgap="20.0" HBox.hgrow="ALWAYS" style="-fx-padding: 20; -fx-border-width: 1; -fx-border-color: black; -fx-border-style: solid">
-                        </TilePane>
-                        <VBox alignment="CENTER" style="-fx-padding: 20">
-                            <Button fx:id="tilesBtn" text="generate"/>
-                        </VBox>
-                    </HBox>
-                </AnchorPane>
+                <fx:include fx:id="staticMode" source="static-mode.fxml"/>
                 <fx:include fx:id="interactiveMode" source="interactive-mode.fxml"/>
                 <fx:include fx:id="dynamicMode" source="dynamic-mode.fxml"/>
             </fx:define>
