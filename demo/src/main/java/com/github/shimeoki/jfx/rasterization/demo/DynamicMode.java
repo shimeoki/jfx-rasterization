@@ -7,9 +7,8 @@ import java.util.Random;
 import com.github.shimeoki.jfx.rasterization.color.HTMLColorf;
 import com.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import com.github.shimeoki.jfx.rasterization.geom.Point2f;
-import com.github.shimeoki.jfx.rasterization.test.TimeUnit;
 import com.github.shimeoki.jfx.rasterization.test.Timekeeper;
-import com.github.shimeoki.jfx.rasterization.test.Timer;
+import com.github.shimeoki.jfx.rasterization.test.BasicTimekeeper;
 import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.Triangler;
 import com.github.shimeoki.jfx.rasterization.triangle.color.DynamicMonotoneTriangleColorer;
@@ -138,8 +137,7 @@ public class DynamicMode {
         KeepedTriangle(final Triangle t) {
             this.t = t;
 
-            keeper = new Timer();
-            keeper.setUnit(TimeUnit.MILLISECOND);
+            keeper = new BasicTimekeeper(null, null, null);
         }
 
         @Override
