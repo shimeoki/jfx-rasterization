@@ -8,6 +8,7 @@ import java.util.Random;
 import com.github.shimeoki.jfx.rasterization.color.HTMLColorf;
 import com.github.shimeoki.jfx.rasterization.geom.Pos2f;
 import com.github.shimeoki.jfx.rasterization.geom.Vector2f;
+import com.github.shimeoki.jfx.rasterization.triangle.BufferedDDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.Triangler;
 import com.github.shimeoki.jfx.rasterization.triangle.color.DynamicTriangleGradient;
@@ -67,7 +68,7 @@ public class StaticMode {
             this.ctx = c.getGraphicsContext2D();
             this.writer = ctx.getPixelWriter();
 
-            this.r = new DDATriangler();
+            this.r = new BufferedDDATriangler();
             this.colorer = new StaticGradientTriangleColorer(
                     new DynamicTriangleGradient(
                             HTMLColorf.RED,

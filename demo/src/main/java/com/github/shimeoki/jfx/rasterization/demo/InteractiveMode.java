@@ -7,6 +7,7 @@ import java.util.List;
 import com.github.shimeoki.jfx.rasterization.color.HTMLColorf;
 import com.github.shimeoki.jfx.rasterization.geom.Pos2f;
 import com.github.shimeoki.jfx.rasterization.geom.Vector2f;
+import com.github.shimeoki.jfx.rasterization.triangle.BufferedDDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import com.github.shimeoki.jfx.rasterization.triangle.Triangler;
 import com.github.shimeoki.jfx.rasterization.triangle.color.DynamicTriangleGradient;
@@ -52,7 +53,7 @@ public class InteractiveMode {
     }
 
     private void initTriangler() {
-        triangler = new DDATriangler();
+        triangler = new BufferedDDATriangler();
         writer = canvas.getGraphicsContext2D().getPixelWriter();
         colorer = new StaticGradientTriangleColorer(
                 new DynamicTriangleGradient(
