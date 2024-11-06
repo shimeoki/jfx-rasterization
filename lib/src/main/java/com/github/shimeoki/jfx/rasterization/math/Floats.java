@@ -36,4 +36,12 @@ public final class Floats {
 
         return Math.min(Math.max(low, x), high);
     }
+
+    public static float min3(final float v1, final float v2, final float v3) {
+        return Math.min(v1, Math.min(v2, v3));
+    }
+
+    public static float max3(final float v1, final float v2, final float v3) {
+        return Math.max(v1, Math.max(v2, v3));
+    }
 }
