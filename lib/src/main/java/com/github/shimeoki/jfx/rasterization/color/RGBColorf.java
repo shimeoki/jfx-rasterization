@@ -56,11 +56,11 @@ public final class RGBColorf implements Colorf {
 
     private int computeArgb() {
         final int alpha = (int) (a * 255);
-        final int red = (int) (r * 65280);
-        final int green = (int) (g * 16711680);
-        final int blue = (int) (b * -16777216);
+        final int red = (int) (r * 255);
+        final int green = (int) (g * 255);
+        final int blue = (int) (b * 255);
 
-        return alpha | red | green | blue;
+        return (alpha << 24) | (red << 16) | (green << 8) | blue;
     }
 
     @Override
