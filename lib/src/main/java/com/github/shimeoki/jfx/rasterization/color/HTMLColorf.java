@@ -4,6 +4,12 @@ public final class HTMLColorf {
 
     // docs: https://htmlcolorcodes.com/color-names/
 
+    // special
+
+    public static final Colorf TRANSPARENT_WHITE = new RGBColorf(1f, 1f, 1f, 0f);
+
+    public static final Colorf TRANSPARENT_BLACK = new RGBColorf(0f, 0f, 0f, 0f);
+
     // red
 
     public static final Colorf RED = new RGBColorf(1f, 0f, 0f, 1f);
