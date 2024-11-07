@@ -6,7 +6,7 @@ package com.github.shimeoki.jfx.rasterization.geom;
  * <p>
  * Because the implementation can be dynamic ({@code x} and {@code y} are not
  * constants), it acts just as a minimal interface for retrieving coordinates,
- * and not guarentees the static behaviour.
+ * and not guarantees the static behaviour.
  *
  * @author shimeoki
  * @since 1.0.0
