@@ -2,7 +2,6 @@ package com.github.shimeoki.jfx.rasterization.triangle;
 
 import java.nio.IntBuffer;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -11,7 +10,6 @@ import com.github.shimeoki.jfx.rasterization.geom.Pos2f;
 import com.github.shimeoki.jfx.rasterization.geom.Pos2i;
 import com.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import com.github.shimeoki.jfx.rasterization.geom.Vector2i;
-import com.github.shimeoki.jfx.rasterization.math.Ints;
 import com.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
@@ -30,12 +28,6 @@ public class BufferedDDATriangler implements Triangler {
     private Pos2i v1;
     private Pos2i v2;
     private Pos2i v3;
-
-    private int xMin;
-    private int xMax;
-
-    private int yMin;
-    private int yMax;
 
     private int[] buffer;
 
@@ -59,18 +51,6 @@ public class BufferedDDATriangler implements Triangler {
         v3 = vertices.get(2);
     }
 
-    private void cacheBounds() {
-        yMin = v1.y();
-        yMax = v3.y();
-
-        final int x1 = v1.x();
-        final int x2 = v2.x();
-        final int x3 = v3.x();
-
-        xMin = Ints.min3(x1, x2, x3);
-        xMax = Ints.max3(x1, x2, x3);
-    }
-
     private void makeBuffer(final List<Integer> lst) {
         buffer = lst.stream().mapToInt(i -> i).toArray();
     }
@@ -83,7 +63,18 @@ public class BufferedDDATriangler implements Triangler {
         colorer = c;
 
         cacheVertices();
-        cacheBounds();
+    }
+
+    private void uncache() {
+        writer = null;
+        triangle = null;
+        colorer = null;
+
+        v1 = null;
+        v2 = null;
+        v3 = null;
+
+        buffer = null;
     }
 
     private void drawBuffer(final int x, final int y) {
@@ -247,5 +238,7 @@ public class BufferedDDATriangler implements Triangler {
         if (!onlyMax && !onlyMin) {
             bufferSplit();
         }
+
+        uncache();
     }
 }
