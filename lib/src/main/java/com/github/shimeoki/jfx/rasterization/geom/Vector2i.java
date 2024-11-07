@@ -3,6 +3,7 @@ package com.github.shimeoki.jfx.rasterization.geom;
 /**
  * Standard implementation of the {@code Point2i}.
  *
+ * <p>
  * In the library it both acts as static and dynamic implementation where
  * needed.
  *
@@ -21,6 +22,8 @@ public final class Vector2i implements Point2i {
      *
      * @param x initial value of x (first) coordinate
      * @param y initial value of y (second) coordinate
+     *
+     * @since 1.0.0
      */
     public Vector2i(final int x, final int y) {
         setX(x);

@@ -3,6 +3,7 @@ package com.github.shimeoki.jfx.rasterization.geom;
 /**
  * Standard implementation of the {@code Point2f}.
  *
+ * <p>
  * In the library it both acts as static and dynamic implementation where
  * needed.
  *
@@ -21,6 +22,8 @@ public final class Vector2f implements Point2f {
      *
      * @param x initial value of x (first) coordinate
      * @param y initial value of y (second) coordinate
+     *
+     * @since 1.0.0
      */
     public Vector2f(final float x, final float y) {
         setX(x);
