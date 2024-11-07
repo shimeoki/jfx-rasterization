@@ -29,7 +29,7 @@ public class BufferedDDATriangler implements Triangler {
     private Pos2i v2;
     private Pos2i v3;
 
-    private int[] buffer;
+    private int[][] buffer;
 
     private Pos2i converted(final Pos2f v) {
         return new Vector2i((int) v.x(), (int) v.y());
@@ -51,8 +51,8 @@ public class BufferedDDATriangler implements Triangler {
         v3 = vertices.get(2);
     }
 
-    private void makeBuffer(final List<Integer> lst) {
-        buffer = lst.stream().mapToInt(i -> i).toArray();
+    private void cacheBuffer() {
+        buffer = new int[v3.y() - v1.y() + 1][];
     }
 
     private void cache(
@@ -63,6 +63,7 @@ public class BufferedDDATriangler implements Triangler {
         colorer = c;
 
         cacheVertices();
+        cacheBuffer();
     }
 
     private void uncache() {
@@ -77,21 +78,32 @@ public class BufferedDDATriangler implements Triangler {
         buffer = null;
     }
 
-    private void drawBuffer(final int x, final int y) {
-        final int width = buffer.length;
+    private void drawBuffer() {
+        int y = v1.y();
 
-        writer.setPixels(
-                x,
-                y,
-                width,
-                1,
-                PIXEL_FORMAT,
-                buffer,
-                0,
-                width);
+        int[] line;
+        int width;
+        for (int i = 0; i < buffer.length; i++, y++) {
+            line = buffer[i];
+            if (line == null) {
+                return;
+            }
+
+            width = line.length - 1;
+
+            writer.setPixels(
+                    line[0],
+                    y,
+                    width,
+                    1,
+                    PIXEL_FORMAT,
+                    line,
+                    1,
+                    width);
+        }
     }
 
-    private void drawFlat(
+    private void bufferFlat(
             final Pos2i v0,
             final Pos2i v1,
             final Pos2i v2) {
@@ -111,13 +123,13 @@ public class BufferedDDATriangler implements Triangler {
         final int yFlat = v1.y();
 
         if (y0 >= yFlat) {
-            drawFlatAtMinY(v0, yFlat, d1, d2);
+            bufferFlatAtMinY(v0, yFlat, d1, d2);
         } else {
-            drawFlatAtMaxY(v0, yFlat, d1, d2);
+            bufferFlatAtMaxY(v0, yFlat, d1, d2);
         }
     }
 
-    private void drawFlatAtMaxY(
+    private void bufferFlatAtMaxY(
             final Pos2i v0,
             final int y0,
             final float dx1,
@@ -127,14 +139,14 @@ public class BufferedDDATriangler implements Triangler {
         float x2 = x1;
 
         for (int y = v0.y(); y <= y0; y++) {
-            drawHLine((int) x1, (int) x2, y);
+            bufferHLine((int) x1, (int) x2, y);
 
             x1 += dx1;
             x2 += dx2;
         }
     }
 
-    private void drawFlatAtMinY(
+    private void bufferFlatAtMinY(
             final Pos2i v0,
             final int y0,
             final float dx1,
@@ -144,19 +156,20 @@ public class BufferedDDATriangler implements Triangler {
         float x2 = x1;
 
         for (int y = v0.y(); y > y0; y--) {
-            drawHLine((int) x1, (int) x2, y);
+            bufferHLine((int) x1, (int) x2, y);
 
             x1 -= dx1;
             x2 -= dx2;
         }
     }
 
-    private void drawHLine(
+    private void bufferHLine(
             final int x1,
             final int x2,
             final int y) {
 
-        final List<Integer> pixels = new ArrayList<>();
+        final List<Integer> line = new ArrayList<>();
+        line.add(x1);
 
         for (int x = x1; x <= x2; x++) {
             final TriangleBarycentrics barycentrics;
@@ -167,11 +180,10 @@ public class BufferedDDATriangler implements Triangler {
             }
 
             final int argb = colorer.get(barycentrics).argb();
-            pixels.add(argb);
+            line.add(argb);
         }
 
-        makeBuffer(pixels);
-        drawBuffer(x1, y);
+        buffer[y - v1.y()] = line.stream().mapToInt(i -> i).toArray();
     }
 
     private boolean bufferOnlyMax() {
@@ -179,7 +191,7 @@ public class BufferedDDATriangler implements Triangler {
             return false;
         }
 
-        drawFlat(v1, v2, v3);
+        bufferFlat(v1, v2, v3);
         return true;
     }
 
@@ -188,7 +200,7 @@ public class BufferedDDATriangler implements Triangler {
             return false;
         }
 
-        drawFlat(v3, v1, v2);
+        bufferFlat(v3, v1, v2);
         return true;
     }
 
@@ -206,11 +218,11 @@ public class BufferedDDATriangler implements Triangler {
         final Pos2i v4 = new Vector2i((int) x4, (int) y2);
 
         if (x4 >= x2) {
-            drawFlat(v1, v2, v4);
-            drawFlat(v3, v2, v4);
+            bufferFlat(v1, v2, v4);
+            bufferFlat(v3, v2, v4);
         } else {
-            drawFlat(v1, v4, v2);
-            drawFlat(v3, v4, v2);
+            bufferFlat(v1, v4, v2);
+            bufferFlat(v3, v4, v2);
         }
     }
 
@@ -238,6 +250,8 @@ public class BufferedDDATriangler implements Triangler {
         if (!onlyMax && !onlyMin) {
             bufferSplit();
         }
+
+        drawBuffer();
 
         uncache();
     }
