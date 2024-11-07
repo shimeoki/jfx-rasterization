@@ -17,6 +17,8 @@ public interface Pos2f {
      * Gets the first coordinate of the position.
      *
      * @return x (first) coordinate
+     *
+     * @since 1.0.0
      */
     public float x();
 
@@ -24,6 +26,8 @@ public interface Pos2f {
      * Gets the second coordinate of the position.
      *
      * @return y (second) coordinate
+     *
+     * @since 1.0.0
      */
     public float y();
 }

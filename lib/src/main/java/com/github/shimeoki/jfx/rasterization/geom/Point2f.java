@@ -18,6 +18,8 @@ public interface Point2f extends Pos2f {
      * Sets the value of the first coordinate.
      *
      * @param x new value of x (first) coordinate
+     *
+     * @since 1.0.0
      */
     public void setX(final float x);
 
@@ -25,6 +27,8 @@ public interface Point2f extends Pos2f {
      * Sets the value of the second coordinate.
      *
      * @param y new value of y (second) coordinate
+     *
+     * @since 1.0.0
      */
     public void setY(final float y);
 
@@ -39,6 +43,8 @@ public interface Point2f extends Pos2f {
      * }</pre>
      *
      * @param dx value to add to the current x (first) coordinate
+     *
+     * @since 1.0.0
      */
     public void addX(final float dx);
 
@@ -53,6 +59,8 @@ public interface Point2f extends Pos2f {
      * }</pre>
      *
      * @param dy value to add to the current y (second) coordinate
+     *
+     * @since 1.0.0
      */
     public void addY(final float dy);
 }

@@ -17,6 +17,8 @@ public interface Pos2i {
      * Gets the first coordinate of the position.
      *
      * @return x (first) coordinate
+     *
+     * @since 1.0.0
      */
     public int x();
 
@@ -24,6 +26,8 @@ public interface Pos2i {
      * Gets the second coordinate of the position.
      *
      * @return y (second) coordinate
+     *
+     * @since 1.0.0
      */
     public int y();
 }
