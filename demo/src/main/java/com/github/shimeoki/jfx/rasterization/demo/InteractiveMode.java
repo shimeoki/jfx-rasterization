@@ -17,8 +17,8 @@ import com.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.image.PixelWriter;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
@@ -41,7 +41,7 @@ public class InteractiveMode {
     private final List<Triangle> triangles = new LinkedList<>();
 
     private Triangler triangler;
-    private PixelWriter writer;
+    private GraphicsContext ctx;
     private TriangleColorer colorer;
 
     @FXML
@@ -53,7 +53,7 @@ public class InteractiveMode {
 
     private void initTriangler() {
         triangler = new DDATriangler();
-        writer = canvas.getGraphicsContext2D().getPixelWriter();
+        ctx = canvas.getGraphicsContext2D();
         colorer = new StaticGradientTriangleColorer(
                 new DynamicTriangleGradient(
                         HTMLColorf.AQUA,
@@ -118,7 +118,7 @@ public class InteractiveMode {
         clearCanvas();
 
         for (final Triangle t : triangles) {
-            triangler.draw(writer, t, colorer);
+            triangler.draw(ctx, t, colorer);
         }
     }
 

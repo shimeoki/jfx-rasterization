@@ -21,7 +21,6 @@ import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.image.PixelWriter;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
 
@@ -48,7 +47,6 @@ public class StaticMode {
 
         private final Canvas c;
         private final GraphicsContext ctx;
-        private final PixelWriter writer;
 
         private final Triangler r;
         private final TriangleColorer colorer;
@@ -65,7 +63,6 @@ public class StaticMode {
 
             this.c = canvas;
             this.ctx = c.getGraphicsContext2D();
-            this.writer = ctx.getPixelWriter();
 
             this.r = new DDATriangler();
             this.colorer = new StaticGradientTriangleColorer(
@@ -114,7 +111,7 @@ public class StaticMode {
             final Pos2f p2 = getPoint2();
             final Pos2f p3 = getPoint3();
 
-            r.draw(writer, new StaticTriangle(p1, p2, p3), colorer);
+            r.draw(ctx, new StaticTriangle(p1, p2, p3), colorer);
         }
     }
 

@@ -23,9 +23,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.image.PixelWriter;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
@@ -60,7 +60,7 @@ public class DynamicMode {
     private final ObservableList<KeepedTriangle> triangles = FXCollections.observableArrayList();
 
     private Triangler triangler;
-    private PixelWriter writer;
+    private GraphicsContext ctx;
     private TriangleColorer colorer;
 
     class MovingVector {
@@ -182,7 +182,7 @@ public class DynamicMode {
 
     private void initTriangler() {
         triangler = new DDATriangler();
-        writer = canvas.getGraphicsContext2D().getPixelWriter();
+        ctx = canvas.getGraphicsContext2D();
         colorer = new DynamicMonotoneTriangleColorer(HTMLColorf.BLUE);
     }
 
@@ -264,7 +264,7 @@ public class DynamicMode {
 
         for (final KeepedTriangle kt : triangles) {
             kt.keeper.time(() -> {
-                triangler.draw(writer, kt.t, colorer);
+                triangler.draw(ctx, kt.t, colorer);
             });
         }
 

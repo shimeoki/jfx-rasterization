@@ -13,6 +13,7 @@ import com.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelWriter;
 
 public final class BresenhamTriangler implements Triangler {
@@ -165,17 +166,17 @@ public final class BresenhamTriangler implements Triangler {
 
     @Override
     public void draw(
-            final PixelWriter w,
-            final Triangle t,
-            final TriangleColorer c) {
+            final GraphicsContext ctx,
+            final Triangle triangle,
+            final TriangleColorer colorer) {
 
         // TODO: too many lines in this method
 
-        Objects.requireNonNull(w);
-        Objects.requireNonNull(t);
-        Objects.requireNonNull(c);
+        Objects.requireNonNull(ctx);
+        Objects.requireNonNull(triangle);
+        Objects.requireNonNull(colorer);
 
-        cache(w, t, c);
+        cache(ctx.getPixelWriter(), triangle, colorer);
 
         // docs:
         // https://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html
