@@ -1,5 +1,20 @@
 package com.github.shimeoki.jfx.rasterization.test;
 
+/**
+ * A functional interface for a function that can be timed with
+ * {@link Timekeeper}.
+ *
+ * <p>
+ * It's just a function with no parameters and no return value.
+ * <p>
+ * It's supposed to be used as a lambda expression, which acts as a wrapper of a
+ * function or method call.
+ *
+ * @author shimeoki
+ * @since 1.0.0
+ *
+ * @see Timekeeper
+ */
 @FunctionalInterface
 public interface Timeable {
 
