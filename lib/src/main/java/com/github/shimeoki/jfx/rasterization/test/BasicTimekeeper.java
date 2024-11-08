@@ -14,6 +14,9 @@ public final class BasicTimekeeper implements Timekeeper {
 
     private long sum = 0;
     private long count = 0;
+    private final float k = 0.03f;
+    private float filteredAvg = 0;
+    private double shownFilteredAvg = 0;
 
     private long trackStart = 0;
     private long lastTrack = 0;
@@ -63,6 +66,10 @@ public final class BasicTimekeeper implements Timekeeper {
 
         count++;
         sum += duration;
+        filteredAvg += (duration - filteredAvg) * k;
+        if (count % 10 == 0) {
+            shownFilteredAvg = converted((long) filteredAvg);
+        }
     }
 
     @Override
@@ -108,11 +115,7 @@ public final class BasicTimekeeper implements Timekeeper {
 
     @Override
     public double avg() {
-        if (count == 0) {
-            return 0;
-        }
-
-        return sum() / count;
+        return shownFilteredAvg;
     }
 
     @Override
