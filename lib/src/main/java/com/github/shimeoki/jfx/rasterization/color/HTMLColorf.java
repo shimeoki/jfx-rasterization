@@ -73,12 +73,12 @@ public final class HTMLColorf {
     /**
      * Equivalent to rgb(0, 255, 0) or #00FF00.
      */
-    public static final Colorf LIME = new RGBColorf(0f, 0.5f, 0f, 1f);
+    public static final Colorf LIME = new RGBColorf(0f, 1f, 0f, 1f);
 
     /**
      * Equivalent to rgb(0, 128, 0) or #008000.
      */
-    public static final Colorf GREEN = new RGBColorf(0f, 1f, 0f, 1f);
+    public static final Colorf GREEN = new RGBColorf(0f, 0.5f, 0f, 1f);
 
     // blue
 
