@@ -1,10 +1,38 @@
 package com.github.shimeoki.jfx.rasterization.test;
 
+/**
+ * Standard {@link Timekeeper Timekeeper} implementation.
+ *
+ * <p>
+ * Has default values for some parameters as constants.
+ *
+ * @author shimeoki
+ * @since 1.0.0
+ */
 public final class BasicTimekeeper implements Timekeeper {
 
+    /**
+     * Default {@link #unit()} value on return, if {@code null} was passed to the
+     * constructor.
+     *
+     * @since 1.0.0
+     */
     public static final TimeUnit DEFAULT_UNIT = TimeUnit.MILLISECOND;
 
+    /**
+     * Default {@link #keeping()} value on return, if {@code null} was passed to the
+     * constructor.
+     *
+     * @since 1.0.0
+     */
     public static final boolean DEFAULT_KEEPING = true;
+
+    /**
+     * Default {@link #tracking()} value on return, if {@code null} was passed to
+     * the constructor.
+     *
+     * @since 1.0.0
+     */
     public static final boolean DEFAULT_TRACKING = false;
 
     private TimeUnit unit;
@@ -18,6 +46,24 @@ public final class BasicTimekeeper implements Timekeeper {
     private long trackStart = 0;
     private long lastTrack = 0;
 
+    /**
+     * Creates a new {@link BasicTimekeeper BasicTimekeeper} instance.
+     *
+     * <p>
+     * All the constructor parameters can be passed as {@code null} values, and in
+     * this case this parameter value is initialized to corresponding
+     * {@code DEFAULT} value.
+     *
+     * @param unit     valid {@link TimeUnit TimeUnit} or {@code null}
+     * @param keeping  wrapped keeping {@code boolean} value or null
+     * @param tracking wrapped tracking {@code boolean} value or null
+     *
+     * @since 1.0.0
+     *
+     * @see #DEFAULT_UNIT
+     * @see #DEFAULT_KEEPING
+     * @see #DEFAULT_TRACKING
+     */
     public BasicTimekeeper(
             final TimeUnit unit, final Boolean keeping, final Boolean tracking) {
 
