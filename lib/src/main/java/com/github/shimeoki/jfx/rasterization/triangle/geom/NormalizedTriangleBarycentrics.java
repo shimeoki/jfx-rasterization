@@ -2,6 +2,18 @@ package com.github.shimeoki.jfx.rasterization.triangle.geom;
 
 import com.github.shimeoki.jfx.rasterization.math.Floats;
 
+/**
+ * The default implementation of the {@link TriangleBarycentrics} interface.
+ *
+ * <p>
+ * As stated in the {@code TriangleBarycentrics} javadoc, it keeps only
+ * normalized barycentric coordinates.
+ * <p>
+ * Behaviour of the {@link #inside()} is the default in the javadoc.
+ *
+ * @author shimeoki
+ * @since 1.0.0
+ */
 public final class NormalizedTriangleBarycentrics implements TriangleBarycentrics {
 
     private final float lambda1;
@@ -10,6 +22,20 @@ public final class NormalizedTriangleBarycentrics implements TriangleBarycentric
 
     private final boolean inside;
 
+    /**
+     * Creates a new {@code NormalizedTriangleBarycentrics} instance.
+     *
+     * <p>
+     * If coordinates are not normalized, an exception is thrown.
+     *
+     * @param lambda1 the first barycentric coordinate
+     * @param lambda2 the second barycentric coordinate
+     * @param lambda3 the third barycentric coordinate
+     *
+     * @throws IllegalArgumentException if the coordinates are not normalized
+     *
+     * @since 1.0.0
+     */
     public NormalizedTriangleBarycentrics(
             final float lambda1, final float lambda2, final float lambda3) {
 
