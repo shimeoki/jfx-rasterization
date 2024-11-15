@@ -64,6 +64,8 @@ public interface Triangle {
      * @return barycentric coordinates of the point {@code p} for this triangle
      *
      * @since 1.0.0
+     *
+     * @see TriangleBarycentrics
      */
     public TriangleBarycentrics barycentrics(final Pos2f p);
 }
