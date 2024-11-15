@@ -6,12 +6,51 @@ import com.github.shimeoki.jfx.rasterization.geom.Pos2f;
 import com.github.shimeoki.jfx.rasterization.geom.Point2f;
 import com.github.shimeoki.jfx.rasterization.math.Floats;
 
+/**
+ * One of the default {@link Triangle} implementations, "moving" the vertices on
+ * change.
+ *
+ * <p>
+ * It's called "dynamic", because the triangle will change, if the
+ * original points, passed to the constructor will change.
+ * <p>
+ * Does store the references to the original points on creation. Getters of the
+ * vertices return the same reference everytime.
+ * <p>
+ * Because of that, {@link #barycentrics(Pos2f)} calculates the coordinates from
+ * scratch on each call, because it doesn't remember the previous coordinates.
+ * <p>
+ * If use case does suppose that triangles will change, it's advised to use
+ * this class, instead of creating a new triangle everytime.
+ * <p>
+ * If you need an opposite behaviour (triangle is "frozen" in place), take a
+ * look at the {@link StaticTriangle}.
+ *
+ * @author shimeoki
+ * @since 1.0.0
+ *
+ * @see Triangle
+ * @see StaticTriangle
+ */
 public final class DynamicTriangle implements Triangle {
 
     private final Point2f v1;
     private final Point2f v2;
     private final Point2f v3;
 
+    /**
+     * Creates a new {@code DynamicTriangle} instance.
+     *
+     * <p>
+     * All principles of the internal usage are described in the javadoc of the
+     * class. It's advised to read it before use.
+     *
+     * @param p1 position of the first vertex
+     * @param p2 position of the second vertex
+     * @param p3 position of the third vertex
+     *
+     * @since 1.0.0
+     */
     public DynamicTriangle(
             final Point2f v1,
             final Point2f v2,
