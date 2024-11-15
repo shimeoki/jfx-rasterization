@@ -20,6 +20,10 @@ import javafx.scene.image.PixelWriter;
  * analyzer algorithm for drawing slopes and drawing pixels one by one.
  *
  * <p>
+ * The algorithm separates the triangle into two (with flat side on max and/or
+ * min Y level), and then draws the slopes pixel by pixel with the triangle
+ * itself, using the scanline approach.
+ * <p>
  * Uses floats for all calculations and converts the coordinates for
  * rasterization to integers at the last stage - drawing horizontal lines. All
  * floats at the convertion are floored (not rounded) for consistency.
