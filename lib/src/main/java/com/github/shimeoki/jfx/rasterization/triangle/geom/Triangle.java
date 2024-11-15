@@ -53,7 +53,7 @@ public interface Triangle {
     public Point2f v3();
 
     /**
-     * Gets the barycentric coordinates of the point for this triangle.
+     * Gets the barycentric coordinates of the passed point for this triangle.
      *
      * <p>
      * This method should be consistent with the getters for the vertices. The
