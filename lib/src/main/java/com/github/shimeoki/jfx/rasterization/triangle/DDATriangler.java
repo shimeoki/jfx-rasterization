@@ -15,6 +15,34 @@ import com.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelWriter;
 
+/**
+ * A {@link Triangler Triangler} implementation using the digital differential
+ * analyzer algorithm for drawing slopes and drawing pixels one by one.
+ *
+ * <p>
+ * Uses floats for all calculations and converts the coordinates for
+ * rasterization to integers at the last stage - drawing horizontal lines. All
+ * floats at the convertion are floored (not rounded) for consistency.
+ * <p>
+ * Because of that, the triangles can be displaced to the start of the
+ * coordinate plane, and gaps can be seen between the triangles, if this
+ * rasterization is used to draw triangulated polygons.
+ * <p>
+ * Sets pixels one by one with the
+ * {@link PixelWriter#setColor(int, int, javafx.scene.paint.Color)} call (the
+ * rasterization is not buffered). It's very slow, so this implementation is not
+ * recommended for fast rendering.
+ * <p>
+ * Algorithm documentation: <a href=
+ * "https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)">Wikipedia</a>.
+ * <p>
+ * The implementation is heavily based on <a href=
+ * "https://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html">this
+ * article</a>.
+ *
+ * @author shimeoki
+ * @since 1.0.0
+ */
 public final class DDATriangler implements Triangler {
 
     private PixelWriter writer = null;
@@ -143,9 +171,6 @@ public final class DDATriangler implements Triangler {
         Objects.requireNonNull(colorer);
 
         cache(ctx.getPixelWriter(), triangle, colorer);
-
-        // docs:
-        // https://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html
 
         final List<Pos2f> vertices = sortedVertices();
 
