@@ -16,6 +16,33 @@ import com.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelWriter;
 
+/**
+ * A {@link Triangler Triangler} implementation using the Bresenham
+ * algorithm (on integers) for drawing slopes and drawing pixels one by one.
+ *
+ * <p>
+ * Uses integers for all internal calculations. However, to make this work, all
+ * triangle vertices are converted to their integer counterparts at the
+ * inizialization phase. For the conversion, all coordinates are floored.
+ * <p>
+ * And, as an exception to the said above, barycentric coordinates for the color
+ * fill are operating on floats.
+ * <p>
+ * Sets pixels one by one with the
+ * {@link PixelWriter#setColor(int, int, javafx.scene.paint.Color)} call (the
+ * rasterization is not buffered). It's very slow, so this implementation is not
+ * recommended for fast rendering.
+ * <p>
+ * Algorithm documentation: <a href=
+ * "https://en.wikipedia.org/wiki/Bresenham's_line_algorithm">Wikipedia</a>.
+ * <p>
+ * The implementation is heavily based on <a href=
+ * "https://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html">this
+ * article</a>.
+ *
+ * @author shimeoki
+ * @since 1.0.0
+ */
 public final class IntBresenhamTriangler implements Triangler {
 
     private PixelWriter writer = null;
@@ -177,9 +204,6 @@ public final class IntBresenhamTriangler implements Triangler {
         Objects.requireNonNull(colorer);
 
         cache(ctx.getPixelWriter(), triangle, colorer);
-
-        // docs:
-        // https://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html
 
         final List<Pos2i> vertices = sortedVertices();
 
