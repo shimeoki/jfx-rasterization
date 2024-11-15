@@ -7,6 +7,32 @@ import com.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import com.github.shimeoki.jfx.rasterization.geom.Point2f;
 import com.github.shimeoki.jfx.rasterization.math.Floats;
 
+/**
+ * One of the default {@link Triangle} implementations, "freezing" the vertices
+ * in place.
+ *
+ * <p>
+ * It's called "static", because the triangle will stay the same, even if the
+ * original points, passed to the constructor will change.
+ * <p>
+ * Doesn't store the references to the original points on creation. It
+ * converts the values to the {@code final} primitives and caches everything it
+ * can.
+ * <p>
+ * Because of that, getters for the vertices return a new instance everytime.
+ * <p>
+ * If use case doesn't suppose that triangles will change, it's advised to use
+ * this class, because it's slightly more performant and more explicit.
+ * <p>
+ * If you need an opposite behaviour (triangle keeps the references and changes
+ * respectfully), take a look at the {@link DynamicTriangle}.
+ *
+ * @author shimeoki
+ * @since 1.0.0
+ *
+ * @see Triangle
+ * @see DynamicTriangle
+ */
 public final class StaticTriangle implements Triangle {
 
     private final float x1;
@@ -26,6 +52,19 @@ public final class StaticTriangle implements Triangle {
 
     private final float d;
 
+    /**
+     * Creates a new {@code StaticTriangle} instance.
+     *
+     * <p>
+     * All principles of the internal usage are described in the javadoc of the
+     * class. It's advised to read it before use.
+     *
+     * @param p1 position of the first vertex
+     * @param p2 position of the second vertex
+     * @param p3 position of the third vertex
+     *
+     * @since 1.0.0
+     */
     public StaticTriangle(
             final Pos2f p1,
             final Pos2f p2,
