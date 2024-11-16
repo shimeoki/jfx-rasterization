@@ -7,6 +7,18 @@ import com.github.shimeoki.jfx.rasterization.color.RGBColorf;
 import com.github.shimeoki.jfx.rasterization.math.Floats;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 
+/**
+ * "Static" implementation of the {@link TriangleColorer} interface for filling
+ * triangles with three-color gradient.
+ *
+ * <p>
+ * "Freezes" the gradient on creation. Doesn't store the references to the
+ * colors of the gradient and contains the color values as {@code final}
+ * primitives. Even if the gradient (and colors of the gradient), passed to the
+ * constructor, changes, the colorer won't change.
+ *
+ * @since 1.0.0
+ */
 public final class StaticGradientTriangleColorer implements TriangleColorer {
 
     private final float red1;
@@ -29,6 +41,17 @@ public final class StaticGradientTriangleColorer implements TriangleColorer {
     private float lambda2 = 0;
     private float lambda3 = 0;
 
+    /**
+     * Creates a new {@code StaticGradientTriangleColorer} instance.
+     *
+     * <p>
+     * All principles of the internal usage are described in the javadoc of the
+     * class. It's advised to read it before use.
+     *
+     * @param g the gradient to fill the triangles with
+     *
+     * @since 1.0.0
+     */
     public StaticGradientTriangleColorer(final TriangleGradient g) {
         Objects.requireNonNull(g);
 
