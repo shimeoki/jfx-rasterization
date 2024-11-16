@@ -30,6 +30,8 @@ public interface Triangler {
      * @param triangle the {@link Triangle Triangle} to draw
      * @param colorer  the color mapping {@link TriangleColorer TriangleColorer}
      *
+     * @throws NullPointerException if at least one parameter is {@code null}
+     *
      * @since 1.0.0
      */
     public void draw(
