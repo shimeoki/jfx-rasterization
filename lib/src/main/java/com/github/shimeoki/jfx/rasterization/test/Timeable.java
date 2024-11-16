@@ -17,5 +17,10 @@ package com.github.shimeoki.jfx.rasterization.test;
 @FunctionalInterface
 public interface Timeable {
 
+    /**
+     * Executes this function.
+     *
+     * @since 1.0.0
+     */
     public void exec();
 }
