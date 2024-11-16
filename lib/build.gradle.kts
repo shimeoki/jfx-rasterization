@@ -8,7 +8,7 @@ plugins {
     id("maven-publish")
 }
 
-version = "1.0.0"
+version = "1.0.1"
 
 base {
     archivesName = rootProject.name
