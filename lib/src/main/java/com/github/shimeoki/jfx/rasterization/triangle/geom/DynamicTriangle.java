@@ -85,9 +85,6 @@ public final class DynamicTriangle implements Triangle {
     public TriangleBarycentrics barycentrics(final Pos2f p) {
         Objects.requireNonNull(p);
 
-        // docs:
-        // https://en.wikipedia.org/wiki/Barycentric_coordinate_system#Conversion_between_barycentric_and_Cartesian_coordinates
-
         final float x = p.x();
         final float y = p.y();
 

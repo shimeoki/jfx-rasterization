@@ -57,6 +57,9 @@ public interface Triangle {
      * <p>
      * This method should be consistent with the getters for the vertices. The
      * numbering for the coordinates should align with the vertices numbering.
+     * <p>
+     * For the conversion formula refer to <a href=
+     * "https://en.wikipedia.org/wiki/Barycentric_coordinate_system#Conversion_between_barycentric_and_Cartesian_coordinates">Wikipedia</a>.
      *
      * @param p the point to get barycentrics for
      *

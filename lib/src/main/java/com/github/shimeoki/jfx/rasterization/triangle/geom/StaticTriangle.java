@@ -117,9 +117,6 @@ public final class StaticTriangle implements Triangle {
     public TriangleBarycentrics barycentrics(final Pos2f p) {
         Objects.requireNonNull(p);
 
-        // docs:
-        // https://en.wikipedia.org/wiki/Barycentric_coordinate_system#Conversion_between_barycentric_and_Cartesian_coordinates
-
         if (d == 0) {
             return new NormalizedTriangleBarycentrics(1, 0, 0);
         }
