@@ -196,6 +196,8 @@ public final class BasicTimekeeper implements Timekeeper {
 
     @Override
     public double time(final Timeable func) {
+        Objects.requireNonNull(func);
+
         final long duration = duration(func);
 
         record(duration);
