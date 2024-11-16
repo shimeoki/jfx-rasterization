@@ -159,6 +159,8 @@ public interface Timekeeper {
      *
      * @return execution time of the {@code func}
      *
+     * @throws NullPointerException if {@code func} is {@code null}
+     *
      * @since 1.0.0
      *
      * @see Timekeeper
