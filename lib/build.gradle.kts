@@ -35,6 +35,19 @@ publishing {
         create<MavenPublication>("maven") {
             artifactId = rootProject.name
 
+            pom {
+                name = rootProject.name
+                description = "A JavaFX shape rasterization library."
+                url = "https://github.com/shimeoki/jfx-rasterization"
+
+                licenses {
+                    license {
+                        name = "MIT License"
+                        url = "https://github.com/shimeoki/jfx-rasterization/blob/main/LICENSE"
+                    }
+                }
+            }
+
             from(components["java"])
         }
     }
