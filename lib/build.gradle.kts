@@ -3,9 +3,13 @@ plugins {
     id("java-library")
 }
 
-version = "0.14.0"
+version = "1.0.0"
 
 javafx {
     modules("javafx.graphics")
     configuration = "api"
+}
+
+tasks.jar {
+    archiveBaseName.set(rootProject.name)
 }
