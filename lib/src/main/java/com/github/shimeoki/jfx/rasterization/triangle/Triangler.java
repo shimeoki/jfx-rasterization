@@ -13,6 +13,25 @@ import javafx.scene.canvas.GraphicsContext;
  * to draw the pixels, {@link Triangle Triangle} as the shape to draw and
  * {@link TriangleColorer TriangleColorer} to get the colors for individual
  * pixels.
+ * <p>
+ * Example usage:
+ *
+ * <pre>{@pre
+ * // any implementations can be used, look at the interfaces
+ *
+ * final Triangler triangler = new DDATriangler();
+ * final Canvas canvas; // javafx canvas to render on
+
+ * final GraphicsContext ctx = canvas.getGraphicsContext2D();
+ * final Triangle triangle = new StaticTriangle(
+ *     new Point2f(0, 1),
+ *     new Point2f(1, 0),
+ *     new Point2f(1, 1)
+ * );
+ * final TriangleColorer colorer = new StaticMonotoneTriangleColorer();
+ *
+ * triangler.draw(ctx, triangle, colorer);
+ * }</pre>
  *
  * @since 1.0.0
  *
