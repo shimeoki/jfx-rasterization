@@ -62,6 +62,8 @@ public final class StaticTriangle implements Triangle {
      * @param p2 position of the second vertex
      * @param p3 position of the third vertex
      *
+     * @throws NullPointerException if at least one parameter is {@code null}
+     *
      * @since 1.0.0
      */
     public StaticTriangle(

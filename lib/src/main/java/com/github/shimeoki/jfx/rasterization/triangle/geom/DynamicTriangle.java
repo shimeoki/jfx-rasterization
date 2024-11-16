@@ -48,6 +48,8 @@ public final class DynamicTriangle implements Triangle {
      * @param v2 the second vertex
      * @param v3 the third vertex
      *
+     * @throws NullPointerException if at least one parameter is {@code null}
+     *
      * @since 1.0.0
      */
     public DynamicTriangle(
