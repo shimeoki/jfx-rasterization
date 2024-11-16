@@ -16,7 +16,6 @@ package com.github.shimeoki.jfx.rasterization.test;
  * 2. If {@code tracking = true}, then the {@code Timekeeper} is tracking the
  * execution time right now.
  * <p>
- * <p>
  * Time tracking can be done in two ways: track single function with
  * {@link #time(Timeable)} and start/stop with
  * {@link #track()}/{@link #untrack()}.
