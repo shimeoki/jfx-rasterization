@@ -16,18 +16,17 @@ import javafx.scene.canvas.GraphicsContext;
  * <p>
  * Example usage:
  *
- * <pre>{@pre
+ * <pre>{@code
  * // any implementations can be used, look at the interfaces
  *
  * final Triangler triangler = new DDATriangler();
  * final Canvas canvas; // javafx canvas to render on
-
+ *
  * final GraphicsContext ctx = canvas.getGraphicsContext2D();
  * final Triangle triangle = new StaticTriangle(
- *     new Point2f(0, 1),
- *     new Point2f(1, 0),
- *     new Point2f(1, 1)
- * );
+ *         new Point2f(0, 1),
+ *         new Point2f(1, 0),
+ *         new Point2f(1, 1));
  * final TriangleColorer colorer = new StaticMonotoneTriangleColorer();
  *
  * triangler.draw(ctx, triangle, colorer);
