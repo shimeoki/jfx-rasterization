@@ -7,6 +7,17 @@ import com.github.shimeoki.jfx.rasterization.color.RGBColorf;
 import com.github.shimeoki.jfx.rasterization.math.Floats;
 import com.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 
+/**
+ * "Dynamic" implementation of the {@link TriangleColorer} interface for filling
+ * triangles with three-color gradient.
+ *
+ * <p>
+ * Does store the reference for the gradient on creation. If the gradient (or
+ * the colors of the gradient) will change, the fill pattern will change as
+ * well.
+ *
+ * @since 1.0.0
+ */
 public final class DynamicGradientTriangleColorer implements TriangleColorer {
 
     private final TriangleGradient gradient;
@@ -19,6 +30,17 @@ public final class DynamicGradientTriangleColorer implements TriangleColorer {
     private Colorf color2 = null;
     private Colorf color3 = null;
 
+    /**
+     * Creates a new {@code DynamicGradientTriangleColorer} instance.
+     *
+     * <p>
+     * All principles of the internal usage are described in the javadoc of the
+     * class. It's advised to read it before use.
+     *
+     * @param g the gradient to fill the triangles with
+     *
+     * @since 1.0.0
+     */
     public DynamicGradientTriangleColorer(final TriangleGradient g) {
         Objects.requireNonNull(g);
 
