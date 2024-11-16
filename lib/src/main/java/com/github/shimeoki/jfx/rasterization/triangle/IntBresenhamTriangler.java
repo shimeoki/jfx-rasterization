@@ -52,6 +52,18 @@ public final class IntBresenhamTriangler implements Triangler {
     private Triangle triangle = null;
     private TriangleColorer colorer = null;
 
+    /**
+     * Creates a new {@code IntBresenhamTriangler} instance.
+     *
+     * <p>
+     * It's not a singleton class, so instances should be created and used
+     * separately.
+     *
+     * @since 1.0.0
+     */
+    public IntBresenhamTriangler() {
+    }
+
     private Pos2i converted(final Pos2f p) {
         return new Vector2i((int) p.x(), (int) p.y());
     }

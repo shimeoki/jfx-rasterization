@@ -52,6 +52,18 @@ public final class DDATriangler implements Triangler {
     private Triangle triangle = null;
     private TriangleColorer colorer = null;
 
+    /**
+     * Creates a new {@code DDATriangler} instance.
+     *
+     * <p>
+     * It's not a singleton class, so instances should be created and used
+     * separately.
+     *
+     * @since 1.0.0
+     */
+    public DDATriangler() {
+    }
+
     private List<Pos2f> sortedVertices() {
         final List<Pos2f> vertices = new ArrayList<>();
 
