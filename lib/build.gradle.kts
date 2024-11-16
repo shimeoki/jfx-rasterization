@@ -6,6 +6,11 @@ plugins {
 
 version = "1.0.0"
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
 javafx {
     modules("javafx.graphics")
     configuration = "api"
