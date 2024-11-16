@@ -5,6 +5,27 @@ import java.util.Objects;
 import com.github.shimeoki.jfx.rasterization.color.Colorf;
 import com.github.shimeoki.jfx.rasterization.color.RGBColorf;
 
+/**
+ * One of the default {@link TriangleGradient} implementations, "freezing" the
+ * colors in place.
+ *
+ * <p>
+ * It's called "static", because the gradient will stay the same, even if the
+ * original colors, passed to the constructor, will change.
+ * <p>
+ * Doesn't store the references to the original colors on creation. It
+ * converts the values to the {@code final} primitives.
+ * <p>
+ * Because of that, getters for the colors return a new instance everytime.
+ * <p>
+ * If you need an opposite behaviour (gradient keeps the references and changes
+ * respectfully), take a look at the {@link DynamicTriangleGradient}.
+ *
+ * @since 1.0.0
+ *
+ * @see TriangleGradient
+ * @see DynamicTriangleGradient
+ */
 public final class StaticTriangleGradient implements TriangleGradient {
 
     private final float red1;
@@ -23,6 +44,19 @@ public final class StaticTriangleGradient implements TriangleGradient {
     private final float alpha2;
     private final float alpha3;
 
+    /**
+     * Creates a new {@code StaticTriangleGradient} instance.
+     *
+     * <p>
+     * All principles of the internal usage are described in the javadoc of the
+     * class. It's advised to read it before use.
+     *
+     * @param c1 first color of the gradient
+     * @param c2 second color of the gradient
+     * @param c3 third color of the gradient
+     *
+     * @since 1.0.0
+     */
     public StaticTriangleGradient(
             final Colorf c1, final Colorf c2, final Colorf c3) {
 
