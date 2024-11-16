@@ -65,6 +65,8 @@ public interface Timekeeper {
      *
      * @param unit time unit
      *
+     * @throws NullPointerException if {@code unit} is {@code null}
+     *
      * @since 1.0.0
      */
     public void setUnit(final TimeUnit unit);
