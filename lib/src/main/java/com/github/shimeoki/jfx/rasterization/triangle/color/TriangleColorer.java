@@ -27,7 +27,10 @@ public interface TriangleColorer {
      * Gets the color for the point on specified barycentrics.
      *
      * @param b the barycentric coordinates
+     *
      * @return color for this point
+     *
+     * @throws NullPointerException if {@code b} is {@code null}
      *
      * @since 1.0.0
      */
