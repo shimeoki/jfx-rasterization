@@ -1,5 +1,7 @@
 package com.github.shimeoki.jfx.rasterization.test;
 
+import java.util.Objects;
+
 /**
  * Standard {@link Timekeeper Timekeeper} implementation.
  *
@@ -117,6 +119,8 @@ public final class BasicTimekeeper implements Timekeeper {
 
     @Override
     public void setUnit(final TimeUnit unit) {
+        Objects.requireNonNull(unit);
+
         this.unit = unit;
     }
 
