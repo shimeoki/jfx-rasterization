@@ -33,6 +33,8 @@ public final class StaticMonotoneTriangleColorer implements TriangleColorer {
      *
      * @param c the color to fill the triangles with
      *
+     * @throws NullPointerException if {@code c} is {@code null}
+     *
      * @since 1.0.0
      */
     public StaticMonotoneTriangleColorer(final Colorf c) {

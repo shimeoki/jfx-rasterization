@@ -55,6 +55,8 @@ public final class StaticTriangleGradient implements TriangleGradient {
      * @param c2 second color of the gradient
      * @param c3 third color of the gradient
      *
+     * @throws NullPointerException if at least one parameter is {@code null}
+     *
      * @since 1.0.0
      */
     public StaticTriangleGradient(

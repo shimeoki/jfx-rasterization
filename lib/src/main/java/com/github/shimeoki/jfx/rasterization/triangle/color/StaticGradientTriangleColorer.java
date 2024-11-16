@@ -50,6 +50,8 @@ public final class StaticGradientTriangleColorer implements TriangleColorer {
      *
      * @param g the gradient to fill the triangles with
      *
+     * @throws NullPointerException if {@code g} is {@code null}
+     *
      * @since 1.0.0
      */
     public StaticGradientTriangleColorer(final TriangleGradient g) {
