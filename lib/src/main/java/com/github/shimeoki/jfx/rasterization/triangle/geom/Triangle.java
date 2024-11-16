@@ -62,6 +62,8 @@ public interface Triangle {
      *
      * @return barycentric coordinates of the point {@code p} for this triangle
      *
+     * @throws NullPointerException if {@code p} is {@code null}
+     *
      * @since 1.0.0
      *
      * @see TriangleBarycentrics
