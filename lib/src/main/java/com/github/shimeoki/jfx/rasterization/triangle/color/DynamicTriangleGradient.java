@@ -5,7 +5,8 @@ import java.util.Objects;
 import com.github.shimeoki.jfx.rasterization.color.Colorf;
 
 /**
- * One of the default {@link Triangle} implementations with mutable colors.
+ * One of the default {@link TriangleGradient} implementations with mutable
+ * colors.
  *
  * <p>
  * It's called "dynamic", because the gradient will change, if the
