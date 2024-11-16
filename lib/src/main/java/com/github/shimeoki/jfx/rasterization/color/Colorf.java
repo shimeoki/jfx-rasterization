@@ -16,7 +16,6 @@ import javafx.scene.paint.Color;
  * All implementations of this interface should be able to convert the object to
  * the JavaFX's {@link javafx.scene.paint.Color Color} class.
  *
- * @author shimeoki
  * @since 1.0.0
  *
  * @see javafx.scene.paint.Color

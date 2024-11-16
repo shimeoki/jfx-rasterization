@@ -14,7 +14,6 @@ import javafx.scene.canvas.GraphicsContext;
  * {@link TriangleColorer TriangleColorer} to get the colors for individual
  * pixels.
  *
- * @author shimeoki
  * @since 1.0.0
  *
  * @see GraphicsContext

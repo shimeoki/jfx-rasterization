@@ -4,7 +4,6 @@ package com.github.shimeoki.jfx.rasterization.math;
  * Class for some operations on integers that are not in the standard
  * Math class.
  *
- * @author shimeoki
  * @since 1.0.0
  */
 public final class Ints {

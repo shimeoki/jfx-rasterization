@@ -11,7 +11,6 @@ import com.github.shimeoki.jfx.rasterization.math.Floats;
  * <p>
  * Behaviour of the {@link #inside()} is the default in the javadoc.
  *
- * @author shimeoki
  * @since 1.0.0
  */
 public final class NormalizedTriangleBarycentrics implements TriangleBarycentrics {

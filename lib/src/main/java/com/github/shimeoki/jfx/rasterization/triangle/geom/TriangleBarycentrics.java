@@ -16,7 +16,6 @@ package com.github.shimeoki.jfx.rasterization.triangle.geom;
  * Documentation: <a href=
  * "https://en.wikipedia.org/wiki/Barycentric_coordinate_system#Barycentric_coordinates_on_triangles">Wikipedia</a>.
  *
- * @author shimeoki
  * @since 1.0.0
  *
  * @see NormalizedTriangleBarycentrics

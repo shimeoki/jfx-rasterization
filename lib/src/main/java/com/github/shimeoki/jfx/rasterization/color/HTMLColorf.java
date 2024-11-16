@@ -11,7 +11,6 @@ package com.github.shimeoki.jfx.rasterization.color;
  * <p>
  * All constants use {@code RGBColorf} implementation.
  *
- * @author shimeoki
  * @since 1.0.0
  *
  * @see Colorf

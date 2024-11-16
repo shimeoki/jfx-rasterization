@@ -13,7 +13,6 @@ import javafx.scene.paint.Color;
  * The color is non-modifiable, so the object caches all the necessary values at
  * the moment of creation.
  *
- * @author shimeoki
  * @since 1.0.0
  *
  * @see Colorf

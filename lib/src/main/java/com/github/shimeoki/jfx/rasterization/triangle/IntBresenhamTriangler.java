@@ -44,7 +44,6 @@ import javafx.scene.image.PixelWriter;
  * "https://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html">this
  * article</a>.
  *
- * @author shimeoki
  * @since 1.0.0
  */
 public final class IntBresenhamTriangler implements Triangler {

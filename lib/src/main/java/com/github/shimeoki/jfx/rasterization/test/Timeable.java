@@ -10,7 +10,6 @@ package com.github.shimeoki.jfx.rasterization.test;
  * It's supposed to be used as a lambda expression, which acts as a wrapper of a
  * function or method call.
  *
- * @author shimeoki
  * @since 1.0.0
  *
  * @see Timekeeper

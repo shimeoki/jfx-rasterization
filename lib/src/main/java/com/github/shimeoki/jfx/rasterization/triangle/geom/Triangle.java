@@ -17,7 +17,6 @@ import com.github.shimeoki.jfx.rasterization.geom.Point2f;
  * Also, the interface requires {@link #barycentrics(Pos2f)} method implemented.
  * That is needed for the {@link Triangler} to work.
  *
- * @author shimeoki
  * @since 1.0.0
  *
  * @see Point2f

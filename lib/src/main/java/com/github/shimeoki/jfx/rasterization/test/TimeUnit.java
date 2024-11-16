@@ -11,7 +11,6 @@ package com.github.shimeoki.jfx.rasterization.test;
  * For names and convertation refer to <a href=
  * "https://en.wikipedia.org/wiki/Orders_of_magnitude_(time)">Wikipedia</a>.
  *
- * @author shimeoki
  * @since 1.0.0
  *
  * @see Timekeeper

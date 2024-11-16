@@ -46,7 +46,6 @@ package com.github.shimeoki.jfx.rasterization.test;
  *
  * }</pre>
  *
- * @author shimeoki
  * @since 1.0.0
  *
  * @see TimeUnit

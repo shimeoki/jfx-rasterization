@@ -6,7 +6,6 @@ package com.github.shimeoki.jfx.rasterization.test;
  * <p>
  * Has default values for some parameters as constants.
  *
- * @author shimeoki
  * @since 1.0.0
  */
 public final class BasicTimekeeper implements Timekeeper {

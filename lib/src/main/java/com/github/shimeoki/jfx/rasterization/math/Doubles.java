@@ -3,7 +3,6 @@ package com.github.shimeoki.jfx.rasterization.math;
 /**
  * Class for some operations on doubles using a fixed epsilon value.
  *
- * @author shimeoki
  * @since 1.0.0
  */
 public final class Doubles {

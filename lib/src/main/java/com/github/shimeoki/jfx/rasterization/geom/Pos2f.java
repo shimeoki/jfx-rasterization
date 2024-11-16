@@ -8,7 +8,6 @@ package com.github.shimeoki.jfx.rasterization.geom;
  * constants), it acts just as a minimal interface for retrieving coordinates,
  * and not guarantees the static behaviour.
  *
- * @author shimeoki
  * @since 1.0.0
  */
 public interface Pos2f {

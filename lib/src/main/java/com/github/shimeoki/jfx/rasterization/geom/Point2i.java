@@ -7,7 +7,6 @@ package com.github.shimeoki.jfx.rasterization.geom;
  * It extends {@code Pos2i}, so it has methods for getting the coordinates from
  * this interface.
  *
- * @author shimeoki
  * @since 1.0.0
  *
  * @see Pos2i

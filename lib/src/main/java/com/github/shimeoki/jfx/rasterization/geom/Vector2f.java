@@ -7,7 +7,6 @@ package com.github.shimeoki.jfx.rasterization.geom;
  * In the library it both acts as static and dynamic implementation where
  * needed.
  *
- * @author shimeoki
  * @since 1.0.0
  *
  * @see Point2f

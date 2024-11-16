@@ -26,7 +26,6 @@ import com.github.shimeoki.jfx.rasterization.math.Floats;
  * If you need an opposite behaviour (triangle is "frozen" in place), take a
  * look at the {@link StaticTriangle}.
  *
- * @author shimeoki
  * @since 1.0.0
  *
  * @see Triangle

@@ -27,7 +27,6 @@ import com.github.shimeoki.jfx.rasterization.math.Floats;
  * If you need an opposite behaviour (triangle keeps the references and changes
  * respectfully), take a look at the {@link DynamicTriangle}.
  *
- * @author shimeoki
  * @since 1.0.0
  *
  * @see Triangle
