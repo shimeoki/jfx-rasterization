@@ -8,7 +8,6 @@ plugins {
     id("maven-publish")
 }
 
-group = "com.github.shimeoki"
 version = "1.0.0"
 
 base {
