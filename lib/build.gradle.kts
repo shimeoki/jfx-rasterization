@@ -4,8 +4,11 @@ plugins {
     id("base")
     id("java-library")
     id("java-library-distribution")
+
+    id("maven-publish")
 }
 
+group = "com.github.shimeoki"
 version = "1.0.0"
 
 base {
@@ -24,6 +27,16 @@ javafx {
 
 distributions {
     main {
-        distributionBaseName = "jfx-rasterization"
+        distributionBaseName = rootProject.name
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            artifactId = rootProject.name
+
+            from(components["java"])
+        }
     }
 }
