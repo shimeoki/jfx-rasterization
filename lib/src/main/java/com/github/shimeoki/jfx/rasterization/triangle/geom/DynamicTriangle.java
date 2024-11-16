@@ -44,9 +44,9 @@ public final class DynamicTriangle implements Triangle {
      * All principles of the internal usage are described in the javadoc of the
      * class. It's advised to read it before use.
      *
-     * @param p1 position of the first vertex
-     * @param p2 position of the second vertex
-     * @param p3 position of the third vertex
+     * @param v1 the first vertex
+     * @param v2 the second vertex
+     * @param v3 the third vertex
      *
      * @since 1.0.0
      */
