@@ -54,7 +54,7 @@ publishing {
 
     repositories {
         maven {
-            name = "GitHub Packages"
+            name = "github-packages"
             url = uri("https://maven.pkg.github.com/shimeoki/jfx-rasterization")
 
             credentials {
