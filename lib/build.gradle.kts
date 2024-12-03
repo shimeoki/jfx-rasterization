@@ -59,7 +59,7 @@ publishing {
 
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
-                password = Systen.getenv("GITHUB_TOKEN")
+                password = System.getenv("GITHUB_TOKEN")
             }
         }
     }
