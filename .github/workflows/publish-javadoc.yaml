@@ -19,10 +19,11 @@ jobs:
     publish:
         runs-on: ubuntu-latest
         steps:
-          - name: publish javadoc
+          - name: Publish Javadoc
             uses: MathieuSoysal/Javadoc-publisher.yml@v2.5.0
             with:
+                java-version: 21
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                 deploy-mode: artifact
-                java-version: 21
                 project: gradle
+                custom-command: gradle :lib:javadoc
