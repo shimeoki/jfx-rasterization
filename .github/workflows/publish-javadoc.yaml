@@ -16,14 +16,28 @@ concurrency:
     cancel-in-progress: false
 
 jobs:
-    publish:
+    publish-javadoc:
         runs-on: ubuntu-latest
         steps:
-          - name: Publish Javadoc
-            uses: MathieuSoysal/Javadoc-publisher.yml@v2.5.0
+          - name: Checkout
+            uses: actions/checkout@v4
+            with:
+                fetch-depth: 0
+
+          - name: Setup Java
+            uses: actions/setup-java@v4
             with:
                 java-version: 21
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                deploy-mode: artifact
-                project: gradle
-                custom-command: gradle :lib:javadoc
+                distribution: temurin
+                cache: gradle
+
+          - name: Generate Javadoc
+            run: gradle :lib:javadoc
+
+          - name: Deploy artifact
+            uses: actions/upload-pages-artifact@v3
+            with:
+                path: lib/build/docs/javadoc
+
+          - name: Deploy to GitHub Pages
+            uses: actions/deploy-pages@v4
