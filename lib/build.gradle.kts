@@ -51,4 +51,16 @@ publishing {
             from(components["java"])
         }
     }
+
+    repositories {
+        maven {
+            name = "GitHub Packages"
+            url = uri("https://maven.pkg.github.com/shimeoki/jfx-rasterization")
+
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = Systen.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
 }
