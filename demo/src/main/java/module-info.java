@@ -1,12 +1,12 @@
-module com.github.shimeoki.jfx.rasterization.demo {
+module io.github.shimeoki.jfx.rasterization.demo {
 
-    requires com.github.shimeoki.jfx.rasterization;
+    requires io.github.shimeoki.jfx.rasterization;
 
     requires transitive javafx.graphics;
     requires javafx.fxml;
     requires javafx.controls;
 
-    opens com.github.shimeoki.jfx.rasterization.demo to javafx.fxml;
+    opens io.github.shimeoki.jfx.rasterization.demo to javafx.fxml;
 
-    exports com.github.shimeoki.jfx.rasterization.demo;
+    exports io.github.shimeoki.jfx.rasterization.demo;
 }

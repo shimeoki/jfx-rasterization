@@ -3,7 +3,7 @@ plugins {
     application
 }
 
-version = "0.3.0"
+version = "0.4.0"
 
 dependencies {
     implementation(project(":lib"))
@@ -15,6 +15,6 @@ javafx {
 }
 
 application {
-    mainModule = "com.github.shimeoki.jfx.rasterization.demo"
-    mainClass = "com.github.shimeoki.jfx.rasterization.demo.App"
+    mainModule = "io.github.shimeoki.jfx.rasterization.demo"
+    mainClass = "io.github.shimeoki.jfx.rasterization.demo.App"
 }
