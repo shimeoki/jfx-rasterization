@@ -1,4 +1,4 @@
-package io.github.shimeoki.jfx.rasterization.test;
+package io.github.shimeoki.jfx.rasterization.demo.test;
 
 import java.util.Objects;
 

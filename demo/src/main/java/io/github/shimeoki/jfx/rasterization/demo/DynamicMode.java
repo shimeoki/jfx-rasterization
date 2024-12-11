@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Random;
 
 import io.github.shimeoki.jfx.rasterization.color.HTMLColorf;
+import io.github.shimeoki.jfx.rasterization.demo.test.BasicTimekeeper;
+import io.github.shimeoki.jfx.rasterization.demo.test.Timekeeper;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import io.github.shimeoki.jfx.rasterization.geom.Point2f;
-import io.github.shimeoki.jfx.rasterization.test.Timekeeper;
-import io.github.shimeoki.jfx.rasterization.test.BasicTimekeeper;
 import io.github.shimeoki.jfx.rasterization.triangle.BufferedDDATriangler;
 import io.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import io.github.shimeoki.jfx.rasterization.triangle.Triangler;

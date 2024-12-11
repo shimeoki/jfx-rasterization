@@ -11,7 +11,6 @@ module io.github.shimeoki.jfx.rasterization {
     exports io.github.shimeoki.jfx.rasterization.math;
     exports io.github.shimeoki.jfx.rasterization.geom;
     exports io.github.shimeoki.jfx.rasterization.color;
-    exports io.github.shimeoki.jfx.rasterization.test;
 
     // triangle
     exports io.github.shimeoki.jfx.rasterization.triangle;

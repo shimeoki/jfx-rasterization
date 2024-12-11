@@ -1,4 +1,4 @@
-package io.github.shimeoki.jfx.rasterization.test;
+package io.github.shimeoki.jfx.rasterization.demo.test;
 
 /**
  * An interface representing a timer or a stopwatch to track the execution time

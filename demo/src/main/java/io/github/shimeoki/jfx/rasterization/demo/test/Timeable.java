@@ -1,4 +1,4 @@
-package io.github.shimeoki.jfx.rasterization.test;
+package io.github.shimeoki.jfx.rasterization.demo.test;
 
 /**
  * A functional interface for a function that can be timed with
