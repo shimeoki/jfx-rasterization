@@ -49,26 +49,86 @@ public final class Colorf {
         this.a = Floats.confined(0, a, 1);
     }
 
+    /**
+     * Gets this color's red channel.
+     *
+     * @return red color channel float value in range from 0.0 to 1.0
+     *
+     * @since 1.0.0
+     */
     public float red() {
         return r;
     }
 
+    /**
+     * Gets this color's green channel.
+     *
+     * @return green color channel float value in range from 0.0 to 1.0
+     *
+     * @since 1.0.0
+     */
     public float green() {
         return g;
     }
 
+    /**
+     * Gets this color's blue channel.
+     *
+     * @return blue color channel float value in range from 0.0 to 1.0
+     *
+     * @since 1.0.0
+     */
     public float blue() {
         return b;
     }
 
+    /**
+     * Gets this color's alpha channel.
+     *
+     * <p>
+     * Equivalent to:
+     *
+     * <pre>{@code
+     * 1 - transparency()
+     * }</pre>
+     *
+     * @return alpha color channel float value in range from 0.0 to 1.0
+     *
+     * @see #transparency()
+     *
+     * @since 1.0.0
+     */
     public float alpha() {
         return a;
     }
 
+    /**
+     * Gets this color's transparency channel.
+     *
+     * <p>
+     * Equivalent to:
+     *
+     * <pre>{@code
+     * 1 - alpha()
+     * }</pre>
+     *
+     * @return transparency color channel float value in range from 0.0 to 1.0
+     *
+     * @see #alpha()
+     *
+     * @since 1.0.0
+     */
     public float transparency() {
         return 1f - a;
     }
 
+    /**
+     * Gets a {@link javafx.scene.paint.Color Color} representing this color.
+     *
+     * @return JavaFX's {@code Color} class with equivalent color channels
+     *
+     * @see javafx.scene.paint.Color
+     */
     public Color jfxColor() {
         return new Color(r, g, b, a);
     }
