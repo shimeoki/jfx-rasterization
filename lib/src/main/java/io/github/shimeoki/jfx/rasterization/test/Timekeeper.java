@@ -121,6 +121,8 @@ public interface Timekeeper {
      */
     public double avg();
 
+    public double ema();
+
     /**
      * Clears current keeped stats.
      *
