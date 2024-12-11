@@ -12,11 +12,14 @@ public final class BasicTimekeeper implements Timekeeper {
     private boolean keeping;
     private boolean tracking;
 
+    // average
     private long sum = 0;
     private long count = 0;
-    private final float k = 0.03f;
-    private float filteredAvg = 0;
-    private double shownFilteredAvg = 0;
+
+    // exponential moving average
+    private final double emaCoef = 0.03;
+    private double ema = 0;
+    private double emaShown = 0;
 
     private long trackStart = 0;
     private long lastTrack = 0;
@@ -66,9 +69,9 @@ public final class BasicTimekeeper implements Timekeeper {
 
         count++;
         sum += duration;
-        filteredAvg += (duration - filteredAvg) * k;
+        ema += (duration - ema) * emaCoef;
         if (count % 10 == 0) {
-            shownFilteredAvg = converted((long) filteredAvg);
+            emaShown = converted((long) ema);
         }
     }
 
@@ -115,7 +118,16 @@ public final class BasicTimekeeper implements Timekeeper {
 
     @Override
     public double avg() {
-        return shownFilteredAvg;
+        if (count == 0) {
+            return 0;
+        }
+
+        return sum() / count;
+    }
+
+    @Override
+    public double ema() {
+        return emaShown;
     }
 
     @Override
