@@ -1,96 +1,75 @@
 package io.github.shimeoki.jfx.rasterization.color;
 
+import io.github.shimeoki.jfx.rasterization.math.Floats;
+
 import javafx.scene.paint.Color;
 
 /**
- * Interface that represents a static (non-modifiable) color using floats.
+ * Simple color class with float values.
  *
  * <p>
- * It is made to simplify calculations, because {@code double} precision is
- * mostly unneeded.
+ * Uses 4 (RGBA) color channels as floats to store the color.
  * <p>
- * Color values range from 0 to 1 inclusively.
- * <p>
- * This interface supports alpha.
- * <p>
- * All implementations of this interface should be able to convert the object to
- * the JavaFX's {@link javafx.scene.paint.Color Color} class.
+ * The color is non-modifiable, so the object caches all the necessary values at
+ * the moment of creation.
  *
  * @since 1.0.0
  *
- * @see javafx.scene.paint.Color
+ * @see HTMLColorf
  */
-public interface Colorf {
+public final class Colorf {
+
+    private final float r;
+    private final float g;
+    private final float b;
+    private final float a;
 
     /**
-     * Gets this color's red channel.
-     *
-     * @return red color channel float value in range from 0.0 to 1.0
-     *
-     * @since 1.0.0
-     */
-    public float red();
-
-    /**
-     * Gets this color's green channel.
-     *
-     * @return green color channel float value in range from 0.0 to 1.0
-     *
-     * @since 1.0.0
-     */
-    public float green();
-
-    /**
-     * Gets this color's blue channel.
-     *
-     * @return blue color channel float value in range from 0.0 to 1.0
-     *
-     * @since 1.0.0
-     */
-    public float blue();
-
-    /**
-     * Gets this color's alpha channel.
+     * Creates a new {@code Colorf} instance.
      *
      * <p>
-     * Should be equivalent to:
+     * Uses {@link Floats#confined(float, float, float) Floats.confined(0, v, 1)}
+     * to write the values.
      *
-     * <pre>{@code
-     * 1 - transparency()
-     * }</pre>
-     *
-     * @return alpha color channel float value in range from 0.0 to 1.0
-     *
-     * @see #transparency()
+     * @param r red color channel float value
+     * @param g green color channel float value
+     * @param b blue color channel float value
+     * @param a alpha color channel float value
      *
      * @since 1.0.0
+     *
+     * @see Floats#confined(float, float, float)
      */
-    public float alpha();
+    public Colorf(
+            final float r, final float g, final float b, final float a) {
 
-    /**
-     * Gets this color's transparency channel.
-     *
-     * <p>
-     * Should be equivalent to:
-     *
-     * <pre>{@code
-     * 1 - alpha()
-     * }</pre>
-     *
-     * @return transparency color channel float value in range from 0.0 to 1.0
-     *
-     * @see #alpha()
-     *
-     * @since 1.0.0
-     */
-    public float transparency();
+        this.r = Floats.confined(0, r, 1);
+        this.g = Floats.confined(0, g, 1);
+        this.b = Floats.confined(0, b, 1);
+        this.a = Floats.confined(0, a, 1);
+    }
 
-    /**
-     * Gets a {@link javafx.scene.paint.Color Color} representing this color.
-     *
-     * @return JavaFX's {@code Color} class with equivalent color channels
-     *
-     * @see javafx.scene.paint.Color
-     */
-    public Color jfxColor();
+    public float red() {
+        return r;
+    }
+
+    public float green() {
+        return g;
+    }
+
+    public float blue() {
+        return b;
+    }
+
+    public float alpha() {
+        return a;
+    }
+
+    public float transparency() {
+        return 1f - a;
+    }
+
+    public Color jfxColor() {
+        return new Color(r, g, b, a);
+    }
 }

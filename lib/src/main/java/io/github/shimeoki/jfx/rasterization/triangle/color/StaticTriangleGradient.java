@@ -3,7 +3,6 @@ package io.github.shimeoki.jfx.rasterization.triangle.color;
 import java.util.Objects;
 
 import io.github.shimeoki.jfx.rasterization.color.Colorf;
-import io.github.shimeoki.jfx.rasterization.color.RGBColorf;
 
 /**
  * One of the default {@link TriangleGradient} implementations, "freezing" the
@@ -85,16 +84,16 @@ public final class StaticTriangleGradient implements TriangleGradient {
 
     @Override
     public Colorf color1() {
-        return new RGBColorf(red1, green1, blue1, alpha1);
+        return new Colorf(red1, green1, blue1, alpha1);
     }
 
     @Override
     public Colorf color2() {
-        return new RGBColorf(red2, green2, blue2, alpha2);
+        return new Colorf(red2, green2, blue2, alpha2);
     }
 
     @Override
     public Colorf color3() {
-        return new RGBColorf(red3, green3, blue3, alpha3);
+        return new Colorf(red3, green3, blue3, alpha3);
     }
 }

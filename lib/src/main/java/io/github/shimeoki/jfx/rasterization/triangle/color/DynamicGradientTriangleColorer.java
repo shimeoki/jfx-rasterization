@@ -3,7 +3,6 @@ package io.github.shimeoki.jfx.rasterization.triangle.color;
 import java.util.Objects;
 
 import io.github.shimeoki.jfx.rasterization.color.Colorf;
-import io.github.shimeoki.jfx.rasterization.color.RGBColorf;
 import io.github.shimeoki.jfx.rasterization.math.Floats;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 
@@ -106,7 +105,7 @@ public final class DynamicGradientTriangleColorer implements TriangleColorer {
         Objects.requireNonNull(b);
 
         cache(b);
-        final Colorf c = new RGBColorf(red(), green(), blue(), alpha());
+        final Colorf c = new Colorf(red(), green(), blue(), alpha());
         uncache();
 
         return c;
