@@ -1,197 +1,304 @@
 package io.github.shimeoki.jfx.rasterization.demo.test;
 
+import java.util.Objects;
+
 /**
- * An interface representing a timer or a stopwatch to track the execution time
- * of the code and keep tracked stats.
+ * Standard {@link Timekeeper Timekeeper} implementation.
  *
  * <p>
- * Uses {@link TimeUnit} to
- * set the format of the return values.
- * <p>
- * Has two states: {@code keeping} and {@code tracking}.
- * <p>
- * 1. If {@code keeping = true}, then all the recorded execution time should go
- * to the stats. Opposite behaviour otherwise ({@code keeping = false}).
- * <p>
- * 2. If {@code tracking = true}, then the {@code Timekeeper} is tracking the
- * execution time right now.
- * <p>
- * Time tracking can be done in two ways: track single function with
- * {@link #time(Timeable)} and start/stop with
- * {@link #track()}/{@link #untrack()}.
- * <p>
- * After tracking, if {@code keeping} was {@code true}, the stats can be
- * retrieved with {@link #count()}, {@link #sum()} and {@link #avg()}. Also,
- * only the last track stats can be viewed with {@link #lastTrack()}. Stats can
- * be cleared with {@link #clear()}.
- * <p>
- * Example usage:
- *
- * <pre>{@code
- * final Timekeeper keeper = new BasicTimekeeper(); // or any implementation
- * keeper.keep();
- *
- * final double time1 = keeper.time(() -> {
- *     System.out.println("some heavy function");
- * });
- * final double sum1 = keeper.sum(); // = time1
- *
- * keeper.track();
- * System.out.println("another heavy function");
- * keeper.untrack();
- * final double time2 = keeper.lastTrack;
- *
- * final double sum2 = keeper.sum(); // = time1 + time2
- *
- * }</pre>
+ * Has default values for some parameters as constants.
  *
  * @since 1.0.0
- *
- * @see TimeUnit
  */
-public interface Timekeeper {
+public final class Timekeeper {
 
     /**
-     * Gets current {@link TimeUnit} for return values.
-     *
-     * @return current time unit
+     * Default {@link #unit()} value on return, if {@code null} was passed to the
+     * constructor.
      *
      * @since 1.0.0
      */
-    public TimeUnit unit();
+    public static final TimeUnit DEFAULT_UNIT = TimeUnit.MILLISECOND;
 
     /**
-     * Sets the {@link TimeUnit} for return values.
-     *
-     * @param unit time unit
-     *
-     * @throws NullPointerException if {@code unit} is {@code null}
+     * Default {@link #keeping()} value on return, if {@code null} was passed to the
+     * constructor.
      *
      * @since 1.0.0
      */
-    public void setUnit(final TimeUnit unit);
+    public static final boolean DEFAULT_KEEPING = true;
 
     /**
-     * Sets {@code keeping} to {@code true}.
+     * Default {@link #tracking()} value on return, if {@code null} was passed to
+     * the constructor.
      *
      * @since 1.0.0
      */
-    public void keep();
+    public static final boolean DEFAULT_TRACKING = false;
+
+    private TimeUnit unit;
+
+    private boolean keeping;
+    private boolean tracking;
+
+    // average
+    private long sum = 0;
+    private long count = 0;
+
+    // exponential moving average
+    private final double emaCoef = 0.03;
+    private double ema = 0;
+    private double emaShown = 0;
+
+    private long trackStart = 0;
+    private long lastTrack = 0;
 
     /**
-     * Sets {@code keeping} to {@code false}.
-     *
-     * @since 1.0.0
-     */
-    public void unkeep();
-
-    /**
-     * Gets current {@code keeping} boolean value.
-     *
-     * @return current {@code keeping}
-     *
-     * @since 1.0.0
-     */
-    public boolean keeping();
-
-    /**
-     * Gets the number of the keeped tracks.
-     *
-     * @return count of the keeped tracks
-     *
-     * @since 1.0.0
-     */
-    public long count();
-
-    /**
-     * Gets the sum value of all the keeped tracks in current time unit format.
-     *
-     * @return sum of all the keeped tracks
-     *
-     * @since 1.0.0
-     */
-    public double sum();
-
-    /**
-     * Gets the arithmetic average (mean) of the current keeped tracks.
-     *
-     * @return arithmetic average of the keeped tracks
-     *
-     * @since 1.0.0
-     */
-    public double avg();
-
-    public double ema();
-
-    /**
-     * Clears current keeped stats.
-     *
-     * @since 1.0.0
-     */
-    public void clear();
-
-    /**
-     * Sets {@code tracking} to {@code true}.
-     *
-     * @since 1.0.0
-     */
-    public void track();
-
-    /**
-     * Sets {@code tracking} to {@code false}.
-     *
-     * @since 1.0.0
-     */
-    public void untrack();
-
-    /**
-     * Gets current {@code tracking} boolean value.
-     *
-     * @return current {@code tracking}
-     *
-     * @since 1.0.0
-     */
-    public boolean tracking();
-
-    /**
-     * Returns the execution time for {@code func} and keeps the result if
-     * {@code keeping} is {@code true}.
-     *
-     * @param func timeable function
-     *
-     * @return execution time of the {@code func}
-     *
-     * @throws NullPointerException if {@code func} is {@code null}
-     *
-     * @since 1.0.0
-     *
-     * @see Timekeeper
-     */
-    public double time(final Timeable func);
-
-    /**
-     * Returns the current elapsed time after the last {@link #track()} call.
+     * Creates a new {@link BasicTimekeeper BasicTimekeeper} instance.
      *
      * <p>
-     * {@link #tracking()} should be equal to {@code true}. If not, the method
-     * should return 0.
+     * All the constructor parameters can be passed as {@code null} values, and in
+     * this case this parameter value is initialized to corresponding
+     * {@code DEFAULT} value.
      *
-     * @return elapsed time from the last track call or 0
+     * @param unit     valid {@link TimeUnit TimeUnit} or {@code null}
+     * @param keeping  wrapped keeping {@code boolean} value or null
+     * @param tracking wrapped tracking {@code boolean} value or null
      *
      * @since 1.0.0
+     *
+     * @see #DEFAULT_UNIT
+     * @see #DEFAULT_KEEPING
+     * @see #DEFAULT_TRACKING
      */
-    public double elapsed();
+    public Timekeeper(
+            final TimeUnit unit, final Boolean keeping, final Boolean tracking) {
 
-    /**
-     * Returns the recorded time of the last track.
-     *
-     * <p>
-     * If no tracks were recorded yet or {@link #clear()} was previously called, the
-     * method should return 0.
-     *
-     * @return last track time or 0
-     *
-     * @since 1.0.0
-     */
-    public double lastTrack();
+        if (unit != null) {
+            setUnit(unit);
+        } else {
+            setUnit(DEFAULT_UNIT);
+        }
+
+        if (keeping != null) {
+            setKeeping(keeping);
+        } else {
+            setKeeping(DEFAULT_KEEPING);
+        }
+
+        if (tracking != null) {
+            setTracking(tracking);
+        } else {
+            setTracking(DEFAULT_TRACKING);
+        }
+    }
+
+    private void setKeeping(final boolean keeping) {
+        if (keeping) {
+            keep();
+        } else {
+            unkeep();
+        }
+    }
+
+    private void setTracking(final boolean tracking) {
+        if (tracking) {
+            track();
+        } else {
+            untrack();
+        }
+    }
+
+    private void record(final long duration) {
+        if (!keeping) {
+            return;
+        }
+
+        count++;
+        sum += duration;
+        ema += (duration - ema) * emaCoef;
+        if (count % 10 == 0) {
+            emaShown = converted((long) ema);
+        }
+    }
+
+    public TimeUnit unit() {
+        return unit;
+    }
+
+    public void setUnit(final TimeUnit unit) {
+        Objects.requireNonNull(unit);
+
+        this.unit = unit;
+    }
+
+    public void keep() {
+        keeping = true;
+    }
+
+    public void unkeep() {
+        keeping = false;
+    }
+
+    public boolean keeping() {
+        return keeping;
+    }
+
+    public void clear() {
+        sum = 0;
+        count = 0;
+    }
+
+    public long count() {
+        return count;
+    }
+
+    public double sum() {
+        return converted(sum);
+    }
+
+    public double avg() {
+        if (count == 0) {
+            return 0;
+        }
+
+        return sum() / count;
+    }
+
+    public double ema() {
+        return emaShown;
+    }
+
+    public void track() {
+        if (tracking) {
+            untrack();
+        }
+
+        tracking = true;
+
+        trackStart = System.nanoTime();
+    }
+
+    public void untrack() {
+        if (!tracking) {
+            return;
+        }
+
+        final long trackEnd = System.nanoTime();
+        lastTrack = trackEnd - trackStart;
+
+        record(lastTrack);
+
+        tracking = false;
+    }
+
+    public boolean tracking() {
+        return tracking;
+    }
+
+    public double time(final Timeable func) {
+        Objects.requireNonNull(func);
+
+        final long duration = duration(func);
+
+        record(duration);
+        lastTrack = duration;
+
+        return converted(duration);
+    }
+
+    public double elapsed() {
+        if (!tracking) {
+            return 0;
+        }
+
+        final long now = System.nanoTime();
+
+        return converted(now - trackStart);
+    }
+
+    public double lastTrack() {
+        return converted(lastTrack);
+    }
+
+    private long duration(final Timeable func) {
+        final long start = System.nanoTime();
+        func.exec();
+        final long end = System.nanoTime();
+
+        return end - start;
+    }
+
+    private double microseconds(final double nanoseconds) {
+        return nanoseconds * 1E-3;
+    }
+
+    private double milliseconds(final double nanoseconds) {
+        return nanoseconds * 1E-6;
+    }
+
+    private double centiseconds(final double nanoseconds) {
+        return nanoseconds * 1E-7;
+    }
+
+    private double deciseconds(final double nanoseconds) {
+        return nanoseconds * 1E-8;
+    }
+
+    private double seconds(final double nanoseconds) {
+        return nanoseconds * 1E-9;
+    }
+
+    private double decaseconds(final double nanoseconds) {
+        return nanoseconds * 1E-10;
+    }
+
+    private double hectoseconds(final double nanoseconds) {
+        return nanoseconds * 1E-11;
+    }
+
+    private double kiloseconds(final double nanoseconds) {
+        return nanoseconds * 1E-12;
+    }
+
+    private double minutes(final double nanoseconds) {
+        return seconds(nanoseconds) / 60;
+    }
+
+    private double convertTo(final long duration, final TimeUnit unit) {
+        final double d = (double) duration;
+
+        switch (unit) {
+            case NANOSECOND:
+                return d;
+            case MICROSECOND:
+                return microseconds(d);
+            case MILLISECOND:
+                return milliseconds(d);
+            case CENTISECOND:
+                return centiseconds(d);
+            case DECISECOND:
+                return deciseconds(d);
+            case SECOND:
+                return seconds(d);
+            case DECASECOND:
+                return decaseconds(d);
+            case HECTOSECOND:
+                return hectoseconds(d);
+            case KILOSECOND:
+                return kiloseconds(d);
+            case MINUTE:
+                return minutes(d);
+            default:
+                return d;
+        }
+    }
+
+    private double converted(final long duration) {
+        if (duration == 0) {
+            return 0;
+        }
+
+        return convertTo(duration, unit);
+    }
 }

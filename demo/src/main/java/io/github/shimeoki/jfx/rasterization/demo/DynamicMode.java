@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Random;
 
 import io.github.shimeoki.jfx.rasterization.color.HTMLColorf;
-import io.github.shimeoki.jfx.rasterization.demo.test.BasicTimekeeper;
 import io.github.shimeoki.jfx.rasterization.demo.test.Timekeeper;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import io.github.shimeoki.jfx.rasterization.geom.Point2f;
@@ -138,7 +137,7 @@ public class DynamicMode {
         KeepedTriangle(final Triangle t) {
             this.t = t;
 
-            keeper = new BasicTimekeeper(null, null, null);
+            keeper = new Timekeeper(null, null, null);
         }
 
         @Override
