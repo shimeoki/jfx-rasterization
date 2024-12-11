@@ -24,6 +24,8 @@ public interface Timekeeper {
 
     public double avg();
 
+    public double ema();
+
     public void clear();
 
     // tracking control
