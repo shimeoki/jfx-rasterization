@@ -17,8 +17,8 @@ public final class BasicTimekeeper implements Timekeeper {
     private long count = 0;
 
     // exponential moving average
-    private final float emaCoef = 0.03f;
-    private float ema = 0;
+    private final double emaCoef = 0.03;
+    private double ema = 0;
     private double emaShown = 0;
 
     private long trackStart = 0;
