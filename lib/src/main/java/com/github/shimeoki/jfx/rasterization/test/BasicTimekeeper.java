@@ -115,6 +115,15 @@ public final class BasicTimekeeper implements Timekeeper {
 
     @Override
     public double avg() {
+        if (count == 0) {
+            return 0;
+        }
+
+        return sum() / count;
+    }
+
+    @Override
+    public double ema() {
         return shownFilteredAvg;
     }
 
