@@ -1,6 +1,5 @@
 /**
- * Package for all shared color types, mostly the color interface itself with
- * the corresponding implementations.
+ * Package for shared color types, mostly the Colorf.
  *
  * @since 1.0.0
  */
