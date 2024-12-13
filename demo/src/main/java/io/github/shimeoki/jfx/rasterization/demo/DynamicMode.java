@@ -8,7 +8,6 @@ import io.github.shimeoki.jfx.rasterization.color.HTMLColorf;
 import io.github.shimeoki.jfx.rasterization.demo.test.Timekeeper;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import io.github.shimeoki.jfx.rasterization.geom.Point2f;
-import io.github.shimeoki.jfx.rasterization.triangle.BufferedDDATriangler;
 import io.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import io.github.shimeoki.jfx.rasterization.triangle.Triangler;
 import io.github.shimeoki.jfx.rasterization.triangle.color.DynamicMonotoneTriangleColorer;
@@ -181,7 +180,7 @@ public class DynamicMode {
     }
 
     private void initTriangler() {
-        triangler = new BufferedDDATriangler();
+        triangler = new DDATriangler();
         ctx = canvas.getGraphicsContext2D();
         colorer = new DynamicMonotoneTriangleColorer(HTMLColorf.BLUE);
     }
