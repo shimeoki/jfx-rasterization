@@ -63,7 +63,7 @@ public class StaticMode {
             this.c = canvas;
             this.ctx = c.getGraphicsContext2D();
 
-            this.r = new DDATriangler();
+            this.r = new DDATriangler(this.ctx);
             this.colorer = new GradientTriangleFiller(
                     HTMLColorf.RED,
                     HTMLColorf.WHITE,
@@ -109,7 +109,7 @@ public class StaticMode {
             final Point2f p2 = getPoint2();
             final Point2f p3 = getPoint3();
 
-            r.draw(ctx, new Polygon3(p1, p2, p3), colorer);
+            r.draw(new Polygon3(p1, p2, p3), colorer);
         }
     }
 

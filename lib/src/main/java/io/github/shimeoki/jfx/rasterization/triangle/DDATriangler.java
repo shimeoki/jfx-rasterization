@@ -64,7 +64,8 @@ public final class DDATriangler implements Triangler {
      *
      * @since 1.0.0
      */
-    public DDATriangler() {
+    public DDATriangler(final GraphicsContext ctx) {
+        writer = Objects.requireNonNull(ctx).getPixelWriter();
     }
 
     private List<Point2f> sortedVertices() {
@@ -160,11 +161,9 @@ public final class DDATriangler implements Triangler {
     }
 
     private void cache(
-            final PixelWriter w,
             final Triangle t,
             final TriangleFiller c) {
 
-        writer = w;
         triangle = t;
         filler = c;
         barycentricser = new TriangleBarycentricser(t);
@@ -172,7 +171,6 @@ public final class DDATriangler implements Triangler {
     }
 
     private void uncache() {
-        writer = null;
         triangle = null;
         filler = null;
         barycentricser = null;
@@ -181,17 +179,15 @@ public final class DDATriangler implements Triangler {
 
     @Override
     public void draw(
-            final GraphicsContext ctx,
             final Triangle triangle,
             final TriangleFiller filler) {
 
         // TODO: too many lines in this method
 
-        Objects.requireNonNull(ctx);
         Objects.requireNonNull(triangle);
         Objects.requireNonNull(filler);
 
-        cache(ctx.getPixelWriter(), triangle, filler);
+        cache(triangle, filler);
 
         final List<Point2f> vertices = sortedVertices();
 

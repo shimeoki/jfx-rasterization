@@ -16,7 +16,6 @@ import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -40,7 +39,6 @@ public class InteractiveMode {
     private final List<Triangle> triangles = new LinkedList<>();
 
     private Triangler triangler;
-    private GraphicsContext ctx;
     private TriangleFiller colorer;
 
     @FXML
@@ -51,8 +49,7 @@ public class InteractiveMode {
     }
 
     private void initTriangler() {
-        triangler = new DDATriangler();
-        ctx = canvas.getGraphicsContext2D();
+        triangler = new DDATriangler(canvas.getGraphicsContext2D());
         colorer = new GradientTriangleFiller(
                 HTMLColorf.AQUA,
                 HTMLColorf.FUCHSIA,
@@ -116,7 +113,7 @@ public class InteractiveMode {
         clearCanvas();
 
         for (final Triangle t : triangles) {
-            triangler.draw(ctx, t, colorer);
+            triangler.draw(t, colorer);
         }
     }
 

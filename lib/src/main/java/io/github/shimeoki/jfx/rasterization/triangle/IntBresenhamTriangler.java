@@ -63,7 +63,8 @@ public final class IntBresenhamTriangler implements Triangler {
      *
      * @since 1.0.0
      */
-    public IntBresenhamTriangler() {
+    public IntBresenhamTriangler(final GraphicsContext ctx) {
+        writer = Objects.requireNonNull(ctx).getPixelWriter();
     }
 
     private Point2i converted(final Point2f p) {
@@ -196,11 +197,9 @@ public final class IntBresenhamTriangler implements Triangler {
     }
 
     private void cache(
-            final PixelWriter w,
             final Triangle t,
             final TriangleFiller c) {
 
-        writer = w;
         triangle = t;
         filler = c;
         barycentricser = new TriangleBarycentricser(t);
@@ -208,7 +207,6 @@ public final class IntBresenhamTriangler implements Triangler {
     }
 
     private void uncache() {
-        writer = null;
         triangle = null;
         filler = null;
         barycentricser = null;
@@ -217,17 +215,15 @@ public final class IntBresenhamTriangler implements Triangler {
 
     @Override
     public void draw(
-            final GraphicsContext ctx,
             final Triangle triangle,
             final TriangleFiller filler) {
 
         // TODO: too many lines in this method
 
-        Objects.requireNonNull(ctx);
         Objects.requireNonNull(triangle);
         Objects.requireNonNull(filler);
 
-        cache(ctx.getPixelWriter(), triangle, filler);
+        cache(triangle, filler);
 
         final List<Point2i> vertices = sortedVertices();
 
