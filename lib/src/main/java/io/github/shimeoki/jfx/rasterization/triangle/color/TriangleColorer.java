@@ -15,10 +15,8 @@ import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
  *
  * @since 1.0.0
  *
- * @see StaticMonotoneTriangleColorer
- * @see DynamicMonotoneTriangleColorer
- * @see StaticGradientTriangleColorer
- * @see DynamicGradientTriangleColorer
+ * @see MonotoneTriangleColorer
+ * @see GradientTriangleColorer
  */
 @FunctionalInterface
 public interface TriangleColorer {

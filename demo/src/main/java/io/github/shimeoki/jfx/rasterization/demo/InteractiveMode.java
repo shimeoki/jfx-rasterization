@@ -9,8 +9,7 @@ import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import io.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import io.github.shimeoki.jfx.rasterization.triangle.Triangler;
-import io.github.shimeoki.jfx.rasterization.triangle.color.DynamicTriangleGradient;
-import io.github.shimeoki.jfx.rasterization.triangle.color.StaticGradientTriangleColorer;
+import io.github.shimeoki.jfx.rasterization.triangle.color.GradientTriangleColorer;
 import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Polygon3;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
@@ -54,11 +53,10 @@ public class InteractiveMode {
     private void initTriangler() {
         triangler = new DDATriangler();
         ctx = canvas.getGraphicsContext2D();
-        colorer = new StaticGradientTriangleColorer(
-                new DynamicTriangleGradient(
-                        HTMLColorf.AQUA,
-                        HTMLColorf.FUCHSIA,
-                        HTMLColorf.LIME));
+        colorer = new GradientTriangleColorer(
+                HTMLColorf.AQUA,
+                HTMLColorf.FUCHSIA,
+                HTMLColorf.LIME);
     }
 
     private void initClearBtn() {

@@ -10,8 +10,7 @@ import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import io.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import io.github.shimeoki.jfx.rasterization.triangle.Triangler;
-import io.github.shimeoki.jfx.rasterization.triangle.color.DynamicTriangleGradient;
-import io.github.shimeoki.jfx.rasterization.triangle.color.StaticGradientTriangleColorer;
+import io.github.shimeoki.jfx.rasterization.triangle.color.GradientTriangleColorer;
 import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Polygon3;
 
@@ -65,11 +64,10 @@ public class StaticMode {
             this.ctx = c.getGraphicsContext2D();
 
             this.r = new DDATriangler();
-            this.colorer = new StaticGradientTriangleColorer(
-                    new DynamicTriangleGradient(
-                            HTMLColorf.RED,
-                            HTMLColorf.WHITE,
-                            HTMLColorf.BLACK));
+            this.colorer = new GradientTriangleColorer(
+                    HTMLColorf.RED,
+                    HTMLColorf.WHITE,
+                    HTMLColorf.BLACK);
 
             generate();
         }
