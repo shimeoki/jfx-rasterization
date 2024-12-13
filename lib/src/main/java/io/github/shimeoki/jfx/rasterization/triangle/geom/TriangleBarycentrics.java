@@ -1,22 +1,26 @@
 package io.github.shimeoki.jfx.rasterization.triangle.geom;
 
 import io.github.shimeoki.jfx.rasterization.math.Floats;
+import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
 
 /**
  * A class that represents barycentric coordinates using floats.
  *
  * <p>
+ * The main usage is to act as a data object for the {@link TriangleFiller}.
+ * <p>
+ * The coordinates are mutable for the usage of the same object instead of
+ * creating a new one everytime. It can be seen in
+ * {@link TriangleBarycentricser}.
+ * <p>
  * It is recommended to keep the coordinates normalized (based on the theory).
- * <p>
- * Requires the {@link #inside()} method implementation. It is not a static
- * method (based on the theory, barycentrics are inside, if all 3 coordinates
- * are equal to or more than 0) to give more freedom for the implementation,
- * because in some cases (anti-aliasing?) it can be useful.
- * <p>
  * Documentation: <a href=
  * "https://en.wikipedia.org/wiki/Barycentric_coordinate_system#Barycentric_coordinates_on_triangles">Wikipedia</a>.
  *
- * @since 1.0.0
+ * @since 2.0.0
+ *
+ * @see TriangleFiller
+ * @see TriangleBarycentricser
  */
 public final class TriangleBarycentrics {
 
@@ -24,6 +28,15 @@ public final class TriangleBarycentrics {
     private float lambda2;
     private float lambda3;
 
+    /**
+     * Creates a new {@link TriangleBarycentrics} instance with initial values.
+     *
+     * @param lambda1 initial value of the first barycentric coordinate
+     * @param lambda2 initial value of the second barycentric coordinate
+     * @param lambda3 initial value of the third barycentric coordinate
+     *
+     * @since 2.0.0
+     */
     public TriangleBarycentrics(
             final float lambda1, final float lambda2, final float lambda3) {
 
@@ -37,12 +50,19 @@ public final class TriangleBarycentrics {
      *
      * @return the first barycentric coordinate.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public float lambda1() {
         return lambda1;
     }
 
+    /**
+     * Sets the value of the first barycentric coordinate.
+     *
+     * @param v new value of the first barycentric coordinate
+     *
+     * @since 2.0.0
+     */
     public void setLambda1(final float v) {
         lambda1 = v;
     }
@@ -52,12 +72,19 @@ public final class TriangleBarycentrics {
      *
      * @return the second barycentric coordinate.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public float lambda2() {
         return lambda2;
     }
 
+    /**
+     * Sets the value of the second barycentric coordinate.
+     *
+     * @param v new value of the second barycentric coordinate
+     *
+     * @since 2.0.0
+     */
     public void setLambda2(final float v) {
         lambda2 = v;
     }
@@ -67,28 +94,39 @@ public final class TriangleBarycentrics {
      *
      * @return the third barycentric coordinate.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public float lambda3() {
         return lambda3;
     }
 
+    /**
+     * Sets the value of the third barycentric coordinate.
+     *
+     * @param v new value of the third barycentric coordinate
+     *
+     * @since 2.0.0
+     */
     public void setLambda3(final float v) {
         lambda3 = v;
     }
 
     /**
-     * Gets the boolean value of the statement "are these barycentrics inside of the
+     * Gets the boolean value of the statement "are these barycentrics inside of a
      * triangle?".
      *
      * <p>
-     * By default, it should equal to the boolean value of the statement "are all
-     * the barycentric coordinates are not negative?".
+     * Equals to the boolean value of the statement "are all the barycentric
+     * coordinates not negative?".
+     * <p>
+     * Uses {@link Floats#moreThan(float, float)} internally.
      *
      * @return {@code true} if these barycentric coordinates are inside of the
      *         triangle; {@code false} otherwise
      *
-     * @since 1.0.0
+     * @since 2.0.0
+     *
+     * @see Floats#moreThan(float, float)
      */
     public boolean inside() {
         final boolean ok1 = Floats.moreThan(lambda1, 0f);
@@ -98,6 +136,21 @@ public final class TriangleBarycentrics {
         return ok1 && ok2 && ok3;
     }
 
+    /**
+     * Gets the boolean value of the statement "are these barycentrics normalized?".
+     *
+     * <p>
+     * Equals to {@code true} is the sum of all coordinates is 1.
+     * <p>
+     * Uses {@link Floats#equals(float, float)} internally.
+     *
+     * @return {@code true} if the sum of these barycentric coordinates is equal to
+     *         1; {@code false} otherwise
+     *
+     * @since 2.0.0
+     *
+     * @see Floats#equals(float, float)
+     */
     public boolean normalized() {
         return Floats.equals(lambda1 + lambda2 + lambda3, 1);
     }
