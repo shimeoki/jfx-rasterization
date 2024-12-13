@@ -11,7 +11,7 @@ import io.github.shimeoki.jfx.rasterization.geom.Point2f;
  * Does store the references to the original points on creation. Getters of the
  * vertices return the same reference everytime.
  *
- * @since 1.0.0
+ * @since 2.0.0
  *
  * @see Triangle
  */
@@ -30,7 +30,7 @@ public final class Polygon3 implements Triangle {
      *
      * @throws NullPointerException if at least one parameter is {@code null}
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public Polygon3(final Point2f v1, final Point2f v2, final Point2f v3) {
         this.v1 = Objects.requireNonNull(v1);
