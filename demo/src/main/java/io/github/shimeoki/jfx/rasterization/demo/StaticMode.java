@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Random;
 
 import io.github.shimeoki.jfx.rasterization.color.HTMLColorf;
-import io.github.shimeoki.jfx.rasterization.geom.Pos2f;
+import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import io.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import io.github.shimeoki.jfx.rasterization.triangle.Triangler;
@@ -74,19 +74,19 @@ public class StaticMode {
             generate();
         }
 
-        private Pos2f getPoint1() {
+        private Point2f getPoint1() {
             final float x = (float) c.getWidth() * pos[0];
             final float y = (float) c.getHeight() * pos[1];
             return new Vector2f(x, y);
         }
 
-        private Pos2f getPoint2() {
+        private Point2f getPoint2() {
             final float x = (float) c.getWidth() * pos[2];
             final float y = (float) c.getHeight() * pos[3];
             return new Vector2f(x, y);
         }
 
-        private Pos2f getPoint3() {
+        private Point2f getPoint3() {
             final float x = (float) c.getWidth() * pos[4];
             final float y = (float) c.getHeight() * pos[5];
             return new Vector2f(x, y);
@@ -107,9 +107,9 @@ public class StaticMode {
         void draw() {
             clear();
 
-            final Pos2f p1 = getPoint1();
-            final Pos2f p2 = getPoint2();
-            final Pos2f p3 = getPoint3();
+            final Point2f p1 = getPoint1();
+            final Point2f p2 = getPoint2();
+            final Point2f p3 = getPoint3();
 
             r.draw(ctx, new StaticTriangle(p1, p2, p3), colorer);
         }

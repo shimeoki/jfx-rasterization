@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import io.github.shimeoki.jfx.rasterization.color.HTMLColorf;
-import io.github.shimeoki.jfx.rasterization.geom.Pos2f;
+import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import io.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import io.github.shimeoki.jfx.rasterization.triangle.Triangler;
@@ -36,7 +36,7 @@ public class InteractiveMode {
     @FXML
     private Button clearBtn;
 
-    private final List<Pos2f> points = new ArrayList<>();
+    private final List<Point2f> points = new ArrayList<>();
 
     private final List<Triangle> triangles = new LinkedList<>();
 

@@ -2,7 +2,6 @@ package io.github.shimeoki.jfx.rasterization.triangle.geom;
 
 import java.util.Objects;
 
-import io.github.shimeoki.jfx.rasterization.geom.Pos2f;
 import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 
 /**
@@ -15,9 +14,6 @@ import io.github.shimeoki.jfx.rasterization.geom.Point2f;
  * <p>
  * Does store the references to the original points on creation. Getters of the
  * vertices return the same reference everytime.
- * <p>
- * Because of that, {@link #barycentrics(Pos2f)} calculates the coordinates from
- * scratch on each call, because it doesn't remember the previous coordinates.
  * <p>
  * If use case does suppose that triangles will change, it's advised to use
  * this class, instead of creating a new triangle everytime.

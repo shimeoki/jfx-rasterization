@@ -40,11 +40,6 @@ public final class Vector2f implements Point2f {
     }
 
     @Override
-    public void addX(final float dx) {
-        setX(x + dx);
-    }
-
-    @Override
     public float y() {
         return y;
     }
@@ -52,10 +47,5 @@ public final class Vector2f implements Point2f {
     @Override
     public void setY(final float y) {
         this.y = y;
-    }
-
-    @Override
-    public void addY(final float dy) {
-        setY(y + dy);
     }
 }

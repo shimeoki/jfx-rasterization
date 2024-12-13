@@ -2,9 +2,8 @@ package io.github.shimeoki.jfx.rasterization.triangle.geom;
 
 import java.util.Objects;
 
-import io.github.shimeoki.jfx.rasterization.geom.Pos2f;
-import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import io.github.shimeoki.jfx.rasterization.geom.Point2f;
+import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 
 /**
  * One of the default {@link Triangle} implementations, "freezing" the vertices
@@ -58,9 +57,9 @@ public final class StaticTriangle implements Triangle {
      * @since 1.0.0
      */
     public StaticTriangle(
-            final Pos2f p1,
-            final Pos2f p2,
-            final Pos2f p3) {
+            final Point2f p1,
+            final Point2f p2,
+            final Point2f p3) {
 
         Objects.requireNonNull(p1);
         Objects.requireNonNull(p2);

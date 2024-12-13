@@ -10,7 +10,7 @@ import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentricser;
-import io.github.shimeoki.jfx.rasterization.geom.Pos2f;
+import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 
 import javafx.scene.canvas.GraphicsContext;
@@ -67,24 +67,24 @@ public final class DDATriangler implements Triangler {
     public DDATriangler() {
     }
 
-    private List<Pos2f> sortedVertices() {
-        final List<Pos2f> vertices = new ArrayList<>();
+    private List<Point2f> sortedVertices() {
+        final List<Point2f> vertices = new ArrayList<>();
 
         vertices.add(triangle.v1());
         vertices.add(triangle.v2());
         vertices.add(triangle.v3());
 
         vertices.sort(Comparator
-                .comparing(Pos2f::y)
-                .thenComparing(Pos2f::x));
+                .comparing(Point2f::y)
+                .thenComparing(Point2f::x));
 
         return vertices;
     }
 
     private void drawFlat(
-            final Pos2f lone,
-            final Pos2f flat1,
-            final Pos2f flat2) {
+            final Point2f lone,
+            final Point2f flat1,
+            final Point2f flat2) {
 
         final float loneX = lone.x();
         final float loneY = lone.y();
@@ -108,7 +108,7 @@ public final class DDATriangler implements Triangler {
     }
 
     private void drawFlatAtMaxY(
-            final Pos2f anchor,
+            final Point2f anchor,
             final float maxY,
             final float dx1,
             final float dx2) {
@@ -126,7 +126,7 @@ public final class DDATriangler implements Triangler {
     }
 
     private void drawFlatAtMinY(
-            final Pos2f anchor,
+            final Point2f anchor,
             final float minY,
             final float dx1,
             final float dx2) {
@@ -193,11 +193,11 @@ public final class DDATriangler implements Triangler {
 
         cache(ctx.getPixelWriter(), triangle, colorer);
 
-        final List<Pos2f> vertices = sortedVertices();
+        final List<Point2f> vertices = sortedVertices();
 
-        final Pos2f v1 = vertices.get(0);
-        final Pos2f v2 = vertices.get(1);
-        final Pos2f v3 = vertices.get(2);
+        final Point2f v1 = vertices.get(0);
+        final Point2f v2 = vertices.get(1);
+        final Point2f v3 = vertices.get(2);
 
         final float x1 = v1.x();
         final float y1 = v1.y();
@@ -219,7 +219,7 @@ public final class DDATriangler implements Triangler {
         }
 
         final float x4 = x1 + ((y2 - y1) / (y3 - y1)) * (x3 - x1);
-        final Pos2f v4 = new Vector2f(x4, v2.y());
+        final Point2f v4 = new Vector2f(x4, v2.y());
 
         // non strict equality?
         if (Floats.moreThan(x4, x2)) {

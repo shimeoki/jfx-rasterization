@@ -1,6 +1,6 @@
 package io.github.shimeoki.jfx.rasterization.triangle.geom;
 
-import io.github.shimeoki.jfx.rasterization.geom.Pos2f;
+import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 import io.github.shimeoki.jfx.rasterization.triangle.Triangler;
 
 /**
@@ -10,15 +10,12 @@ import io.github.shimeoki.jfx.rasterization.triangle.Triangler;
  * Triangle can be defined with many ways or methods, but this interface
  * considers only wants the three vertices of the triangle.
  * <p>
- * For the vertices, {@link Pos2f} interface is used. Double precision
+ * For the vertices, {@link Point2f} interface is used. Double precision
  * floating point numbers can be used internally, but it is not recommended.
- * <p>
- * Also, the interface requires {@link #barycentrics(Pos2f)} method implemented.
- * That is needed for the {@link Triangler} to work.
  *
  * @since 1.0.0
  *
- * @see Pos2f
+ * @see Point2f
  * @see Triangler
  */
 public interface Triangle {
@@ -30,7 +27,7 @@ public interface Triangle {
      *
      * @since 1.0.0
      */
-    public Pos2f v1();
+    public Point2f v1();
 
     /**
      * Gets the second vertex of this triangle.
@@ -39,7 +36,7 @@ public interface Triangle {
      *
      * @since 1.0.0
      */
-    public Pos2f v2();
+    public Point2f v2();
 
     /**
      * Gets the third vertex of this triangle.
@@ -48,5 +45,5 @@ public interface Triangle {
      *
      * @since 1.0.0
      */
-    public Pos2f v3();
+    public Point2f v3();
 }

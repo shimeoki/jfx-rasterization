@@ -2,7 +2,7 @@ package io.github.shimeoki.jfx.rasterization.triangle.geom;
 
 import java.util.Objects;
 
-import io.github.shimeoki.jfx.rasterization.geom.Pos2f;
+import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 import io.github.shimeoki.jfx.rasterization.math.Floats;
 
 public final class TriangleBarycentricser {
@@ -75,7 +75,7 @@ public final class TriangleBarycentricser {
         }
     }
 
-    public void calculate(final Pos2f p) {
+    public void calculate(final Point2f p) {
         Objects.requireNonNull(p);
 
         x = p.x();

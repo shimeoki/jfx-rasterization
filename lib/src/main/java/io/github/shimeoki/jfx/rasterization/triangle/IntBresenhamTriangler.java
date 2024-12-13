@@ -5,9 +5,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-import io.github.shimeoki.jfx.rasterization.geom.Pos2f;
+import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
-import io.github.shimeoki.jfx.rasterization.geom.Pos2i;
+import io.github.shimeoki.jfx.rasterization.geom.Point2i;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2i;
 import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
@@ -66,28 +66,28 @@ public final class IntBresenhamTriangler implements Triangler {
     public IntBresenhamTriangler() {
     }
 
-    private Pos2i converted(final Pos2f p) {
+    private Point2i converted(final Point2f p) {
         return new Vector2i((int) p.x(), (int) p.y());
     }
 
-    private List<Pos2i> sortedVertices() {
-        final List<Pos2i> vertices = new ArrayList<>();
+    private List<Point2i> sortedVertices() {
+        final List<Point2i> vertices = new ArrayList<>();
 
         vertices.add(converted(triangle.v1()));
         vertices.add(converted(triangle.v2()));
         vertices.add(converted(triangle.v3()));
 
         vertices.sort(Comparator
-                .comparing(Pos2i::y)
-                .thenComparing(Pos2i::x));
+                .comparing(Point2i::y)
+                .thenComparing(Point2i::x));
 
         return vertices;
     }
 
     private void drawFlat(
-            final Pos2i lone,
-            final Pos2i flat1,
-            final Pos2i flat2) {
+            final Point2i lone,
+            final Point2i flat1,
+            final Point2i flat2) {
 
         // TODO: refactor
 
@@ -229,11 +229,11 @@ public final class IntBresenhamTriangler implements Triangler {
 
         cache(ctx.getPixelWriter(), triangle, colorer);
 
-        final List<Pos2i> vertices = sortedVertices();
+        final List<Point2i> vertices = sortedVertices();
 
-        final Pos2i v1 = vertices.get(0);
-        final Pos2i v2 = vertices.get(1);
-        final Pos2i v3 = vertices.get(2);
+        final Point2i v1 = vertices.get(0);
+        final Point2i v2 = vertices.get(1);
+        final Point2i v3 = vertices.get(2);
 
         final int x1 = v1.x();
         final int y1 = v1.y();
@@ -255,7 +255,7 @@ public final class IntBresenhamTriangler implements Triangler {
         }
 
         final int x4 = (int) (x1 + ((float) (y2 - y1) / (float) (y3 - y1)) * (x3 - x1));
-        final Pos2i v4 = new Vector2i(x4, v2.y());
+        final Point2i v4 = new Vector2i(x4, v2.y());
 
         // non strict equality?
         if (x4 > x2) {
