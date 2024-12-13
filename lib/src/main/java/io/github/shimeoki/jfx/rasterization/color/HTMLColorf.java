@@ -1,118 +1,125 @@
 package io.github.shimeoki.jfx.rasterization.color;
 
 /**
- * Static (non-instantiable) class with some colors as {@code Colorf} from the
+ * Non-instantiable class with some {@link Colorf colors} from the
  * HTML specification as constants.
  *
  * <p>
  * Data for the colors is from
  * <a href="https://htmlcolorcodes.com/color-names/">HTML Color Codes</a>.
  *
- * @since 1.0.0
+ * @since 2.0.0
  *
  * @see Colorf
  */
 public final class HTMLColorf {
 
-    // special
-
     /**
-     * Equivalent to rgb(255, 255, 255 / 0) or #FFFFFF00.
+     * Equivalent to {@code rgb(255, 255, 255 / 0)} or {@code #FFFFFF00}.
+     *
+     * @since 2.0.0
      */
     public static final Colorf TRANSPARENT_WHITE = new Colorf(1f, 1f, 1f, 0f);
 
     /**
-     * Equivalent to rgb(0, 0, 0 / 0) or #00000000.
+     * Equivalent to {@code rgb(0, 0, 0 / 0)} or {@code #00000000}.
+     *
+     * @since 2.0.0
      */
     public static final Colorf TRANSPARENT_BLACK = new Colorf(0f, 0f, 0f, 0f);
 
-    // red
-
     /**
-     * Equivalent to rgb(255, 0, 0) or #FF0000.
+     * Equivalent to {@code rgb(255, 0, 0)} or {@code #FF0000}.
+     *
+     * @since 2.0.0
      */
     public static final Colorf RED = new Colorf(1f, 0f, 0f, 1f);
 
-    // pink
-
-    // ...
-
-    // orange
-
     /**
-     * Equivalent to rgb(255, 165, 0) or #FFA500.
+     * Equivalent to {@code rgb(255, 165, 0)} or {@code #FFA500}.
+     *
+     * @since 2.0.0
      */
     public static final Colorf ORANGE = new Colorf(1f, 0.65f, 0f, 1f);
 
-    // yellow
-
     /**
-     * Equivalent to rgb(255, 255, 0) or #FFFF00.
+     * Equivalent to {@code rgb(255, 255, 0)} or {@code #FFFF00}.
+     *
+     * @since 2.0.0
      */
     public static final Colorf YELLOW = new Colorf(1f, 1f, 0f, 1f);
 
-    // purple
-
     /**
-     * Equivalent to rgb(255, 0, 255) or #FF00FF.
+     * Equivalent to {@code rgb(255, 0, 255)} or {@code #FF00FF}.
+     *
+     * @since 2.0.0
      */
     public static final Colorf FUCHSIA = new Colorf(1f, 0f, 1f, 1f);
 
     /**
-     * Equivalent to rgb(128, 0, 128) or #800080.
+     * Equivalent to {@code rgb(128, 0, 128)} or {@code #800080}.
+     *
+     * @since 2.0.0
      */
     public static final Colorf PURPLE = new Colorf(0.5f, 0f, 0.5f, 1f);
 
-    // green
-
     /**
-     * Equivalent to rgb(0, 255, 0) or #00FF00.
+     * Equivalent to {@code rgb(0, 255, 0)} or {@code #00FF00}.
+     *
+     * @since 2.0.0
      */
     public static final Colorf LIME = new Colorf(0f, 1f, 0f, 1f);
 
     /**
-     * Equivalent to rgb(0, 128, 0) or #008000.
+     * Equivalent to {@code rgb(0, 128, 0)} or {@code #008000}.
+     *
+     * @since 2.0.0
      */
     public static final Colorf GREEN = new Colorf(0f, 0.5f, 0f, 1f);
 
-    // blue
-
     /**
-     * Equivalent to rgb(0, 255, 255) or #00FFFF.
+     * Equivalent to {@code rgb(0, 255, 255)} or {@code #00FFFF}.
+     *
+     * @since 2.0.0
      */
     public static final Colorf AQUA = new Colorf(0f, 1f, 1f, 1f);
 
     /**
-     * Equivalent to rgb(0, 255, 255) or #00FFFF.
+     * Equivalent to {@code rgb(0, 255, 255)} or {@code #00FFFF}.
+     *
+     * @since 2.0.0
      */
     public static final Colorf CYAN = new Colorf(0f, 1f, 1f, 1f);
 
     /**
-     * Equivalent to rgb(0, 0, 255) or #0000FF.
+     * Equivalent to {@code rgb(0, 0, 255)} or {@code #0000FF}.
+     *
+     * @since 2.0.0
      */
     public static final Colorf BLUE = new Colorf(0f, 0f, 1f, 1f);
 
-    // brown
-
     /**
-     * Equivalent to rgb(128, 0, 0) or #800000.
+     * Equivalent to {@code rgb(128, 0, 0)} or {@code #800000}.
+     *
+     * @since 2.0.0
      */
     public static final Colorf MAROON = new Colorf(0.5f, 0f, 0f, 1f);
 
-    // white
-
     /**
-     * Equivalent to rgb(255, 255, 255) or #FFFFFF.
+     * Equivalent to {@code rgb(255, 255, 255)} or {@code #FFFFFF}.
+     *
+     * @since 2.0.0
      */
     public static final Colorf WHITE = new Colorf(1f, 1f, 1f, 1f);
 
-    // gray
-
     /**
-     * Equivalent to rgb(0, 0, 0) or #000000.
+     * Equivalent to {@code rgb(0, 0, 0)} or {@code #000000}.
+     *
+     * @since 2.0.0
      */
     public static final Colorf BLACK = new Colorf(0f, 0f, 0f, 1f);
 
     private HTMLColorf() {
+        // prevents instantiation
     }
 }
