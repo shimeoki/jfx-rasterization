@@ -5,6 +5,20 @@ import java.util.Objects;
 import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 import io.github.shimeoki.jfx.rasterization.math.Floats;
 
+/**
+ * A class for memory and time efficient {@link TriangleBarycentrics}
+ * generation from a {@link Triangle}.
+ *
+ * <p>
+ * Exists for 3 reasons: to not allocate new barycentrics each time, to cache
+ * the calculations for a single triangle and to not enforce the implementation
+ * of this functionality on user.
+ *
+ * @since 2.0.0
+ *
+ * @see Triangle
+ * @see TriangleBarycentrics
+ */
 public final class TriangleBarycentricser {
 
     private Triangle triangle;
@@ -45,23 +59,77 @@ public final class TriangleBarycentricser {
     private float numerator2;
     private float numerator3;
 
+    /**
+     * Creates a new {@link TriangleBarycentricser} instance.
+     *
+     * <p>
+     * Creates a new {@link TriangleBarycentrics} with zeros as coordinates.
+     *
+     * @since 2.0.0
+     *
+     * @see TriangleBarycentrics
+     */
     public TriangleBarycentricser() {
         barycentrics = new TriangleBarycentrics(0, 0, 0);
     }
 
+    /**
+     * Returns a reference to the triangle barycentrics in this barycentricser
+     * object.
+     *
+     * @return reference to the barycentrics in this barycentricser
+     *
+     * @since 2.0.0
+     *
+     * @see TriangleBarycentrics
+     */
     public TriangleBarycentrics barycentrics() {
         return barycentrics;
     }
 
+    /**
+     * Returns a reference to the current used triangle in this barycentricser
+     * object.
+     *
+     * @return reference to the triangle in this barycentricser
+     *
+     * @since 2.0.0
+     *
+     * @see Triangle
+     */
     public Triangle triangle() {
         return triangle;
     }
 
+    /**
+     * Sets the new triangle to calculate the barycentrics for.
+     *
+     * <p>
+     * Updates the barycentrics in the object automatically on call.
+     *
+     * @param t the triangle to use
+     *
+     * @throws NullPointerException if {@code t} is {@code null}
+     *
+     * @since 2.0.0
+     *
+     * @see Triangle
+     */
     public void setTriangle(final Triangle t) {
         triangle = Objects.requireNonNull(t);
         update();
     }
 
+    /**
+     * Updates cached points to the current state of the used triangle.
+     *
+     * <p>
+     * Because the triangle can be modified externally (and just a new one can be
+     * set), but the rasterization process considers only a single frame, the update
+     * is a separate method.
+     *
+     * @since 2.0.0
+     */
     public void update() {
         v1 = triangle.v1();
         v2 = triangle.v2();
@@ -90,6 +158,21 @@ public final class TriangleBarycentricser {
         }
     }
 
+    /**
+     * Calculates the barycentrics in this barycenctricser based on the current
+     * point data.
+     *
+     * <p>
+     * Updates the triangle barycentrics object accordingly on call.
+     *
+     * @param p a point to calculate barycentrics for
+     *
+     * @throws NullPointerException if {@code p} is {@code null}
+     *
+     * @since 2.0.0
+     *
+     * @see Point2f
+     */
     public void calculate(final Point2f p) {
         Objects.requireNonNull(p);
 
