@@ -11,7 +11,6 @@ import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 import io.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import io.github.shimeoki.jfx.rasterization.triangle.Triangler;
 import io.github.shimeoki.jfx.rasterization.triangle.color.MonotoneTriangleFiller;
-import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Polygon3;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 
@@ -58,7 +57,6 @@ public class DynamicMode {
     private final ObservableList<KeepedTriangle> triangles = FXCollections.observableArrayList();
 
     private Triangler triangler;
-    private TriangleFiller colorer;
 
     class MovingVector {
 
@@ -179,7 +177,7 @@ public class DynamicMode {
 
     private void initTriangler() {
         triangler = new DDATriangler(canvas.getGraphicsContext2D());
-        colorer = new MonotoneTriangleFiller(HTMLColorf.BLUE);
+        triangler.setFiller(new MonotoneTriangleFiller(HTMLColorf.BLUE));
     }
 
     private void initAddBtn() {
@@ -260,7 +258,7 @@ public class DynamicMode {
 
         for (final KeepedTriangle kt : triangles) {
             kt.keeper.time(() -> {
-                triangler.draw(kt.t, colorer);
+                triangler.draw(kt.t);
             });
         }
 

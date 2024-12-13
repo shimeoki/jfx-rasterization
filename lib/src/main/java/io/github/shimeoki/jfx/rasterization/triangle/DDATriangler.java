@@ -49,11 +49,11 @@ import javafx.scene.image.PixelWriter;
  */
 public final class DDATriangler implements Triangler {
 
-    private PixelWriter writer = null;
-    private Triangle triangle = null;
-    private TriangleFiller filler = null;
-    private TriangleBarycentricser barycentricser = null;
-    private TriangleBarycentrics barycentrics = null;
+    private PixelWriter writer;
+    private Triangle triangle;
+    private TriangleFiller filler;
+    private TriangleBarycentricser barycentricser;
+    private TriangleBarycentrics barycentrics;
 
     /**
      * Creates a new {@code DDATriangler} instance.
@@ -66,6 +66,16 @@ public final class DDATriangler implements Triangler {
      */
     public DDATriangler(final GraphicsContext ctx) {
         writer = Objects.requireNonNull(ctx).getPixelWriter();
+    }
+
+    @Override
+    public TriangleFiller filler() {
+        return filler;
+    }
+
+    @Override
+    public void setFiller(final TriangleFiller f) {
+        filler = Objects.requireNonNull(f);
     }
 
     private List<Point2f> sortedVertices() {
@@ -160,34 +170,24 @@ public final class DDATriangler implements Triangler {
         }
     }
 
-    private void cache(
-            final Triangle t,
-            final TriangleFiller c) {
-
+    private void cache(final Triangle t) {
         triangle = t;
-        filler = c;
         barycentricser = new TriangleBarycentricser(t);
         barycentrics = barycentricser.barycentrics();
     }
 
     private void uncache() {
         triangle = null;
-        filler = null;
         barycentricser = null;
         barycentrics = null;
     }
 
     @Override
-    public void draw(
-            final Triangle triangle,
-            final TriangleFiller filler) {
-
+    public void draw(final Triangle t) {
         // TODO: too many lines in this method
 
-        Objects.requireNonNull(triangle);
         Objects.requireNonNull(filler);
-
-        cache(triangle, filler);
+        cache(Objects.requireNonNull(t));
 
         final List<Point2f> vertices = sortedVertices();
 

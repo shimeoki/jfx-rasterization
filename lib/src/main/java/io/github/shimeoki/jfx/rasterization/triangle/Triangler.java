@@ -4,7 +4,7 @@ import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 
 /**
- * A functional interface for triangle rasterizers.
+ * An interface for triangle rasterizers.
  *
  * <p>
  * Accepts a {@link Triangle Triangle} as the shape to draw and
@@ -18,14 +18,14 @@ import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
  *
  * final Canvas canvas; // javafx canvas to render on
  * final Triangler triangler = new DDATriangler(canvas.getGraphicsContext2D());
+ * triangler.setFiller(new MonotoneTriangleFiller(HTMLColorf.RED));
  *
- * final Triangle triangle = new StaticTriangle(
+ * final Triangle triangle = new Polygon3(
  *         new Point2f(0, 1),
  *         new Point2f(1, 0),
  *         new Point2f(1, 1));
- * final TriangleFiller filler = new MonotoneTriangleFiller(HTMLColorf.RED);
  *
- * triangler.draw(triangle, filler);
+ * triangler.draw(triangle);
  * }</pre>
  *
  * @since 1.0.0
@@ -33,18 +33,20 @@ import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
  * @see Triangle
  * @see TriangleFiller
  */
-@FunctionalInterface
 public interface Triangler {
 
+    public TriangleFiller filler();
+
+    public void setFiller(final TriangleFiller f);
+
     /**
-     * Draws the {@code triangle} colored by {@code filler}.
+     * Draws the triangle {@link Triangle t}.
      *
-     * @param triangle the {@link Triangle Triangle} to draw
-     * @param filler   the color mapping {@link TriangleFiller filler}
+     * @param t the {@link Triangle Triangle} to draw
      *
-     * @throws NullPointerException if at least one parameter is {@code null}
+     * @throws NullPointerException if {@code t} is {@code null}
      *
      * @since 1.0.0
      */
-    public void draw(final Triangle triangle, final TriangleFiller filler);
+    public void draw(final Triangle t);
 }

@@ -10,7 +10,6 @@ import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import io.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import io.github.shimeoki.jfx.rasterization.triangle.Triangler;
 import io.github.shimeoki.jfx.rasterization.triangle.color.GradientTriangleFiller;
-import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Polygon3;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 
@@ -39,7 +38,6 @@ public class InteractiveMode {
     private final List<Triangle> triangles = new LinkedList<>();
 
     private Triangler triangler;
-    private TriangleFiller colorer;
 
     @FXML
     private void initialize() {
@@ -50,10 +48,10 @@ public class InteractiveMode {
 
     private void initTriangler() {
         triangler = new DDATriangler(canvas.getGraphicsContext2D());
-        colorer = new GradientTriangleFiller(
+        triangler.setFiller(new GradientTriangleFiller(
                 HTMLColorf.AQUA,
                 HTMLColorf.FUCHSIA,
-                HTMLColorf.LIME);
+                HTMLColorf.LIME));
     }
 
     private void initClearBtn() {
@@ -113,7 +111,7 @@ public class InteractiveMode {
         clearCanvas();
 
         for (final Triangle t : triangles) {
-            triangler.draw(t, colorer);
+            triangler.draw(t);
         }
     }
 
