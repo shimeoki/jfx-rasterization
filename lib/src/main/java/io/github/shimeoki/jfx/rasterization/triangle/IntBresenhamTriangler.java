@@ -12,7 +12,7 @@ import io.github.shimeoki.jfx.rasterization.geom.Vector2i;
 import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
-
+import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentricser;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelWriter;
 
@@ -51,6 +51,8 @@ public final class IntBresenhamTriangler implements Triangler {
     private PixelWriter writer = null;
     private Triangle triangle = null;
     private TriangleColorer colorer = null;
+    private TriangleBarycentricser barycentricser = null;
+    private TriangleBarycentrics barycentrics = null;
 
     /**
      * Creates a new {@code IntBresenhamTriangler} instance.
@@ -179,10 +181,13 @@ public final class IntBresenhamTriangler implements Triangler {
 
     private void drawHLine(final int x1, final int x2, final int y) {
         for (int x = x1; x <= x2; x++) {
-            final TriangleBarycentrics barycentrics;
-            try {
-                barycentrics = triangle.barycentrics(new Vector2f(x, y));
-            } catch (final Exception e) {
+            barycentricser.calculate(new Vector2f(x, y));
+
+            if (!barycentrics.normalized()) {
+                continue;
+            }
+
+            if (!barycentrics.inside()) {
                 continue;
             }
 
@@ -198,12 +203,16 @@ public final class IntBresenhamTriangler implements Triangler {
         writer = w;
         triangle = t;
         colorer = c;
+        barycentricser = new TriangleBarycentricser(t);
+        barycentrics = barycentricser.barycentrics();
     }
 
     private void uncache() {
         writer = null;
         triangle = null;
         colorer = null;
+        barycentricser = null;
+        barycentrics = null;
     }
 
     @Override
