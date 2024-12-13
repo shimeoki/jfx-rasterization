@@ -12,7 +12,7 @@ import io.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import io.github.shimeoki.jfx.rasterization.triangle.Triangler;
 import io.github.shimeoki.jfx.rasterization.triangle.color.DynamicMonotoneTriangleColorer;
 import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
-import io.github.shimeoki.jfx.rasterization.triangle.geom.DynamicTriangle;
+import io.github.shimeoki.jfx.rasterization.triangle.geom.Polygon3;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 
 import javafx.animation.Animation;
@@ -241,7 +241,7 @@ public class DynamicMode {
         final Point2f v2 = randomVector();
         final Point2f v3 = randomVector();
 
-        final Triangle t = new DynamicTriangle(v1, v2, v3);
+        final Triangle t = new Polygon3(v1, v2, v3);
 
         vertices.add(toMovingVector(v1));
         vertices.add(toMovingVector(v2));

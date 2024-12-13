@@ -12,7 +12,7 @@ import io.github.shimeoki.jfx.rasterization.triangle.Triangler;
 import io.github.shimeoki.jfx.rasterization.triangle.color.DynamicTriangleGradient;
 import io.github.shimeoki.jfx.rasterization.triangle.color.StaticGradientTriangleColorer;
 import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
-import io.github.shimeoki.jfx.rasterization.triangle.geom.StaticTriangle;
+import io.github.shimeoki.jfx.rasterization.triangle.geom.Polygon3;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 
 import javafx.fxml.FXML;
@@ -97,7 +97,7 @@ public class InteractiveMode {
             return;
         }
 
-        triangles.add(new StaticTriangle(
+        triangles.add(new Polygon3(
                 points.get(0),
                 points.get(1),
                 points.get(2)));
