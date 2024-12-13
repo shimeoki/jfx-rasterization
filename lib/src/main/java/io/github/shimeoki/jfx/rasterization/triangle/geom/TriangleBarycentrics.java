@@ -1,12 +1,12 @@
 package io.github.shimeoki.jfx.rasterization.triangle.geom;
 
+import io.github.shimeoki.jfx.rasterization.math.Floats;
+
 /**
- * An interface that represents barycentric coordinates using floats.
+ * A class that represents barycentric coordinates using floats.
  *
  * <p>
- * It is recommended to keep the coordinates normalized (based on the theory),
- * but the interface cannot restrict that. Because of that, the standard
- * implementation ({@link NormalizedTriangleBarycentrics}) is named explicitly.
+ * It is recommended to keep the coordinates normalized (based on the theory).
  * <p>
  * Requires the {@link #inside()} method implementation. It is not a static
  * method (based on the theory, barycentrics are inside, if all 3 coordinates
@@ -17,10 +17,20 @@ package io.github.shimeoki.jfx.rasterization.triangle.geom;
  * "https://en.wikipedia.org/wiki/Barycentric_coordinate_system#Barycentric_coordinates_on_triangles">Wikipedia</a>.
  *
  * @since 1.0.0
- *
- * @see NormalizedTriangleBarycentrics
  */
-public interface TriangleBarycentrics {
+public final class TriangleBarycentrics {
+
+    private float lambda1;
+    private float lambda2;
+    private float lambda3;
+
+    public TriangleBarycentrics(
+            final float lambda1, final float lambda2, final float lambda3) {
+
+        setLambda1(lambda1);
+        setLambda2(lambda2);
+        setLambda3(lambda3);
+    }
 
     /**
      * Gets the first barycentric coordinate.
@@ -29,7 +39,13 @@ public interface TriangleBarycentrics {
      *
      * @since 1.0.0
      */
-    public float lambda1();
+    public float lambda1() {
+        return lambda1;
+    }
+
+    public void setLambda1(final float v) {
+        lambda1 = v;
+    }
 
     /**
      * Gets the second barycentric coordinate.
@@ -38,7 +54,13 @@ public interface TriangleBarycentrics {
      *
      * @since 1.0.0
      */
-    public float lambda2();
+    public float lambda2() {
+        return lambda2;
+    }
+
+    public void setLambda2(final float v) {
+        lambda2 = v;
+    }
 
     /**
      * Gets the third barycentric coordinate.
@@ -47,7 +69,13 @@ public interface TriangleBarycentrics {
      *
      * @since 1.0.0
      */
-    public float lambda3();
+    public float lambda3() {
+        return lambda3;
+    }
+
+    public void setLambda3(final float v) {
+        lambda3 = v;
+    }
 
     /**
      * Gets the boolean value of the statement "are these barycentrics inside of the
@@ -62,5 +90,15 @@ public interface TriangleBarycentrics {
      *
      * @since 1.0.0
      */
-    public boolean inside();
+    public boolean inside() {
+        final boolean ok1 = Floats.moreThan(lambda1, 0f);
+        final boolean ok2 = Floats.moreThan(lambda2, 0f);
+        final boolean ok3 = Floats.moreThan(lambda3, 0f);
+
+        return ok1 && ok2 && ok3;
+    }
+
+    public boolean normalized() {
+        return Floats.equals(lambda1 + lambda2 + lambda3, 1);
+    }
 }
