@@ -7,13 +7,16 @@ import io.github.shimeoki.jfx.rasterization.triangle.Triangler;
  * An interface that represents a triangle with floats for the coordinates.
  *
  * <p>
- * Triangle can be defined with many ways or methods, but this interface
- * considers only wants the three vertices of the triangle.
+ * Triangles can be defined with many ways or methods, but this interface
+ * only wants the three vertices of the triangle.
  * <p>
- * For the vertices, {@link Point2f} interface is used. Double precision
+ * For the vertices {@link Point2f} interface is used. Double precision
  * floating point numbers can be used internally, but it is not recommended.
+ * <p>
+ * The main usage of this interface is to act as a data object for the
+ * {@link Triangler}.
  *
- * @since 1.0.0
+ * @since 2.0.0
  *
  * @see Point2f
  * @see Triangler
@@ -25,7 +28,7 @@ public interface Triangle {
      *
      * @return the first vertex
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public Point2f v1();
 
@@ -34,7 +37,7 @@ public interface Triangle {
      *
      * @return the second vertex
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public Point2f v2();
 
@@ -43,7 +46,7 @@ public interface Triangle {
      *
      * @return the third vertex
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public Point2f v3();
 }
