@@ -44,6 +44,7 @@ public final class TriangleBarycentricser {
     public TriangleBarycentricser(final Triangle t) {
         this.triangle = Objects.requireNonNull(t);
         barycentrics = new TriangleBarycentrics(0, 0, 0);
+        update();
     }
 
     public TriangleBarycentrics barycentrics() {
