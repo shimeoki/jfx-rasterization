@@ -5,14 +5,17 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
+import io.github.shimeoki.jfx.rasterization.color.HTMLColorf;
 import io.github.shimeoki.jfx.rasterization.geom.Point2f;
-import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import io.github.shimeoki.jfx.rasterization.geom.Point2i;
+import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2i;
+import io.github.shimeoki.jfx.rasterization.triangle.color.MonotoneTriangleFiller;
 import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentricser;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelWriter;
 
@@ -48,11 +51,61 @@ import javafx.scene.image.PixelWriter;
  */
 public final class IntBresenhamTriangler implements Triangler {
 
-    private PixelWriter writer;
-    private Triangle triangle;
-    private TriangleFiller filler;
-    private TriangleBarycentricser barycentricser;
-    private TriangleBarycentrics barycentrics;
+    // miscellaneous
+
+    private final PixelWriter writer;
+    private TriangleFiller filler = new MonotoneTriangleFiller(HTMLColorf.BLACK);
+
+    private final TriangleBarycentricser barycentricser = new TriangleBarycentricser();
+    private final TriangleBarycentrics barycentrics = barycentricser.barycentrics();
+    private final List<Point2i> vertices = new ArrayList<>(3);
+    private final Point2f point = new Vector2f(0, 0);
+
+    // vertices
+
+    private Point2i v1;
+    private int v1x;
+    private int v1y;
+
+    private Point2i v2;
+    private int v2x;
+    private int v2y;
+
+    private Point2i v3;
+    private int v3x;
+    private int v3y;
+
+    private Point2i v4 = new Vector2i(0, 0);
+    private int v4x;
+
+    // process
+
+    private int tmp;
+
+    private int x;
+    private int i;
+
+    private int x1;
+    private int x2;
+
+    private int dx1;
+    private int dx2;
+
+    private int y1;
+    private int y2;
+
+    private int dy1;
+    private int dy2;
+
+    private int sx1;
+    private int sx2;
+    private int sy;
+
+    private boolean changed1;
+    private boolean changed2;
+
+    private int err1;
+    private int err2;
 
     /**
      * Creates a new {@code IntBresenhamTriangler} instance.
@@ -81,108 +134,136 @@ public final class IntBresenhamTriangler implements Triangler {
         return new Vector2i((int) p.x(), (int) p.y());
     }
 
-    private List<Point2i> sortedVertices() {
-        final List<Point2i> vertices = new ArrayList<>();
+    private void update(final Triangle t) {
+        vertices.clear();
 
-        vertices.add(converted(triangle.v1()));
-        vertices.add(converted(triangle.v2()));
-        vertices.add(converted(triangle.v3()));
+        vertices.add(converted(t.v1()));
+        vertices.add(converted(t.v2()));
+        vertices.add(converted(t.v3()));
 
         vertices.sort(Comparator
                 .comparing(Point2i::y)
                 .thenComparing(Point2i::x));
 
-        return vertices;
+        v1 = vertices.get(0);
+        v2 = vertices.get(1);
+        v3 = vertices.get(2);
+
+        v1x = v1.x();
+        v1y = v1.y();
+
+        v2x = v2.x();
+        v2y = v2.y();
+
+        v3x = v3.x();
+        v3y = v3.y();
     }
 
-    private void drawFlat(
-            final Point2i lone,
-            final Point2i flat1,
-            final Point2i flat2) {
+    private void swap1() {
+        if (dy1 <= dx1) {
+            return;
+        }
 
-        // TODO: refactor
+        tmp = dx1;
+        dx1 = dy1;
+        dy1 = tmp;
 
-        int x1 = lone.x();
-        int y1 = lone.y();
+        changed1 = true;
+    }
 
-        int x2 = x1;
-        int y2 = y1;
+    private void swap2() {
+        if (dy2 <= dx2) {
+            return;
+        }
 
-        boolean changed1 = false;
-        boolean changed2 = false;
+        tmp = dx2;
+        dx2 = dy2;
+        dy2 = tmp;
 
-        int dx1 = flat1.x() - x1;
-        int dx2 = flat2.x() - x1;
+        changed2 = true;
+    }
 
-        final int signx1 = (int) Math.signum(dx1);
-        final int signx2 = (int) Math.signum(dx2);
+    private void spendError1() {
+        while (err1 >= 0) {
+            if (changed1) {
+                x1 += sx1;
+            } else {
+                y1 += sy;
+            }
+
+            err1 -= 2 * dx1;
+        }
+    }
+
+    private void spendError2() {
+        while (err2 >= 0) {
+            if (changed2) {
+                x2 += sx2;
+            } else {
+                y2 += sy;
+            }
+
+            err2 -= 2 * dx2;
+        }
+    }
+
+    private void prepare(final Point2i p0, final Point2i p1, final Point2i p2) {
+        x1 = p0.x();
+        x2 = x1;
+
+        y1 = p0.y();
+        y2 = y1;
+
+        changed1 = false;
+        changed2 = false;
+
+        dx1 = p1.x() - x1;
+        dx2 = p2.x() - x1;
+
+        sx1 = (int) Math.signum(dx1);
+        sx2 = (int) Math.signum(dx2);
 
         dx1 = Math.abs(dx1);
         dx2 = Math.abs(dx2);
 
-        int dy1 = flat1.y() - y1;
-        int dy2 = flat2.y() - y1;
+        dy1 = p1.y() - y1;
+        dy2 = p2.y() - y1;
 
-        final int signy = (int) Math.signum(dy1);
+        sy = (int) Math.signum(dy1);
 
         dy1 = Math.abs(dy1);
         dy2 = Math.abs(dy2);
 
-        if (dy1 > dx1) {
-            final int tmp = dx1;
-            dx1 = dy1;
-            dy1 = tmp;
+        swap1();
+        swap2();
 
-            changed1 = true;
-        }
+        err1 = 2 * dy1 - dx1;
+        err2 = 2 * dy2 - dx2;
+    }
 
-        if (dy2 > dx2) {
-            final int tmp = dx2;
-            dx2 = dy2;
-            dy2 = tmp;
+    private void process(final Point2i p0, final Point2i p1, final Point2i p2) {
+        prepare(p0, p1, p2);
 
-            changed2 = true;
-        }
+        for (i = 0; i <= dx1; i++) {
+            drawHLine();
 
-        int err1 = 2 * dy1 - dx1;
-        int err2 = 2 * dy2 - dx2;
-
-        for (int i = 0; i <= dx1; i++) {
-            drawHLine(x1, x2, y1);
-
-            while (err1 >= 0) {
-                if (changed1) {
-                    x1 += signx1;
-                } else {
-                    y1 += signy;
-                }
-
-                err1 -= 2 * dx1;
-            }
+            spendError1();
 
             if (changed1) {
-                y1 += signy;
+                y1 += sy;
             } else {
-                x1 += signx1;
+                x1 += sx1;
             }
 
             err1 += 2 * dy1;
 
             while (y1 != y2) {
-                while (err2 >= 0) {
-                    if (changed2) {
-                        x2 += signx2;
-                    } else {
-                        y2 += signy;
-                    }
-
-                    err2 -= 2 * dx2;
-                }
+                spendError2();
 
                 if (changed2) {
-                    y2 += signy;
+                    y2 += sy;
                 } else {
-                    x2 += signx2;
+                    x2 += sx2;
                 }
 
                 err2 += 2 * dy2;
@@ -190,9 +271,13 @@ public final class IntBresenhamTriangler implements Triangler {
         }
     }
 
-    private void drawHLine(final int x1, final int x2, final int y) {
-        for (int x = x1; x <= x2; x++) {
-            barycentricser.calculate(new Vector2f(x, y));
+    private void drawHLine() {
+        point.setY(y1);
+
+        for (x = x1; x <= x2; x++) {
+            point.setX(x);
+
+            barycentricser.calculate(point);
 
             if (!barycentrics.normalized()) {
                 continue;
@@ -202,66 +287,38 @@ public final class IntBresenhamTriangler implements Triangler {
                 continue;
             }
 
-            writer.setColor(x, y, filler.color(barycentrics).jfxColor());
+            writer.setColor(x, y1, filler.color(barycentrics).jfxColor());
         }
-    }
-
-    private void cache(final Triangle t) {
-        triangle = t;
-        barycentricser = new TriangleBarycentricser(t);
-        barycentrics = barycentricser.barycentrics();
-    }
-
-    private void uncache() {
-        triangle = null;
-        barycentricser = null;
-        barycentrics = null;
     }
 
     @Override
     public void draw(final Triangle t) {
-        // TODO: too many lines in this method
+        Objects.requireNonNull(t);
 
-        Objects.requireNonNull(filler);
-        cache(Objects.requireNonNull(t));
+        barycentricser.setTriangle(t);
+        update(t);
 
-        final List<Point2i> vertices = sortedVertices();
-
-        final Point2i v1 = vertices.get(0);
-        final Point2i v2 = vertices.get(1);
-        final Point2i v3 = vertices.get(2);
-
-        final int x1 = v1.x();
-        final int y1 = v1.y();
-
-        final int x2 = v2.x();
-        final int y2 = v2.y();
-
-        final int x3 = v3.x();
-        final int y3 = v3.y();
-
-        if (y2 == y3) {
-            drawFlat(v1, v2, v3);
+        if (v2y == v3y) {
+            process(v1, v2, v3);
             return;
         }
 
-        if (y1 == y2) {
-            drawFlat(v3, v1, v2);
+        if (v1y == v2y) {
+            process(v3, v1, v2);
             return;
         }
 
-        final int x4 = (int) (x1 + ((float) (y2 - y1) / (float) (y3 - y1)) * (x3 - x1));
-        final Point2i v4 = new Vector2i(x4, v2.y());
+        v4x = (int) (v1x + ((float) (v2y - v1y) / (float) (v3y - v1y)) * (v3x - v1x));
 
-        // non strict equality?
-        if (x4 > x2) {
-            drawFlat(v1, v2, v4);
-            drawFlat(v3, v2, v4);
+        v4.setX(v4x);
+        v4.setY(v2y);
+
+        if (v4x > v2x) {
+            process(v1, v2, v4);
+            process(v3, v2, v4);
         } else {
-            drawFlat(v1, v4, v2);
-            drawFlat(v3, v4, v2);
+            process(v1, v4, v2);
+            process(v3, v4, v2);
         }
-
-        uncache();
     }
 }

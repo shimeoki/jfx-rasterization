@@ -7,10 +7,14 @@ import io.github.shimeoki.jfx.rasterization.math.Floats;
 
 public final class TriangleBarycentricser {
 
-    private final Triangle triangle;
+    private Triangle triangle;
     private final TriangleBarycentrics barycentrics;
 
     // on update()
+
+    private Point2f v1;
+    private Point2f v2;
+    private Point2f v3;
 
     private float x1;
     private float y1;
@@ -41,25 +45,36 @@ public final class TriangleBarycentricser {
     private float numerator2;
     private float numerator3;
 
-    public TriangleBarycentricser(final Triangle t) {
-        this.triangle = Objects.requireNonNull(t);
+    public TriangleBarycentricser() {
         barycentrics = new TriangleBarycentrics(0, 0, 0);
-        update();
     }
 
     public TriangleBarycentrics barycentrics() {
         return barycentrics;
     }
 
+    public Triangle triangle() {
+        return triangle;
+    }
+
+    public void setTriangle(final Triangle t) {
+        triangle = Objects.requireNonNull(t);
+        update();
+    }
+
     public void update() {
-        x1 = triangle.v1().x();
-        y1 = triangle.v1().y();
+        v1 = triangle.v1();
+        v2 = triangle.v2();
+        v3 = triangle.v3();
 
-        x2 = triangle.v2().x();
-        y2 = triangle.v2().y();
+        x1 = v1.x();
+        y1 = v1.y();
 
-        x3 = triangle.v3().x();
-        y3 = triangle.v3().y();
+        x2 = v2.x();
+        y2 = v2.y();
+
+        x3 = v3.x();
+        y3 = v3.y();
 
         dx13 = x1 - x3;
         dy13 = y1 - y3;

@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Objects;
 
 import io.github.shimeoki.jfx.rasterization.math.Floats;
+import io.github.shimeoki.jfx.rasterization.triangle.color.MonotoneTriangleFiller;
 import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentricser;
+import io.github.shimeoki.jfx.rasterization.color.HTMLColorf;
 import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 
@@ -49,11 +51,48 @@ import javafx.scene.image.PixelWriter;
  */
 public final class DDATriangler implements Triangler {
 
-    private PixelWriter writer;
-    private Triangle triangle;
-    private TriangleFiller filler;
-    private TriangleBarycentricser barycentricser;
-    private TriangleBarycentrics barycentrics;
+    // miscellaneous
+
+    private final PixelWriter writer;
+    private TriangleFiller filler = new MonotoneTriangleFiller(HTMLColorf.BLACK);
+
+    private final TriangleBarycentricser barycentricser = new TriangleBarycentricser();
+    private final TriangleBarycentrics barycentrics = barycentricser.barycentrics();
+    private final List<Point2f> vertices = new ArrayList<>(3);
+    private final Point2f point = new Vector2f(0, 0);
+
+    // vertices
+
+    private Point2f v1;
+    private float v1x;
+    private float v1y;
+
+    private Point2f v2;
+    private float v2x;
+    private float v2y;
+
+    private Point2f v3;
+    private float v3x;
+    private float v3y;
+
+    private Point2f v4 = new Vector2f(0, 0);
+    private float v4x;
+
+    // drawing
+
+    private float x1;
+    private float x2;
+
+    private float dx1;
+    private float dx2;
+
+    private int x;
+    private int y;
+
+    private float x0;
+    private float y0;
+
+    private float limY;
 
     /**
      * Creates a new {@code DDATriangler} instance.
@@ -78,85 +117,77 @@ public final class DDATriangler implements Triangler {
         filler = Objects.requireNonNull(f);
     }
 
-    private List<Point2f> sortedVertices() {
-        final List<Point2f> vertices = new ArrayList<>();
+    private void update(final Triangle t) {
+        vertices.clear();
 
-        vertices.add(triangle.v1());
-        vertices.add(triangle.v2());
-        vertices.add(triangle.v3());
+        vertices.add(t.v1());
+        vertices.add(t.v2());
+        vertices.add(t.v3());
 
         vertices.sort(Comparator
                 .comparing(Point2f::y)
                 .thenComparing(Point2f::x));
 
-        return vertices;
+        v1 = vertices.get(0);
+        v2 = vertices.get(1);
+        v3 = vertices.get(2);
+
+        v1x = v1.x();
+        v1y = v1.y();
+
+        v2x = v2.x();
+        v2y = v2.y();
+
+        v3x = v3.x();
+        v3y = v3.y();
     }
 
-    private void drawFlat(
-            final Point2f lone,
-            final Point2f flat1,
-            final Point2f flat2) {
+    private void drawFlat(final Point2f p0, final Point2f p1, final Point2f p2) {
+        x0 = p0.x();
+        y0 = p0.y();
 
-        final float loneX = lone.x();
-        final float loneY = lone.y();
+        dx1 = (p1.x() - x0) / (p1.y() - y0);
+        dx2 = (p2.x() - x0) / (p2.y() - y0);
 
-        final float deltaXFlat1 = flat1.x() - loneX;
-        final float deltaYFlat1 = flat1.y() - loneY;
-
-        final float deltaXFlat2 = flat2.x() - loneX;
-        final float deltaYFlat2 = flat2.y() - loneY;
-
-        float dx1 = deltaXFlat1 / deltaYFlat1;
-        float dx2 = deltaXFlat2 / deltaYFlat2;
-
-        final float flatY = flat1.y();
-
-        if (Floats.moreThan(loneY, flatY)) {
-            drawFlatAtMinY(lone, flatY, dx1, dx2);
+        limY = p1.y();
+        if (Floats.moreThan(y0, limY)) {
+            drawFlatAtMinY();
         } else {
-            drawFlatAtMaxY(lone, flatY, dx1, dx2);
+            drawFlatAtMaxY();
         }
     }
 
-    private void drawFlatAtMaxY(
-            final Point2f anchor,
-            final float maxY,
-            final float dx1,
-            final float dx2) {
+    private void drawFlatAtMaxY() {
+        x1 = x0;
+        x2 = x1;
 
-        float x1 = anchor.x();
-        float x2 = x1;
-
-        for (int y = (int) anchor.y(); y <= maxY; y++) {
-            // round floats instead of floor?
-            drawHLine((int) x1, (int) x2, y);
+        for (y = (int) y0; y <= limY; y++) {
+            drawHLine();
 
             x1 += dx1;
             x2 += dx2;
         }
     }
 
-    private void drawFlatAtMinY(
-            final Point2f anchor,
-            final float minY,
-            final float dx1,
-            final float dx2) {
+    private void drawFlatAtMinY() {
+        x1 = x0;
+        x2 = x1;
 
-        float x1 = anchor.x();
-        float x2 = x1;
-
-        for (int y = (int) anchor.y(); y > minY; y--) {
-            // round floats instead of floor?
-            drawHLine((int) x1, (int) x2, y);
+        for (y = (int) y0; y > limY; y--) {
+            drawHLine();
 
             x1 -= dx1;
             x2 -= dx2;
         }
     }
 
-    private void drawHLine(final int x1, final int x2, final int y) {
-        for (int x = x1; x <= x2; x++) {
-            barycentricser.calculate(new Vector2f(x, y));
+    private void drawHLine() {
+        point.setY(y);
+
+        for (x = (int) x1; x <= x2; x++) {
+            point.setX(x);
+
+            barycentricser.calculate(point);
 
             if (!barycentrics.normalized()) {
                 continue;
@@ -170,62 +201,34 @@ public final class DDATriangler implements Triangler {
         }
     }
 
-    private void cache(final Triangle t) {
-        triangle = t;
-        barycentricser = new TriangleBarycentricser(t);
-        barycentrics = barycentricser.barycentrics();
-    }
-
-    private void uncache() {
-        triangle = null;
-        barycentricser = null;
-        barycentrics = null;
-    }
-
     @Override
     public void draw(final Triangle t) {
-        // TODO: too many lines in this method
+        Objects.requireNonNull(t);
 
-        Objects.requireNonNull(filler);
-        cache(Objects.requireNonNull(t));
+        barycentricser.setTriangle(t);
+        update(t);
 
-        final List<Point2f> vertices = sortedVertices();
-
-        final Point2f v1 = vertices.get(0);
-        final Point2f v2 = vertices.get(1);
-        final Point2f v3 = vertices.get(2);
-
-        final float x1 = v1.x();
-        final float y1 = v1.y();
-
-        final float x2 = v2.x();
-        final float y2 = v2.y();
-
-        final float x3 = v3.x();
-        final float y3 = v3.y();
-
-        if (Floats.equals(y2, y3)) {
+        if (Floats.equals(v2y, v3y)) {
             drawFlat(v1, v2, v3);
             return;
         }
 
-        if (Floats.equals(y1, y2)) {
+        if (Floats.equals(v1y, v2y)) {
             drawFlat(v3, v1, v2);
             return;
         }
 
-        final float x4 = x1 + ((y2 - y1) / (y3 - y1)) * (x3 - x1);
-        final Point2f v4 = new Vector2f(x4, v2.y());
+        v4x = v1x + ((v2y - v1y) / (v3y - v1y)) * (v3x - v1x);
 
-        // non strict equality?
-        if (Floats.moreThan(x4, x2)) {
+        v4.setX(v4x);
+        v4.setY(v2y);
+
+        if (Floats.moreThan(v4x, v2x)) {
             drawFlat(v1, v2, v4);
             drawFlat(v3, v2, v4);
         } else {
             drawFlat(v1, v4, v2);
             drawFlat(v3, v4, v2);
         }
-
-        uncache();
     }
 }
