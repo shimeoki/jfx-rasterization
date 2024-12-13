@@ -3,7 +3,7 @@ package io.github.shimeoki.jfx.rasterization.math;
 /**
  * Class for some operations on floats using a fixed epsilon value.
  *
- * @since 1.0.0
+ * @since 2.0.0
  */
 public final class Floats {
 
@@ -14,7 +14,7 @@ public final class Floats {
      * {@code EPSILON} is almost equal to zero, so all functions try to get zero and
      * compare it to the epsilon.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public static final float EPSILON = 1E-5f;
 
@@ -32,7 +32,7 @@ public final class Floats {
      *
      * @return {@code true}, if the values are equal; {@code false} otherwise
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public static boolean equals(final float v1, final float v2) {
         return Math.abs(v1 - v2) < EPSILON;
@@ -54,7 +54,7 @@ public final class Floats {
      * @return {@code true}, if {@code left} is more than or equals {@code right};
      *         {@code false} otherwise
      *
-     * @since 1.0.0
+     * @since 2.0.0
      *
      * @see #lessThan(float, float)
      */
@@ -78,7 +78,7 @@ public final class Floats {
      * @return {@code true}, if {@code left} is less than or equals {@code right};
      *         {@code false} otherwise
      *
-     * @since 1.0.0
+     * @since 2.0.0
      *
      * @see #moreThan(float, float)
      */
@@ -104,7 +104,7 @@ public final class Floats {
      *
      * @return 0, 1 or -1
      *
-     * @since 1.0.0
+     * @since 2.0.0
      *
      * @see #moreThan(float, float)
      * @see #lessThan(float, float)
@@ -138,7 +138,7 @@ public final class Floats {
      *
      * @return confined float
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public static float confined(
             final float low, final float x, final float high) {
@@ -155,7 +155,7 @@ public final class Floats {
      *
      * @return minimum float out of three values
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public static float min3(final float v1, final float v2, final float v3) {
         return Math.min(v1, Math.min(v2, v3));
@@ -170,7 +170,7 @@ public final class Floats {
      *
      * @return maximum float out of three values
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public static float max3(final float v1, final float v2, final float v3) {
         return Math.max(v1, Math.max(v2, v3));

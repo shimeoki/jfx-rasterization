@@ -3,7 +3,7 @@ package io.github.shimeoki.jfx.rasterization.math;
 /**
  * Class for some operations on doubles using a fixed epsilon value.
  *
- * @since 1.0.0
+ * @since 2.0.0
  */
 public final class Doubles {
 
@@ -14,7 +14,7 @@ public final class Doubles {
      * {@code EPSILON} is almost equal to zero, so all functions try to get zero and
      * compare it to the epsilon.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public static final double EPSILON = 0.000000000001;
 
@@ -32,7 +32,7 @@ public final class Doubles {
      *
      * @return {@code true}, if the values are equal; {@code false} otherwise
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public static boolean equals(final double v1, final double v2) {
         return Math.abs(v1 - v2) < EPSILON;
@@ -54,7 +54,7 @@ public final class Doubles {
      * @return {@code true}, if {@code left} is more than or equals {@code right};
      *         {@code false} otherwise
      *
-     * @since 1.0.0
+     * @since 2.0.0
      *
      * @see #lessThan(double, double)
      */
@@ -78,7 +78,7 @@ public final class Doubles {
      * @return {@code true}, if {@code left} is less than or equals {@code right};
      *         {@code false} otherwise
      *
-     * @since 1.0.0
+     * @since 2.0.0
      *
      * @see #moreThan(double, double)
      */
@@ -105,7 +105,7 @@ public final class Doubles {
      *
      * @return 0, 1 or -1
      *
-     * @since 1.0.0
+     * @since 2.0.0
      *
      * @see #moreThan(double, double)
      * @see #lessThan(double, double)
@@ -139,7 +139,7 @@ public final class Doubles {
      *
      * @return confined double
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public static double confined(
             final double low, final double x, final double high) {
