@@ -3,8 +3,6 @@ plugins {
     id("org.openjfx.javafxplugin")
 }
 
-group = "io.github.shimeoki"
-
 repositories {
     mavenCentral()
 }

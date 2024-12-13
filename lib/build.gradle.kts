@@ -1,13 +1,15 @@
 plugins {
     id("jfx-rasterization.java-conventions")
+    `kotlin-dsl`
 
     id("base")
     id("java-library")
     id("java-library-distribution")
 
-    id("maven-publish")
+    id("io.deepmedia.tools.deployer") version "0.15.0"
 }
 
+group = "io.github.shimeoki.jfx"
 version = "2.0.0"
 
 base {
@@ -30,37 +32,51 @@ distributions {
     }
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            artifactId = rootProject.name
-
-            pom {
-                name = rootProject.name
-                description = "A JavaFX shape rasterization library."
-                url = "https://github.com/shimeoki/jfx-rasterization"
-
-                licenses {
-                    license {
-                        name = "MIT License"
-                        url = "https://github.com/shimeoki/jfx-rasterization/blob/main/LICENSE"
-                    }
-                }
-            }
-
-            from(components["java"])
+deployer {
+    content {
+        component {
+            fromJava()
         }
     }
 
-    repositories {
-        maven {
-            name = "github-packages"
-            url = uri("https://maven.pkg.github.com/shimeoki/jfx-rasterization")
+    projectInfo {
+        name.set(rootProject.name)
+        description.set("A JavaFX shape rasterization library.")
+        url.set("https://github.com/shimeoki/jfx-rasterization")
 
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
-            }
+        artifactId.set("rasterization")
+
+        scm {
+            fromGithub("shimeoki", "jfx-rasterization")
         }
+
+        license(MIT)
+
+        developer("shimeoki", "shimeoki@gmail.com")
+    }
+
+    localSpec("m2") {
+    }
+
+    localSpec("artifact") {
+        directory.set(file("build/artifact"))
+    }
+
+    centralPortalSpec {
+        auth.user.set(secret("CENTRAL_PORTAL_USERNAME"))
+        auth.password.set(secret("CENTRAL_PORTAL_PASSWORD"))
+
+        signing {
+            key.set(secret("GPG_KEY"))
+            password.set(secret("GPG_PWD"))
+        }
+    }
+
+    githubSpec {
+        owner.set("shimeoki")
+        repository.set("jfx-rasterization")
+
+        auth.user.set(secret("GITHUB_ACTOR"))
+        auth.token.set(secret("GITHUB_TOKEN"))
     }
 }
