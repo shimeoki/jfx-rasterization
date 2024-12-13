@@ -1,4 +1,4 @@
-name: Publish to GitHub Packages
+name: Publish to GitHub Packages on release
 
 on:
     release:
@@ -11,7 +11,8 @@ permissions:
     packages: write
 
 jobs:
-    publish-pkg-github:
+    publish-github:
+        name: Publish to GitHub Packages
         runs-on: ubuntu-latest
         steps:
           - name: Checkout
@@ -22,12 +23,15 @@ jobs:
             with:
                 java-version: 21
                 distribution: temurin
-                cache: gradle
 
           - name: Setup Gradle
             uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
 
-          - name: Publish package
-            run: ./gradlew :lib:publish
+          - name: Build
+            run: ./gradlew :lib:build
+
+          - name: Deploy
+            run: ./gradlew :lib:deployGithub
             env:
+                GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
