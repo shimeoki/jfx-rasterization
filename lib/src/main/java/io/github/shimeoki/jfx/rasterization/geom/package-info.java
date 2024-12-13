@@ -1,6 +1,7 @@
 /**
- * Package for all shared geometry types, mostly points.
+ * Package for all shared geometry types. Mostly points and their
+ * implementation.
  *
- * @since 1.0.0
+ * @since 2.0.0
  */
 package io.github.shimeoki.jfx.rasterization.geom;
