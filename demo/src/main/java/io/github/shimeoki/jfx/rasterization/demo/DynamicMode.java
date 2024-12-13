@@ -10,8 +10,8 @@ import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 import io.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import io.github.shimeoki.jfx.rasterization.triangle.Triangler;
-import io.github.shimeoki.jfx.rasterization.triangle.color.MonotoneTriangleColorer;
-import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
+import io.github.shimeoki.jfx.rasterization.triangle.color.MonotoneTriangleFiller;
+import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Polygon3;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 
@@ -60,7 +60,7 @@ public class DynamicMode {
 
     private Triangler triangler;
     private GraphicsContext ctx;
-    private TriangleColorer colorer;
+    private TriangleFiller colorer;
 
     class MovingVector {
 
@@ -182,7 +182,7 @@ public class DynamicMode {
     private void initTriangler() {
         triangler = new DDATriangler();
         ctx = canvas.getGraphicsContext2D();
-        colorer = new MonotoneTriangleColorer(HTMLColorf.BLUE);
+        colorer = new MonotoneTriangleFiller(HTMLColorf.BLUE);
     }
 
     private void initAddBtn() {

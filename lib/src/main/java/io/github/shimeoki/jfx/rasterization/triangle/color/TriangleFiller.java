@@ -15,11 +15,11 @@ import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
  *
  * @since 1.0.0
  *
- * @see MonotoneTriangleColorer
- * @see GradientTriangleColorer
+ * @see MonotoneTriangleFiller
+ * @see GradientTriangleFiller
  */
 @FunctionalInterface
-public interface TriangleColorer {
+public interface TriangleFiller {
 
     /**
      * Gets the color for the point on specified barycentrics.
@@ -32,5 +32,5 @@ public interface TriangleColorer {
      *
      * @since 1.0.0
      */
-    public Colorf get(final TriangleBarycentrics b);
+    public Colorf color(final TriangleBarycentrics b);
 }

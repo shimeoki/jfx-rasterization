@@ -5,16 +5,16 @@ import java.util.Objects;
 import io.github.shimeoki.jfx.rasterization.color.Colorf;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 
-public final class MonotoneTriangleColorer implements TriangleColorer {
+public final class MonotoneTriangleFiller implements TriangleFiller {
 
     private final Colorf color;
 
-    public MonotoneTriangleColorer(final Colorf c) {
+    public MonotoneTriangleFiller(final Colorf c) {
         color = Objects.requireNonNull(c);
     }
 
     @Override
-    public Colorf get(final TriangleBarycentrics b) {
+    public Colorf color(final TriangleBarycentrics b) {
         Objects.requireNonNull(b);
 
         return color;

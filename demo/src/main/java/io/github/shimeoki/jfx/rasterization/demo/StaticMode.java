@@ -10,8 +10,8 @@ import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import io.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
 import io.github.shimeoki.jfx.rasterization.triangle.Triangler;
-import io.github.shimeoki.jfx.rasterization.triangle.color.GradientTriangleColorer;
-import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
+import io.github.shimeoki.jfx.rasterization.triangle.color.GradientTriangleFiller;
+import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Polygon3;
 
 import javafx.collections.ObservableList;
@@ -48,7 +48,7 @@ public class StaticMode {
         private final GraphicsContext ctx;
 
         private final Triangler r;
-        private final TriangleColorer colorer;
+        private final TriangleFiller colorer;
 
         // 6 numbers from 0 to 1
         // 2 coordinates for 3 points
@@ -64,7 +64,7 @@ public class StaticMode {
             this.ctx = c.getGraphicsContext2D();
 
             this.r = new DDATriangler();
-            this.colorer = new GradientTriangleColorer(
+            this.colorer = new GradientTriangleFiller(
                     HTMLColorf.RED,
                     HTMLColorf.WHITE,
                     HTMLColorf.BLACK);

@@ -9,7 +9,7 @@ import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import io.github.shimeoki.jfx.rasterization.geom.Point2i;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2i;
-import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleColorer;
+import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentricser;
@@ -50,7 +50,7 @@ public final class IntBresenhamTriangler implements Triangler {
 
     private PixelWriter writer = null;
     private Triangle triangle = null;
-    private TriangleColorer colorer = null;
+    private TriangleFiller filler = null;
     private TriangleBarycentricser barycentricser = null;
     private TriangleBarycentrics barycentrics = null;
 
@@ -191,18 +191,18 @@ public final class IntBresenhamTriangler implements Triangler {
                 continue;
             }
 
-            writer.setColor(x, y, colorer.get(barycentrics).jfxColor());
+            writer.setColor(x, y, filler.color(barycentrics).jfxColor());
         }
     }
 
     private void cache(
             final PixelWriter w,
             final Triangle t,
-            final TriangleColorer c) {
+            final TriangleFiller c) {
 
         writer = w;
         triangle = t;
-        colorer = c;
+        filler = c;
         barycentricser = new TriangleBarycentricser(t);
         barycentrics = barycentricser.barycentrics();
     }
@@ -210,7 +210,7 @@ public final class IntBresenhamTriangler implements Triangler {
     private void uncache() {
         writer = null;
         triangle = null;
-        colorer = null;
+        filler = null;
         barycentricser = null;
         barycentrics = null;
     }
@@ -219,15 +219,15 @@ public final class IntBresenhamTriangler implements Triangler {
     public void draw(
             final GraphicsContext ctx,
             final Triangle triangle,
-            final TriangleColorer colorer) {
+            final TriangleFiller filler) {
 
         // TODO: too many lines in this method
 
         Objects.requireNonNull(ctx);
         Objects.requireNonNull(triangle);
-        Objects.requireNonNull(colorer);
+        Objects.requireNonNull(filler);
 
-        cache(ctx.getPixelWriter(), triangle, colorer);
+        cache(ctx.getPixelWriter(), triangle, filler);
 
         final List<Point2i> vertices = sortedVertices();
 

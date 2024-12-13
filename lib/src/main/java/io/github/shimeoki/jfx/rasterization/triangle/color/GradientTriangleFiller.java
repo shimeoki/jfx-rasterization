@@ -6,7 +6,7 @@ import io.github.shimeoki.jfx.rasterization.color.Colorf;
 import io.github.shimeoki.jfx.rasterization.math.Floats;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 
-public final class GradientTriangleColorer implements TriangleColorer {
+public final class GradientTriangleFiller implements TriangleFiller {
 
     private final Colorf color1;
     private final Colorf color2;
@@ -32,7 +32,7 @@ public final class GradientTriangleColorer implements TriangleColorer {
     private float alpha2;
     private float alpha3;
 
-    public GradientTriangleColorer(
+    public GradientTriangleFiller(
             final Colorf c1, final Colorf c2, final Colorf c3) {
 
         color1 = Objects.requireNonNull(c1);
@@ -73,7 +73,7 @@ public final class GradientTriangleColorer implements TriangleColorer {
     }
 
     @Override
-    public Colorf get(final TriangleBarycentrics b) {
+    public Colorf color(final TriangleBarycentrics b) {
         Objects.requireNonNull(b);
 
         lambda1 = b.lambda1();
