@@ -1,7 +1,7 @@
 /**
- * Package for triangle rasterization interface and the corresponding
+ * Package for the triangle rasterization interface and the corresponding
  * implementations.
  *
- * @since 1.0.0
+ * @since 2.0.0
  */
 package io.github.shimeoki.jfx.rasterization.triangle;
