@@ -47,7 +47,7 @@ import javafx.scene.image.PixelWriter;
  * "https://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html">this
  * article</a>.
  *
- * @since 1.0.0
+ * @since 2.0.0
  */
 public final class IntBresenhamTriangler implements Triangler {
 
@@ -111,10 +111,15 @@ public final class IntBresenhamTriangler implements Triangler {
      * Creates a new {@code IntBresenhamTriangler} instance.
      *
      * <p>
+     * Anchores itself to the passed {@link GraphicsContext}: contains the reference
+     * to the {@link PixelWriter} from the context.
+     * <p>
      * It's not a singleton class, so instances should be created and used
      * separately.
      *
-     * @since 1.0.0
+     * @since 2.0.0
+     *
+     * @see GraphicsContext
      */
     public IntBresenhamTriangler(final GraphicsContext ctx) {
         writer = Objects.requireNonNull(ctx).getPixelWriter();
