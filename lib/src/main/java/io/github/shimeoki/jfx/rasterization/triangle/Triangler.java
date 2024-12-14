@@ -8,17 +8,19 @@ import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
  *
  * <p>
  * Accepts a {@link Triangle Triangle} as the shape to draw and
- * {@link TriangleFiller TriangleFiller} to get the colors for individual
+ * {@link TriangleFiller } to get the colors for individual
  * pixels.
+ * <p>
+ * The library contains some implementations in the same package.
  * <p>
  * Example usage:
  *
  * <pre>{@code
- * // any implementations can be used, look at the interfaces
- *
  * final Canvas canvas; // javafx canvas to render on
+ *
  * final Triangler triangler = new DDATriangler(canvas.getGraphicsContext2D());
  * triangler.setFiller(new MonotoneTriangleFiller(HTMLColorf.RED));
+ * // any implementation can be used
  *
  * final Triangle triangle = new Polygon3(
  *         new Point2f(0, 1),
@@ -28,25 +30,45 @@ import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
  * triangler.draw(triangle);
  * }</pre>
  *
- * @since 1.0.0
+ * @since 2.0.0
  *
  * @see Triangle
  * @see TriangleFiller
  */
 public interface Triangler {
 
+    /**
+     * Gets a {@link TriangleFiller} currently used by this triangler.
+     *
+     * @return reference to the currently used filler
+     *
+     * @since 2.0.0
+     *
+     * @see TriangleFiller
+     */
     public TriangleFiller filler();
 
+    /**
+     * Sets the {@link TriangleFiller} to use for the rasterization.
+     *
+     * @param f the filler to use
+     *
+     * @throws NullPointerException if {@code f} is {@code null}
+     *
+     * @since 2.0.0
+     *
+     * @see TriangleFiller
+     */
     public void setFiller(final TriangleFiller f);
 
     /**
-     * Draws the triangle {@link Triangle t}.
+     * Draws the {@link Triangle} with the currently used filler.
      *
-     * @param t the {@link Triangle Triangle} to draw
+     * @param t the {@link Triangle} to draw
      *
      * @throws NullPointerException if {@code t} is {@code null}
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public void draw(final Triangle t);
 }
