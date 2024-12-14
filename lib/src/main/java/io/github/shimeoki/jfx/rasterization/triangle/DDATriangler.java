@@ -32,7 +32,7 @@ import javafx.scene.image.PixelWriter;
  * floats at the convertion are floored (not rounded) for consistency.
  * <p>
  * Because of that, the triangles can be displaced to the start of the
- * coordinate plane, and gaps can be seen between the triangles, if this
+ * coordinate plane, and the gaps can be seen between the triangles, if this
  * rasterization is used to draw triangulated polygons.
  * <p>
  * Sets pixels one by one with the
@@ -47,7 +47,7 @@ import javafx.scene.image.PixelWriter;
  * "https://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html">this
  * article</a>.
  *
- * @since 1.0.0
+ * @since 2.0.0
  */
 public final class DDATriangler implements Triangler {
 
@@ -98,10 +98,15 @@ public final class DDATriangler implements Triangler {
      * Creates a new {@code DDATriangler} instance.
      *
      * <p>
+     * Anchores itself to the passed {@link GraphicsContext}: contains the reference
+     * to the {@link PixelWriter} from the context.
+     * <p>
      * It's not a singleton class, so instances should be created and used
      * separately.
      *
-     * @since 1.0.0
+     * @since 2.0.0
+     *
+     * @see GraphicsContext
      */
     public DDATriangler(final GraphicsContext ctx) {
         writer = Objects.requireNonNull(ctx).getPixelWriter();
