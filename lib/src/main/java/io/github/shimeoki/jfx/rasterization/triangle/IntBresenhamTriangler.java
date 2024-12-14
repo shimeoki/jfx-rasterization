@@ -117,6 +117,8 @@ public final class IntBresenhamTriangler implements Triangler {
      * It's not a singleton class, so instances should be created and used
      * separately.
      *
+     * @param ctx graphics context to use for the rasterization
+     *
      * @since 2.0.0
      *
      * @see GraphicsContext
