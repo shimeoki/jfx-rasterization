@@ -10,10 +10,10 @@ import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
  * <p>
  * Can be used for filling triangles with one color, gradients or textures.
  * <p>
- * Standard implementations for "monotone" and gradient fill can be found in the
+ * Standard implementations for monotone and gradient fill can be found in the
  * library. You can use them as examples for creating your own class/function.
  *
- * @since 1.0.0
+ * @since 2.0.0
  *
  * @see MonotoneTriangleFiller
  * @see GradientTriangleFiller
@@ -30,7 +30,7 @@ public interface TriangleFiller {
      *
      * @throws NullPointerException if {@code b} is {@code null}
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public Colorf color(final TriangleBarycentrics b);
 }
