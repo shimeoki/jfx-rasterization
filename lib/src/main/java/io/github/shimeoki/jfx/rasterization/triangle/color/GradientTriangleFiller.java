@@ -6,6 +6,20 @@ import io.github.shimeoki.jfx.rasterization.color.Colorf;
 import io.github.shimeoki.jfx.rasterization.math.Floats;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 
+/**
+ * One of the standard implementations of {@link TriangleFiller} to fill the
+ * triangles with a gradient from three colors.
+ *
+ * <p>
+ * Linearly interpolates the color based on the barycentric coordinates. The
+ * colors are numbered and mapped to the corresponding numbered coordinates of
+ * the barycentrics.
+ *
+ * @since 2.0.0
+ *
+ * @see TriangleFiller
+ * @see Colorf
+ */
 public final class GradientTriangleFiller implements TriangleFiller {
 
     private final Colorf color1;
@@ -32,6 +46,17 @@ public final class GradientTriangleFiller implements TriangleFiller {
     private float alpha2;
     private float alpha3;
 
+    /**
+     * Creates a new {@link GradientTriangleFiller} instance.
+     *
+     * @param c1 first color of the gradient
+     * @param c2 second color of the gradient
+     * @param c3 third color of the gradient
+     *
+     * @throws NullPointerException if at least one parameter is {@code null}
+     *
+     * @since 2.0.0
+     */
     public GradientTriangleFiller(
             final Colorf c1, final Colorf c2, final Colorf c3) {
 
