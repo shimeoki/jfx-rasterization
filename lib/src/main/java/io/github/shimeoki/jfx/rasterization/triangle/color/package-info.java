@@ -1,7 +1,8 @@
 /**
- * Package for all triangle related color types, mostly the colorer and various
- * gradients or colors.
+ * Package for all triangle related color types. Mostly the
+ * {@link io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller}
+ * interface and the standard implementations for it.
  *
- * @since 1.0.0
+ * @since 2.0.0
  */
 package io.github.shimeoki.jfx.rasterization.triangle.color;
