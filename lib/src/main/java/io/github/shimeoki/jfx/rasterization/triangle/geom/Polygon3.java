@@ -17,9 +17,7 @@ import io.github.shimeoki.jfx.rasterization.geom.Point2f;
  */
 public final class Polygon3 implements Triangle {
 
-    private final Point2f v1;
-    private final Point2f v2;
-    private final Point2f v3;
+    private final Point2f v1, v2, v3;
 
     /**
      * Creates a new {@code Polygon3} instance.
