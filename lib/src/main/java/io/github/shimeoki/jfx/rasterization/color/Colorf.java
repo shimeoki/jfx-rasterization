@@ -16,10 +16,7 @@ import javafx.scene.paint.Color;
  */
 public final class Colorf {
 
-    private final float red;
-    private final float green;
-    private final float blue;
-    private final float alpha;
+    private final float red, green, blue, alpha;
 
     /**
      * Creates a new {@code Colorf} instance.
