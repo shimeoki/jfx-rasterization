@@ -52,8 +52,6 @@ import javafx.scene.image.PixelWriter;
  */
 public final class IntBresenhamTriangler implements Triangler {
 
-    // miscellaneous
-
     private final PixelWriter writer;
     private TriangleFiller filler = new MonotoneTriangleFiller(HTMLColorf.BLACK);
     private Colorf color;
@@ -63,51 +61,12 @@ public final class IntBresenhamTriangler implements Triangler {
     private final List<Point2i> vertices = new ArrayList<>(3);
     private final Point2f point = new Vector2f(0, 0);
 
-    // vertices
+    private Point2i v1, v2, v3, v4 = new Vector2i(0, 0);
+    private int v1x, v1y, v2x, v2y, v3x, v3y, v4x;
 
-    private Point2i v1;
-    private int v1x;
-    private int v1y;
-
-    private Point2i v2;
-    private int v2x;
-    private int v2y;
-
-    private Point2i v3;
-    private int v3x;
-    private int v3y;
-
-    private Point2i v4 = new Vector2i(0, 0);
-    private int v4x;
-
-    // process
-
-    private int tmp;
-
-    private int x;
-    private int i;
-
-    private int x1;
-    private int x2;
-
-    private int dx1;
-    private int dx2;
-
-    private int y1;
-    private int y2;
-
-    private int dy1;
-    private int dy2;
-
-    private int sx1;
-    private int sx2;
-    private int sy;
-
-    private boolean changed1;
-    private boolean changed2;
-
-    private int err1;
-    private int err2;
+    private int x, i, err1, err2, tmp;
+    private int x1, y1, x2, y2, dx1, dy1, dx2, dy2, sx1, sx2, sy;
+    private boolean changed1, changed2;
 
     /**
      * Creates a new {@code IntBresenhamTriangler} instance.
