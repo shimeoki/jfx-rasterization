@@ -22,29 +22,14 @@ import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
  */
 public final class GradientTriangleFiller implements TriangleFiller {
 
-    private final Colorf color1;
-    private final Colorf color2;
-    private final Colorf color3;
+    private final Colorf color1, color2, color3;
 
-    private float lambda1;
-    private float lambda2;
-    private float lambda3;
+    private float lambda1, lambda2, lambda3;
 
-    private float red1;
-    private float red2;
-    private float red3;
-
-    private float green1;
-    private float green2;
-    private float green3;
-
-    private float blue1;
-    private float blue2;
-    private float blue3;
-
-    private float alpha1;
-    private float alpha2;
-    private float alpha3;
+    private float red1, red2, red3;
+    private float green1, green2, green3;
+    private float blue1, blue2, blue3;
+    private float alpha1, alpha2, alpha3;
 
     /**
      * Creates a new {@link GradientTriangleFiller} instance.
