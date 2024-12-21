@@ -52,8 +52,6 @@ import javafx.scene.image.PixelWriter;
  */
 public final class DDATriangler implements Triangler {
 
-    // miscellaneous
-
     private final PixelWriter writer;
     private TriangleFiller filler = new MonotoneTriangleFiller(HTMLColorf.BLACK);
     private Colorf color;
@@ -63,38 +61,11 @@ public final class DDATriangler implements Triangler {
     private final List<Point2f> vertices = new ArrayList<>(3);
     private final Point2f point = new Vector2f(0, 0);
 
-    // vertices
+    private Point2f v1, v2, v3, v4 = new Vector2f(0, 0);
+    private float v1x, v1y, v2x, v2y, v3x, v3y, v4x;
 
-    private Point2f v1;
-    private float v1x;
-    private float v1y;
-
-    private Point2f v2;
-    private float v2x;
-    private float v2y;
-
-    private Point2f v3;
-    private float v3x;
-    private float v3y;
-
-    private Point2f v4 = new Vector2f(0, 0);
-    private float v4x;
-
-    // drawing
-
-    private float x1;
-    private float x2;
-
-    private float dx1;
-    private float dx2;
-
-    private int x;
-    private int y;
-
-    private float x0;
-    private float y0;
-
-    private float limY;
+    private float x1, x2, dx1, dx2, x0, y0, limY;
+    private int x, y;
 
     /**
      * Creates a new {@code DDATriangler} instance.
