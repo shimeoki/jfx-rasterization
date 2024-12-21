@@ -9,8 +9,7 @@ package io.github.shimeoki.jfx.rasterization.geom;
  */
 public final class Vector2f implements Point2f {
 
-    private float x;
-    private float y;
+    private float x, y;
 
     /**
      * Creates a new instance of {@code Vector2f}.

@@ -24,40 +24,13 @@ public final class TriangleBarycentricser {
     private Triangle triangle;
     private final TriangleBarycentrics barycentrics;
 
-    // on update()
+    private Point2f v1, v2, v3;
 
-    private Point2f v1;
-    private Point2f v2;
-    private Point2f v3;
+    private float x, y, x1, y1, x2, y2, x3, y3;
+    private float dx3, dy3, dx13, dy13, dx23, dy23;
 
-    private float x1;
-    private float y1;
-
-    private float x2;
-    private float y2;
-
-    private float x3;
-    private float y3;
-
-    private float dx13;
-    private float dy13;
-
-    private float dx23;
-    private float dy23;
-
+    private float numerator1, numerator2, numerator3;
     private float k; // inverted denominator
-
-    // on calculate()
-
-    private float x;
-    private float y;
-
-    private float dx3;
-    private float dy3;
-
-    private float numerator1;
-    private float numerator2;
-    private float numerator3;
 
     /**
      * Creates a new {@link TriangleBarycentricser} instance.
