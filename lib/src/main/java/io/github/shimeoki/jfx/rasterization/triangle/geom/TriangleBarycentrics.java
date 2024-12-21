@@ -24,9 +24,7 @@ import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
  */
 public final class TriangleBarycentrics {
 
-    private float lambda1;
-    private float lambda2;
-    private float lambda3;
+    private float lambda1, lambda2, lambda3;
 
     /**
      * Creates a new {@link TriangleBarycentrics} instance with initial values.
