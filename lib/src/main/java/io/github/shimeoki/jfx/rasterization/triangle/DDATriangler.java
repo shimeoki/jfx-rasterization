@@ -11,6 +11,7 @@ import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentricser;
+import io.github.shimeoki.jfx.rasterization.color.Colorf;
 import io.github.shimeoki.jfx.rasterization.color.HTMLColorf;
 import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
@@ -55,6 +56,7 @@ public final class DDATriangler implements Triangler {
 
     private final PixelWriter writer;
     private TriangleFiller filler = new MonotoneTriangleFiller(HTMLColorf.BLACK);
+    private Colorf color;
 
     private final TriangleBarycentricser barycentricser = new TriangleBarycentricser();
     private final TriangleBarycentrics barycentrics = barycentricser.barycentrics();
@@ -204,7 +206,13 @@ public final class DDATriangler implements Triangler {
                 continue;
             }
 
-            writer.setColor(x, y, filler.color(barycentrics).jfxColor());
+            color = filler.color(barycentrics);
+
+            if (color == null) {
+                continue;
+            }
+
+            writer.setColor(x, y, color.jfxColor());
         }
     }
 
