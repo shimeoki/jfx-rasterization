@@ -26,7 +26,7 @@ public interface TriangleFiller {
      *
      * @param b the barycentric coordinates
      *
-     * @return color for this point
+     * @return color for this point; can be {@code null}
      *
      * @throws NullPointerException if {@code b} is {@code null}
      *
