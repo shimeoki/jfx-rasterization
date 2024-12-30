@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import io.github.shimeoki.jfx.rasterization.color.HTMLColorf;
+import io.github.shimeoki.jfx.rasterization.HTMLColorf;
 import io.github.shimeoki.jfx.rasterization.demo.test.Timekeeper;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import io.github.shimeoki.jfx.rasterization.geom.Point2f;

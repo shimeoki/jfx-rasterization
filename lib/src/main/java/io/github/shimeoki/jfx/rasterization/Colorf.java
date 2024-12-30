@@ -1,4 +1,4 @@
-package io.github.shimeoki.jfx.rasterization.color;
+package io.github.shimeoki.jfx.rasterization;
 
 import io.github.shimeoki.jfx.rasterization.math.Floats;
 

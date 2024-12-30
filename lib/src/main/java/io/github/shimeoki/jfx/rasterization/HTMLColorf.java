@@ -1,4 +1,4 @@
-package io.github.shimeoki.jfx.rasterization.color;
+package io.github.shimeoki.jfx.rasterization;
 
 /**
  * Non-instantiable class with some {@link Colorf colors} from the

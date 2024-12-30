@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import io.github.shimeoki.jfx.rasterization.color.HTMLColorf;
+import io.github.shimeoki.jfx.rasterization.HTMLColorf;
 import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 import io.github.shimeoki.jfx.rasterization.triangle.DDATriangler;

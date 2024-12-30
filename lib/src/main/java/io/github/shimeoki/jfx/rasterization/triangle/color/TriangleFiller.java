@@ -1,6 +1,6 @@
 package io.github.shimeoki.jfx.rasterization.triangle.color;
 
-import io.github.shimeoki.jfx.rasterization.color.Colorf;
+import io.github.shimeoki.jfx.rasterization.Colorf;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 
 /**
