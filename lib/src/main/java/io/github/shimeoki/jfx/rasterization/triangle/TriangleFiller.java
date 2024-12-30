@@ -31,5 +31,5 @@ public interface TriangleFiller {
      *
      * @since 2.0.0
      */
-    public Colorf color(final TriangleBarycentrics b);
+    public Colorf color(final Barycentrics b);
 }

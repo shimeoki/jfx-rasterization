@@ -7,7 +7,7 @@ import io.github.shimeoki.jfx.rasterization.Point2f;
 import io.github.shimeoki.jfx.rasterization.Floats;
 
 /**
- * A class for memory and time efficient {@link TriangleBarycentrics}
+ * A class for memory and time efficient {@link Barycentrics}
  * generation from a {@link Triangle}.
  *
  * <p>
@@ -18,12 +18,12 @@ import io.github.shimeoki.jfx.rasterization.Floats;
  * @since 2.0.0
  *
  * @see Triangle
- * @see TriangleBarycentrics
+ * @see Barycentrics
  */
-public final class TriangleBarycentricser {
+public final class Barycentricser {
 
     private Triangle triangle;
-    private final TriangleBarycentrics barycentrics;
+    private final Barycentrics barycentrics;
 
     private Point2f v1, v2, v3;
 
@@ -34,17 +34,17 @@ public final class TriangleBarycentricser {
     private float k; // inverted denominator
 
     /**
-     * Creates a new {@link TriangleBarycentricser} instance.
+     * Creates a new {@link Barycentricser} instance.
      *
      * <p>
-     * Creates a new {@link TriangleBarycentrics} with zeros as coordinates.
+     * Creates a new {@link Barycentrics} with zeros as coordinates.
      *
      * @since 2.0.0
      *
-     * @see TriangleBarycentrics
+     * @see Barycentrics
      */
-    public TriangleBarycentricser() {
-        barycentrics = new TriangleBarycentrics(0, 0, 0);
+    public Barycentricser() {
+        barycentrics = new Barycentrics(0, 0, 0);
     }
 
     /**
@@ -55,9 +55,9 @@ public final class TriangleBarycentricser {
      *
      * @since 2.0.0
      *
-     * @see TriangleBarycentrics
+     * @see Barycentrics
      */
-    public TriangleBarycentrics barycentrics() {
+    public Barycentrics barycentrics() {
         return barycentrics;
     }
 

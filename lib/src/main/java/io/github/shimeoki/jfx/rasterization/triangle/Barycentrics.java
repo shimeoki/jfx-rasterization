@@ -10,7 +10,7 @@ import io.github.shimeoki.jfx.rasterization.Floats;
  * <p>
  * The coordinates are mutable for the usage of the same object instead of
  * creating a new one everytime. It can be seen in
- * {@link TriangleBarycentricser}.
+ * {@link Barycentricser}.
  * <p>
  * It is recommended to keep the coordinates normalized (based on the theory).
  * Documentation: <a href=
@@ -19,14 +19,14 @@ import io.github.shimeoki.jfx.rasterization.Floats;
  * @since 2.0.0
  *
  * @see TriangleFiller
- * @see TriangleBarycentricser
+ * @see Barycentricser
  */
-public final class TriangleBarycentrics {
+public final class Barycentrics {
 
     private float lambda1, lambda2, lambda3;
 
     /**
-     * Creates a new {@link TriangleBarycentrics} instance with initial values.
+     * Creates a new {@link Barycentrics} instance with initial values.
      *
      * @param lambda1 initial value of the first barycentric coordinate
      * @param lambda2 initial value of the second barycentric coordinate
@@ -34,7 +34,7 @@ public final class TriangleBarycentrics {
      *
      * @since 2.0.0
      */
-    public TriangleBarycentrics(
+    public Barycentrics(
             final float lambda1, final float lambda2, final float lambda3) {
 
         setLambda1(lambda1);

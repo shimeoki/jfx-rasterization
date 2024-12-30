@@ -82,7 +82,7 @@ public final class GradientTriangleFiller implements TriangleFiller {
     }
 
     @Override
-    public Colorf color(final TriangleBarycentrics b) {
+    public Colorf color(final Barycentrics b) {
         Objects.requireNonNull(b);
 
         lambda1 = b.lambda1();

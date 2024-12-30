@@ -35,7 +35,7 @@ public final class MonotoneTriangleFiller implements TriangleFiller {
     }
 
     @Override
-    public Colorf color(final TriangleBarycentrics b) {
+    public Colorf color(final Barycentrics b) {
         Objects.requireNonNull(b);
 
         return color;

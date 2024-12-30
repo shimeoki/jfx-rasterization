@@ -7,8 +7,8 @@ import java.util.Objects;
 
 import io.github.shimeoki.jfx.rasterization.triangle.MonotoneTriangleFiller;
 import io.github.shimeoki.jfx.rasterization.triangle.TriangleFiller;
-import io.github.shimeoki.jfx.rasterization.triangle.TriangleBarycentrics;
-import io.github.shimeoki.jfx.rasterization.triangle.TriangleBarycentricser;
+import io.github.shimeoki.jfx.rasterization.triangle.Barycentrics;
+import io.github.shimeoki.jfx.rasterization.triangle.Barycentricser;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelWriter;
@@ -50,8 +50,8 @@ public final class DDATriangler implements Triangler {
     private TriangleFiller filler = new MonotoneTriangleFiller(HTMLColorf.BLACK);
     private Colorf color;
 
-    private final TriangleBarycentricser barycentricser = new TriangleBarycentricser();
-    private final TriangleBarycentrics barycentrics = barycentricser.barycentrics();
+    private final Barycentricser barycentricser = new Barycentricser();
+    private final Barycentrics barycentrics = barycentricser.barycentrics();
     private final List<Point2f> vertices = new ArrayList<>(3);
     private final Point2f point = new Vector2f(0, 0);
 
