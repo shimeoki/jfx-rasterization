@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import io.github.shimeoki.jfx.rasterization.Triangle;
 import io.github.shimeoki.jfx.rasterization.Point2f;
-import io.github.shimeoki.jfx.rasterization.math.Floats;
+import io.github.shimeoki.jfx.rasterization.Floats;
 
 /**
  * A class for memory and time efficient {@link TriangleBarycentrics}

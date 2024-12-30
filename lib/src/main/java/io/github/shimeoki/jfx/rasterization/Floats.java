@@ -1,4 +1,4 @@
-package io.github.shimeoki.jfx.rasterization.math;
+package io.github.shimeoki.jfx.rasterization;
 
 /**
  * Class for some operations on floats using a fixed epsilon value.

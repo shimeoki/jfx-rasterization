@@ -1,6 +1,6 @@
 package io.github.shimeoki.jfx.rasterization.triangle.geom;
 
-import io.github.shimeoki.jfx.rasterization.math.Floats;
+import io.github.shimeoki.jfx.rasterization.Floats;
 import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
 
 /**
