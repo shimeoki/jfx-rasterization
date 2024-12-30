@@ -1,10 +1,9 @@
-package io.github.shimeoki.jfx.rasterization.triangle.color;
+package io.github.shimeoki.jfx.rasterization.triangle;
 
 import java.util.Objects;
 
 import io.github.shimeoki.jfx.rasterization.Colorf;
 import io.github.shimeoki.jfx.rasterization.Floats;
-import io.github.shimeoki.jfx.rasterization.triangle.TriangleBarycentrics;
 
 /**
  * One of the standard implementations of {@link TriangleFiller} to fill the

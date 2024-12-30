@@ -5,8 +5,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-import io.github.shimeoki.jfx.rasterization.triangle.color.MonotoneTriangleFiller;
-import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
+import io.github.shimeoki.jfx.rasterization.triangle.MonotoneTriangleFiller;
+import io.github.shimeoki.jfx.rasterization.triangle.TriangleFiller;
 import io.github.shimeoki.jfx.rasterization.triangle.TriangleBarycentrics;
 import io.github.shimeoki.jfx.rasterization.triangle.TriangleBarycentricser;
 

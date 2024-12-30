@@ -1,7 +1,6 @@
 package io.github.shimeoki.jfx.rasterization.triangle;
 
 import io.github.shimeoki.jfx.rasterization.Floats;
-import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
 
 /**
  * A class that represents barycentric coordinates using floats.

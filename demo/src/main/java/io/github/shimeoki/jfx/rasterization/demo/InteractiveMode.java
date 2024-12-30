@@ -9,7 +9,7 @@ import io.github.shimeoki.jfx.rasterization.Point2f;
 import io.github.shimeoki.jfx.rasterization.Vector2f;
 import io.github.shimeoki.jfx.rasterization.DDATriangler;
 import io.github.shimeoki.jfx.rasterization.Triangler;
-import io.github.shimeoki.jfx.rasterization.triangle.color.GradientTriangleFiller;
+import io.github.shimeoki.jfx.rasterization.triangle.GradientTriangleFiller;
 import io.github.shimeoki.jfx.rasterization.Polygon3;
 import io.github.shimeoki.jfx.rasterization.Triangle;
 

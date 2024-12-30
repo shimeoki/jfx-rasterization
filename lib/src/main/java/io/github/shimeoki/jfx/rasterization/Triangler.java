@@ -1,6 +1,6 @@
 package io.github.shimeoki.jfx.rasterization;
 
-import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
+import io.github.shimeoki.jfx.rasterization.triangle.TriangleFiller;
 
 /**
  * An interface for triangle rasterizers.
