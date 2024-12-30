@@ -2,7 +2,8 @@ package io.github.shimeoki.jfx.rasterization.triangle.geom;
 
 import java.util.Objects;
 
-import io.github.shimeoki.jfx.rasterization.geom.Point2f;
+import io.github.shimeoki.jfx.rasterization.Triangle;
+import io.github.shimeoki.jfx.rasterization.Point2f;
 import io.github.shimeoki.jfx.rasterization.math.Floats;
 
 /**

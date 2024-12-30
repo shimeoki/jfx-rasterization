@@ -1,4 +1,4 @@
-package io.github.shimeoki.jfx.rasterization.geom;
+package io.github.shimeoki.jfx.rasterization;
 
 /**
  * An interface that represents a point in 2D space using floats.

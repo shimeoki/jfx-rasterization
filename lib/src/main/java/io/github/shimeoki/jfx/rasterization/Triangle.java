@@ -1,7 +1,4 @@
-package io.github.shimeoki.jfx.rasterization.triangle.geom;
-
-import io.github.shimeoki.jfx.rasterization.geom.Point2f;
-import io.github.shimeoki.jfx.rasterization.Triangler;
+package io.github.shimeoki.jfx.rasterization;
 
 /**
  * An interface that represents a triangle with floats for the coordinates.

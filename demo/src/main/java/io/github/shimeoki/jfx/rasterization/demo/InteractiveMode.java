@@ -5,13 +5,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 import io.github.shimeoki.jfx.rasterization.HTMLColorf;
-import io.github.shimeoki.jfx.rasterization.geom.Point2f;
-import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
+import io.github.shimeoki.jfx.rasterization.Point2f;
+import io.github.shimeoki.jfx.rasterization.Vector2f;
 import io.github.shimeoki.jfx.rasterization.DDATriangler;
 import io.github.shimeoki.jfx.rasterization.Triangler;
 import io.github.shimeoki.jfx.rasterization.triangle.color.GradientTriangleFiller;
-import io.github.shimeoki.jfx.rasterization.triangle.geom.Polygon3;
-import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
+import io.github.shimeoki.jfx.rasterization.Polygon3;
+import io.github.shimeoki.jfx.rasterization.Triangle;
 
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;

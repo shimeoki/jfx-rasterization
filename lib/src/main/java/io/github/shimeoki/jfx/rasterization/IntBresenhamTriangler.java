@@ -5,13 +5,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-import io.github.shimeoki.jfx.rasterization.geom.Point2f;
-import io.github.shimeoki.jfx.rasterization.geom.Point2i;
-import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
-import io.github.shimeoki.jfx.rasterization.geom.Vector2i;
 import io.github.shimeoki.jfx.rasterization.triangle.color.MonotoneTriangleFiller;
 import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
-import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentricser;
 
