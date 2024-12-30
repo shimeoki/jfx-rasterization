@@ -1,4 +1,4 @@
-package io.github.shimeoki.jfx.rasterization.triangle;
+package io.github.shimeoki.jfx.rasterization;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -11,8 +11,6 @@ import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
 import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentricser;
-import io.github.shimeoki.jfx.rasterization.Colorf;
-import io.github.shimeoki.jfx.rasterization.HTMLColorf;
 import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
 
