@@ -9,7 +9,7 @@ import io.github.shimeoki.jfx.rasterization.Point2f;
 import io.github.shimeoki.jfx.rasterization.Vector2f;
 import io.github.shimeoki.jfx.rasterization.DDATriangler;
 import io.github.shimeoki.jfx.rasterization.Triangler;
-import io.github.shimeoki.jfx.rasterization.triangle.GradientTriangleFiller;
+import io.github.shimeoki.jfx.rasterization.triangle.GradientFiller;
 import io.github.shimeoki.jfx.rasterization.Polygon3;
 import io.github.shimeoki.jfx.rasterization.Triangle;
 
@@ -48,7 +48,7 @@ public class InteractiveMode {
 
     private void initTriangler() {
         triangler = new DDATriangler(canvas.getGraphicsContext2D());
-        triangler.setFiller(new GradientTriangleFiller(
+        triangler.setFiller(new GradientFiller(
                 HTMLColorf.AQUA,
                 HTMLColorf.FUCHSIA,
                 HTMLColorf.LIME));

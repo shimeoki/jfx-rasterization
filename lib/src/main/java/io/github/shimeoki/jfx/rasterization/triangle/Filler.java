@@ -14,11 +14,11 @@ import io.github.shimeoki.jfx.rasterization.Colorf;
  *
  * @since 2.0.0
  *
- * @see MonotoneTriangleFiller
- * @see GradientTriangleFiller
+ * @see SolidFiller
+ * @see GradientFiller
  */
 @FunctionalInterface
-public interface TriangleFiller {
+public interface Filler {
 
     /**
      * Gets the color for the point on specified barycentrics.

@@ -1,13 +1,13 @@
 package io.github.shimeoki.jfx.rasterization;
 
-import io.github.shimeoki.jfx.rasterization.triangle.TriangleFiller;
+import io.github.shimeoki.jfx.rasterization.triangle.Filler;
 
 /**
  * An interface for triangle rasterizers.
  *
  * <p>
  * Accepts a {@link Triangle Triangle} as the shape to draw and
- * {@link TriangleFiller } to get the colors for individual
+ * {@link Filler } to get the colors for individual
  * pixels.
  * <p>
  * The library contains some implementations in the same package.
@@ -32,23 +32,23 @@ import io.github.shimeoki.jfx.rasterization.triangle.TriangleFiller;
  * @since 2.0.0
  *
  * @see Triangle
- * @see TriangleFiller
+ * @see Filler
  */
 public interface Triangler {
 
     /**
-     * Gets a {@link TriangleFiller} currently used by this triangler.
+     * Gets a {@link Filler} currently used by this triangler.
      *
      * @return reference to the currently used filler
      *
      * @since 2.0.0
      *
-     * @see TriangleFiller
+     * @see Filler
      */
-    public TriangleFiller filler();
+    public Filler filler();
 
     /**
-     * Sets the {@link TriangleFiller} to use for the rasterization.
+     * Sets the {@link Filler} to use for the rasterization.
      *
      * @param f the filler to use
      *
@@ -56,9 +56,9 @@ public interface Triangler {
      *
      * @since 2.0.0
      *
-     * @see TriangleFiller
+     * @see Filler
      */
-    public void setFiller(final TriangleFiller f);
+    public void setFiller(final Filler f);
 
     /**
      * Draws the {@link Triangle} with the currently used filler.

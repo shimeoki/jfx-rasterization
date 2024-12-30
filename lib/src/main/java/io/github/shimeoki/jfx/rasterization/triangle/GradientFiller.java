@@ -6,7 +6,7 @@ import io.github.shimeoki.jfx.rasterization.Colorf;
 import io.github.shimeoki.jfx.rasterization.Floats;
 
 /**
- * One of the standard implementations of {@link TriangleFiller} to fill the
+ * One of the standard implementations of {@link Filler} to fill the
  * triangles with a gradient from three colors.
  *
  * <p>
@@ -16,10 +16,10 @@ import io.github.shimeoki.jfx.rasterization.Floats;
  *
  * @since 2.0.0
  *
- * @see TriangleFiller
+ * @see Filler
  * @see Colorf
  */
-public final class GradientTriangleFiller implements TriangleFiller {
+public final class GradientFiller implements Filler {
 
     private final Colorf color1, color2, color3;
 
@@ -31,7 +31,7 @@ public final class GradientTriangleFiller implements TriangleFiller {
     private float alpha1, alpha2, alpha3;
 
     /**
-     * Creates a new {@link GradientTriangleFiller} instance.
+     * Creates a new {@link GradientFiller} instance.
      *
      * @param c1 first color of the gradient
      * @param c2 second color of the gradient
@@ -41,7 +41,7 @@ public final class GradientTriangleFiller implements TriangleFiller {
      *
      * @since 2.0.0
      */
-    public GradientTriangleFiller(
+    public GradientFiller(
             final Colorf c1, final Colorf c2, final Colorf c3) {
 
         color1 = Objects.requireNonNull(c1);

@@ -6,7 +6,7 @@ import io.github.shimeoki.jfx.rasterization.Floats;
  * A class that represents barycentric coordinates using floats.
  *
  * <p>
- * The main usage is to act as a data object for the {@link TriangleFiller}.
+ * The main usage is to act as a data object for the {@link Filler}.
  * <p>
  * The coordinates are mutable for the usage of the same object instead of
  * creating a new one everytime. It can be seen in
@@ -18,7 +18,7 @@ import io.github.shimeoki.jfx.rasterization.Floats;
  *
  * @since 2.0.0
  *
- * @see TriangleFiller
+ * @see Filler
  * @see Barycentricser
  */
 public final class Barycentrics {

@@ -10,7 +10,7 @@ import io.github.shimeoki.jfx.rasterization.Point2f;
 import io.github.shimeoki.jfx.rasterization.Vector2f;
 import io.github.shimeoki.jfx.rasterization.DDATriangler;
 import io.github.shimeoki.jfx.rasterization.Triangler;
-import io.github.shimeoki.jfx.rasterization.triangle.GradientTriangleFiller;
+import io.github.shimeoki.jfx.rasterization.triangle.GradientFiller;
 import io.github.shimeoki.jfx.rasterization.Polygon3;
 
 import javafx.collections.ObservableList;
@@ -62,7 +62,7 @@ public class StaticMode {
             this.ctx = c.getGraphicsContext2D();
 
             this.r = new DDATriangler(this.ctx);
-            r.setFiller(new GradientTriangleFiller(
+            r.setFiller(new GradientFiller(
                     HTMLColorf.RED,
                     HTMLColorf.WHITE,
                     HTMLColorf.BLACK));

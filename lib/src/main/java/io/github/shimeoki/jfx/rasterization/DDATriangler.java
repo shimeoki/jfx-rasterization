@@ -5,8 +5,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-import io.github.shimeoki.jfx.rasterization.triangle.MonotoneTriangleFiller;
-import io.github.shimeoki.jfx.rasterization.triangle.TriangleFiller;
+import io.github.shimeoki.jfx.rasterization.triangle.SolidFiller;
+import io.github.shimeoki.jfx.rasterization.triangle.Filler;
 import io.github.shimeoki.jfx.rasterization.triangle.Barycentrics;
 import io.github.shimeoki.jfx.rasterization.triangle.Barycentricser;
 
@@ -47,7 +47,7 @@ import javafx.scene.image.PixelWriter;
 public final class DDATriangler implements Triangler {
 
     private final PixelWriter writer;
-    private TriangleFiller filler = new MonotoneTriangleFiller(HTMLColorf.BLACK);
+    private Filler filler = new SolidFiller(HTMLColorf.BLACK);
     private Colorf color;
 
     private final Barycentricser barycentricser = new Barycentricser();
@@ -82,12 +82,12 @@ public final class DDATriangler implements Triangler {
     }
 
     @Override
-    public TriangleFiller filler() {
+    public Filler filler() {
         return filler;
     }
 
     @Override
-    public void setFiller(final TriangleFiller f) {
+    public void setFiller(final Filler f) {
         filler = Objects.requireNonNull(f);
     }
 
