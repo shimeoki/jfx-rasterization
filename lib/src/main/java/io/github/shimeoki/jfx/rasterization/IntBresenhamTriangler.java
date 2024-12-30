@@ -7,8 +7,8 @@ import java.util.Objects;
 
 import io.github.shimeoki.jfx.rasterization.triangle.color.MonotoneTriangleFiller;
 import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
-import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
-import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentricser;
+import io.github.shimeoki.jfx.rasterization.triangle.TriangleBarycentrics;
+import io.github.shimeoki.jfx.rasterization.triangle.TriangleBarycentricser;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelWriter;

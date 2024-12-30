@@ -1,7 +1,7 @@
 package io.github.shimeoki.jfx.rasterization.triangle.color;
 
 import io.github.shimeoki.jfx.rasterization.Colorf;
-import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
+import io.github.shimeoki.jfx.rasterization.triangle.TriangleBarycentrics;
 
 /**
  * An interface that represents a function to get the colors to fill the

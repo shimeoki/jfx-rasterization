@@ -1,4 +1,4 @@
-package io.github.shimeoki.jfx.rasterization.triangle.geom;
+package io.github.shimeoki.jfx.rasterization.triangle;
 
 import java.util.Objects;
 
