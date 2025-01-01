@@ -27,7 +27,7 @@ public final class Barycentricser {
 
     private Point2f v1, v2, v3;
 
-    private float x, y, x1, y1, x2, y2, x3, y3;
+    private float x1, y1, x2, y2, x3, y3;
     private float dx3, dy3, dx13, dy13, dx23, dy23;
 
     private float numerator1, numerator2, numerator3;
@@ -134,25 +134,17 @@ public final class Barycentricser {
 
     /**
      * Calculates the barycentrics in this barycenctricser based on the current
-     * point data.
+     * coordinates.
      *
      * <p>
      * Updates the triangle barycentrics object accordingly on call.
      *
-     * @param p a point to calculate barycentrics for
-     *
-     * @throws NullPointerException if {@code p} is {@code null}
+     * @param x first coordinate
+     * @param y second coordinate
      *
      * @since 2.0.0
-     *
-     * @see Point2f
      */
-    public void calculate(final Point2f p) {
-        Objects.requireNonNull(p);
-
-        x = p.x();
-        y = p.y();
-
+    public void calculate(final float x, final float y) {
         dx3 = x - x3;
         dy3 = y - y3;
 

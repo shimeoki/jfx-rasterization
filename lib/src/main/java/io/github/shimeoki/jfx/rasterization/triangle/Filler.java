@@ -1,6 +1,7 @@
 package io.github.shimeoki.jfx.rasterization.triangle;
 
 import io.github.shimeoki.jfx.rasterization.Colorf;
+import io.github.shimeoki.jfx.rasterization.Point2i;
 
 /**
  * An interface that represents a function to get the colors to fill the
@@ -21,15 +22,21 @@ import io.github.shimeoki.jfx.rasterization.Colorf;
 public interface Filler {
 
     /**
-     * Gets the color for the point on specified barycentrics.
+     * Gets the color for the point on specified barycentrics and/or pixel
+     * coordinates.
      *
-     * @param b the barycentric coordinates
+     * <p>
+     * The parameters can be not copies, but references to the objects, used by the
+     * triangler.
+     *
+     * @param b barycentric coordinates
+     * @param p pixel coordinates
      *
      * @return color for this point; can be {@code null}
      *
-     * @throws NullPointerException if {@code b} is {@code null}
+     * @throws NullPointerException if {@code b} or {@code p} is {@code null}
      *
      * @since 2.0.0
      */
-    public Colorf color(final Barycentrics b);
+    public Colorf color(final Barycentrics b, final Point2i p);
 }

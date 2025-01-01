@@ -52,7 +52,7 @@ public final class IntBresenhamTriangler implements Triangler {
     private final Barycentricser barycentricser = new Barycentricser();
     private final Barycentrics barycentrics = barycentricser.barycentrics();
     private final List<Point2i> vertices = new ArrayList<>(3);
-    private final Point2f point = new Vector2f(0, 0);
+    private final Point2i point = new Vector2i(0, 0);
 
     private Point2i v1, v2, v3, v4 = new Vector2i(0, 0);
     private int v1x, v1y, v2x, v2y, v3x, v3y, v4x;
@@ -238,7 +238,7 @@ public final class IntBresenhamTriangler implements Triangler {
         for (x = x1; x <= x2; x++) {
             point.setX(x);
 
-            barycentricser.calculate(point);
+            barycentricser.calculate(point.x(), point.y());
 
             if (!barycentrics.normalized()) {
                 continue;
@@ -248,7 +248,7 @@ public final class IntBresenhamTriangler implements Triangler {
                 continue;
             }
 
-            color = filler.color(barycentrics);
+            color = filler.color(barycentrics, point);
 
             if (color == null) {
                 continue;
