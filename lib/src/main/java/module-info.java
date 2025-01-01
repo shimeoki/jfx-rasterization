@@ -1,7 +1,7 @@
 /**
  * A JavaFX shape rasterization library.
  *
- * @version 2.0.1
+ * @version 3.0.0
  */
 module io.github.shimeoki.jfx.rasterization {
 
