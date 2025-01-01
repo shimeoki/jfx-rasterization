@@ -3,6 +3,7 @@ package io.github.shimeoki.jfx.rasterization.triangle;
 import java.util.Objects;
 
 import io.github.shimeoki.jfx.rasterization.Colorf;
+import io.github.shimeoki.jfx.rasterization.Point2i;
 
 /**
  * One of the standard implementations of {@link Filler} to fill the
@@ -35,7 +36,7 @@ public final class SolidFiller implements Filler {
     }
 
     @Override
-    public Colorf color(final Barycentrics b) {
+    public Colorf color(final Barycentrics b, final Point2i p) {
         Objects.requireNonNull(b);
 
         return color;
