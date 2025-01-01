@@ -1,8 +1,6 @@
-package io.github.shimeoki.jfx.rasterization.triangle.geom;
+package io.github.shimeoki.jfx.rasterization;
 
 import java.util.Objects;
-
-import io.github.shimeoki.jfx.rasterization.geom.Point2f;
 
 /**
  * A default {@link Triangle} implementation.

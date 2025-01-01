@@ -1,12 +1,11 @@
-package io.github.shimeoki.jfx.rasterization.triangle.color;
+package io.github.shimeoki.jfx.rasterization.triangle;
 
 import java.util.Objects;
 
-import io.github.shimeoki.jfx.rasterization.color.Colorf;
-import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
+import io.github.shimeoki.jfx.rasterization.Colorf;
 
 /**
- * One of the standard implementations of {@link TriangleFiller} to fill the
+ * One of the standard implementations of {@link Filler} to fill the
  * triangles with one color.
  * 
  * <p>
@@ -15,15 +14,15 @@ import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
  * 
  * @since 2.0.0
  *
- * @see TriangleFiller
+ * @see Filler
  * @see Colorf
  */
-public final class MonotoneTriangleFiller implements TriangleFiller {
+public final class SolidFiller implements Filler {
 
     private final Colorf color;
 
     /**
-     * Creates a new {@link MonotoneTriangleFiller} instance.
+     * Creates a new {@link SolidFiller} instance.
      *
      * @param c the color to use
      *
@@ -31,12 +30,12 @@ public final class MonotoneTriangleFiller implements TriangleFiller {
      *
      * @since 2.0.0
      */
-    public MonotoneTriangleFiller(final Colorf c) {
+    public SolidFiller(final Colorf c) {
         color = Objects.requireNonNull(c);
     }
 
     @Override
-    public Colorf color(final TriangleBarycentrics b) {
+    public Colorf color(final Barycentrics b) {
         Objects.requireNonNull(b);
 
         return color;

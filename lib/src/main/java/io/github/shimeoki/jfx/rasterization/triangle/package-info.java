@@ -1,6 +1,5 @@
 /**
- * Package for the triangle rasterization interface and the corresponding
- * implementations.
+ * Package for the triangle rasterization types.
  *
  * @since 2.0.0
  */

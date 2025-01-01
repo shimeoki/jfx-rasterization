@@ -1,7 +1,6 @@
-package io.github.shimeoki.jfx.rasterization.triangle.color;
+package io.github.shimeoki.jfx.rasterization.triangle;
 
-import io.github.shimeoki.jfx.rasterization.color.Colorf;
-import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
+import io.github.shimeoki.jfx.rasterization.Colorf;
 
 /**
  * An interface that represents a function to get the colors to fill the
@@ -15,11 +14,11 @@ import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
  *
  * @since 2.0.0
  *
- * @see MonotoneTriangleFiller
- * @see GradientTriangleFiller
+ * @see SolidFiller
+ * @see GradientFiller
  */
 @FunctionalInterface
-public interface TriangleFiller {
+public interface Filler {
 
     /**
      * Gets the color for the point on specified barycentrics.
@@ -32,5 +31,5 @@ public interface TriangleFiller {
      *
      * @since 2.0.0
      */
-    public Colorf color(final TriangleBarycentrics b);
+    public Colorf color(final Barycentrics b);
 }

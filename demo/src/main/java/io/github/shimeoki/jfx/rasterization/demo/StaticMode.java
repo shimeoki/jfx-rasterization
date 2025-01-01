@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import io.github.shimeoki.jfx.rasterization.color.HTMLColorf;
-import io.github.shimeoki.jfx.rasterization.geom.Point2f;
-import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
-import io.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
-import io.github.shimeoki.jfx.rasterization.triangle.Triangler;
-import io.github.shimeoki.jfx.rasterization.triangle.color.GradientTriangleFiller;
-import io.github.shimeoki.jfx.rasterization.triangle.geom.Polygon3;
+import io.github.shimeoki.jfx.rasterization.HTMLColorf;
+import io.github.shimeoki.jfx.rasterization.Point2f;
+import io.github.shimeoki.jfx.rasterization.Vector2f;
+import io.github.shimeoki.jfx.rasterization.DDATriangler;
+import io.github.shimeoki.jfx.rasterization.Triangler;
+import io.github.shimeoki.jfx.rasterization.triangle.GradientFiller;
+import io.github.shimeoki.jfx.rasterization.Polygon3;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -62,7 +62,7 @@ public class StaticMode {
             this.ctx = c.getGraphicsContext2D();
 
             this.r = new DDATriangler(this.ctx);
-            r.setFiller(new GradientTriangleFiller(
+            r.setFiller(new GradientFiller(
                     HTMLColorf.RED,
                     HTMLColorf.WHITE,
                     HTMLColorf.BLACK));

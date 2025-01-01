@@ -4,15 +4,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import io.github.shimeoki.jfx.rasterization.color.HTMLColorf;
+import io.github.shimeoki.jfx.rasterization.HTMLColorf;
 import io.github.shimeoki.jfx.rasterization.demo.test.Timekeeper;
-import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
-import io.github.shimeoki.jfx.rasterization.geom.Point2f;
-import io.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
-import io.github.shimeoki.jfx.rasterization.triangle.Triangler;
-import io.github.shimeoki.jfx.rasterization.triangle.color.MonotoneTriangleFiller;
-import io.github.shimeoki.jfx.rasterization.triangle.geom.Polygon3;
-import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
+import io.github.shimeoki.jfx.rasterization.Vector2f;
+import io.github.shimeoki.jfx.rasterization.Point2f;
+import io.github.shimeoki.jfx.rasterization.DDATriangler;
+import io.github.shimeoki.jfx.rasterization.Triangler;
+import io.github.shimeoki.jfx.rasterization.triangle.SolidFiller;
+import io.github.shimeoki.jfx.rasterization.Polygon3;
+import io.github.shimeoki.jfx.rasterization.Triangle;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -177,7 +177,7 @@ public class DynamicMode {
 
     private void initTriangler() {
         triangler = new DDATriangler(canvas.getGraphicsContext2D());
-        triangler.setFiller(new MonotoneTriangleFiller(HTMLColorf.BLUE));
+        triangler.setFiller(new SolidFiller(HTMLColorf.BLUE));
     }
 
     private void initAddBtn() {

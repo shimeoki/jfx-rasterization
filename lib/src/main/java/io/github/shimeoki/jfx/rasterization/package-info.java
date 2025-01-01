@@ -1,6 +1,5 @@
 /**
- * An empty main package, which contains all other shared and shape-relevant
- * subpackages.
+ * Main package with other subpackages and ungrouped types.
  *
  * @since 2.0.0
  */

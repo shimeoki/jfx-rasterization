@@ -1,20 +1,14 @@
-package io.github.shimeoki.jfx.rasterization.triangle;
+package io.github.shimeoki.jfx.rasterization;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-import io.github.shimeoki.jfx.rasterization.math.Floats;
-import io.github.shimeoki.jfx.rasterization.triangle.color.MonotoneTriangleFiller;
-import io.github.shimeoki.jfx.rasterization.triangle.color.TriangleFiller;
-import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
-import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentrics;
-import io.github.shimeoki.jfx.rasterization.triangle.geom.TriangleBarycentricser;
-import io.github.shimeoki.jfx.rasterization.color.Colorf;
-import io.github.shimeoki.jfx.rasterization.color.HTMLColorf;
-import io.github.shimeoki.jfx.rasterization.geom.Point2f;
-import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
+import io.github.shimeoki.jfx.rasterization.triangle.SolidFiller;
+import io.github.shimeoki.jfx.rasterization.triangle.Filler;
+import io.github.shimeoki.jfx.rasterization.triangle.Barycentrics;
+import io.github.shimeoki.jfx.rasterization.triangle.Barycentricser;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelWriter;
@@ -53,11 +47,11 @@ import javafx.scene.image.PixelWriter;
 public final class DDATriangler implements Triangler {
 
     private final PixelWriter writer;
-    private TriangleFiller filler = new MonotoneTriangleFiller(HTMLColorf.BLACK);
+    private Filler filler = new SolidFiller(HTMLColorf.BLACK);
     private Colorf color;
 
-    private final TriangleBarycentricser barycentricser = new TriangleBarycentricser();
-    private final TriangleBarycentrics barycentrics = barycentricser.barycentrics();
+    private final Barycentricser barycentricser = new Barycentricser();
+    private final Barycentrics barycentrics = barycentricser.barycentrics();
     private final List<Point2f> vertices = new ArrayList<>(3);
     private final Point2f point = new Vector2f(0, 0);
 
@@ -88,12 +82,12 @@ public final class DDATriangler implements Triangler {
     }
 
     @Override
-    public TriangleFiller filler() {
+    public Filler filler() {
         return filler;
     }
 
     @Override
-    public void setFiller(final TriangleFiller f) {
+    public void setFiller(final Filler f) {
         filler = Objects.requireNonNull(f);
     }
 

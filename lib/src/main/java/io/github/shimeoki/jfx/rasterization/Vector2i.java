@@ -1,4 +1,4 @@
-package io.github.shimeoki.jfx.rasterization.geom;
+package io.github.shimeoki.jfx.rasterization;
 
 /**
  * Standard implementation of the {@code Point2i}.

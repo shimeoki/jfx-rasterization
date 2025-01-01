@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import io.github.shimeoki.jfx.rasterization.color.HTMLColorf;
-import io.github.shimeoki.jfx.rasterization.geom.Point2f;
-import io.github.shimeoki.jfx.rasterization.geom.Vector2f;
-import io.github.shimeoki.jfx.rasterization.triangle.DDATriangler;
-import io.github.shimeoki.jfx.rasterization.triangle.Triangler;
-import io.github.shimeoki.jfx.rasterization.triangle.color.GradientTriangleFiller;
-import io.github.shimeoki.jfx.rasterization.triangle.geom.Polygon3;
-import io.github.shimeoki.jfx.rasterization.triangle.geom.Triangle;
+import io.github.shimeoki.jfx.rasterization.HTMLColorf;
+import io.github.shimeoki.jfx.rasterization.Point2f;
+import io.github.shimeoki.jfx.rasterization.Vector2f;
+import io.github.shimeoki.jfx.rasterization.DDATriangler;
+import io.github.shimeoki.jfx.rasterization.Triangler;
+import io.github.shimeoki.jfx.rasterization.triangle.GradientFiller;
+import io.github.shimeoki.jfx.rasterization.Polygon3;
+import io.github.shimeoki.jfx.rasterization.Triangle;
 
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -48,7 +48,7 @@ public class InteractiveMode {
 
     private void initTriangler() {
         triangler = new DDATriangler(canvas.getGraphicsContext2D());
-        triangler.setFiller(new GradientTriangleFiller(
+        triangler.setFiller(new GradientFiller(
                 HTMLColorf.AQUA,
                 HTMLColorf.FUCHSIA,
                 HTMLColorf.LIME));
