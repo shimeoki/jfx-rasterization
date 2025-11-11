@@ -2,10 +2,25 @@
 
 A JavaFX shape rasterization library.
 
+## Description
+
 This repository contains two projects: the library itself and the "demo" app.
 
 Main focus is the library project, which is located in the `lib` directory. It's
 referred just as `jfx-rasterization` from now on.
+
+The library defines a little framework and some classes for simple rasterization
+for JavaFX.
+
+## Notice
+
+This project was done as a part of a university task, so it's archived for now.
+I don't have the time and the desire to maintain/develop it right now.
+
+The main issues are that the rasterization is very slow for resource-intensive
+rendering, because it's done pixel by pixel. So, if you want to improve the
+performance, it's the first recommended step. The source is available with a
+permissive MIT license, so you are free in your actions.
 
 ## Prerequisites
 
