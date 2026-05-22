@@ -20,7 +20,7 @@ I don't have the time and the desire to maintain/develop it right now.
 The main issues are that the rasterization is very slow for resource-intensive
 rendering, because it's done pixel by pixel. So, if you want to improve the
 performance, it's the first recommended step. The source is available with a
-permissive MIT license, so you are free in your actions.
+permissive BSD-3-Clause license, so you are free in your actions.
 
 ## Prerequisites
 
@@ -242,3 +242,8 @@ Javadoc can be viewed as a separate website.
 
 After the corresponding JAR build, unpack the JAR to any directory and open the
 `index.html` file with your browser.
+
+## License
+
+Unless otherwise noted, the source files are distributed under the
+[BSD-3-Clause license](./LICENSE).
